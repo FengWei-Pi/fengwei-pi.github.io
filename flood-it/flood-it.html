@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="FengWei Pi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Flood It</title>
+  <link rel="stylesheet" type="text/css" href="main.css"/>
+</head>
+
+<body onload="init()">
+  <div id="main">
+	<h1 id="title">Flood It</h1>
+	<p id="game-description">Click cells to fill the board with the same color before moves run out.</p>
+	
+	<div id="board">
+	</div>
+	
+	<form id="game-form">
+		<label for="select-size">Size:</label>
+		<select id="select-size">
+			<option value="4">4x4</option>
+			<option value="8">8x8</option>
+			<option value="12">12x12</option>
+			<option value="16">16x16</option>
+			<option value="20">20x20</option>
+			<option value="24">24x24</option>
+			<option value="28">28x28</option>
+		</select>
+		<label for="select-colors">Colors:</label>
+		<select id="select-colors">
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+		</select>
+		<button type="button" onclick="initGame()">Play</button>
+	</form>
+	
+	<p id="game-message">Moves Left: 25</p>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>

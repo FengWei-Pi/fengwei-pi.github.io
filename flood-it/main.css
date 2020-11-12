@@ -1,0 +1,45 @@
+/*
+Add if using bootstrap to change to content box rather than border box
+*{
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+*/
+
+*{
+	font-family: "Clear Sans", Arial, sans-serif;
+}
+
+#main {
+	text-align: center;
+}
+
+#header {
+	position:relative;
+}
+
+#board {
+	margin: auto;
+	margin-bottom: 5px;
+	position: relative;
+	border: 5px solid black;
+}
+
+#title {
+	margin-bottom: 0px;
+}
+
+#game-description {
+	margin-top: 4px;
+}
+
+#game-message {
+	margin-top: 4px;
+}
