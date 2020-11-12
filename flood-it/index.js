@@ -21,6 +21,7 @@ function flood(x, y, oldColor, newColor) {
 // Changes the top left cell to color of cell. Then, changes all adjacent
 // cells that had origin's old color to have origin's new color.
 function floodOrigin(cell) {
+	if (moves <= 0) return;
 	oldColor = cells[0][0].style.backgroundColor;
 	newColor = cell.style.backgroundColor;
 	if (oldColor == newColor) return;
@@ -34,9 +35,8 @@ function floodOrigin(cell) {
 }
 
 function updateMoves() {
-	if (moves < 0) return;
-	
 	--moves;
+
 	if (hasWon()) {
 		document.getElementById("game-message").innerHTML = "You Won!";
 	} else if (moves <= 0) {
