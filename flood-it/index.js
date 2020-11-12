@@ -22,6 +22,7 @@ function flood(x, y, oldColor, newColor) {
 // cells that had origin's old color to have origin's new color.
 function floodOrigin(cell) {
 	if (moves <= 0) return;
+	
 	oldColor = cells[0][0].style.backgroundColor;
 	newColor = cell.style.backgroundColor;
 	if (oldColor == newColor) return;
