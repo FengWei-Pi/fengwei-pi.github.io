@@ -34,8 +34,9 @@ function floodOrigin(cell) {
 }
 
 function updateMoves() {
-	--moves;
+	if (moves < 0) return;
 	
+	--moves;
 	if (hasWon()) {
 		document.getElementById("game-message").innerHTML = "You Won!";
 	} else if (moves <= 0) {
