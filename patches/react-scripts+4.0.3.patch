@@ -1,0 +1,20 @@
+diff --git a/node_modules/react-scripts/scripts/start.js b/node_modules/react-scripts/scripts/start.js
+index ffbb15d..9250492 100644
+--- a/node_modules/react-scripts/scripts/start.js
++++ b/node_modules/react-scripts/scripts/start.js
+@@ -34,8 +34,14 @@ verifyTypeScriptSetup();
+ const fs = require('fs');
+ const chalk = require('react-dev-utils/chalk');
+ const webpack = require('webpack');
++
++
++require('react-dev-utils/clearConsole');
++const clearConsole = ()=>{}
++require.cache[require.resolve('react-dev-utils/clearConsole')].exports = clearConsole
+ const WebpackDevServer = require('webpack-dev-server');
+-const clearConsole = require('react-dev-utils/clearConsole');
++
++
+ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
+ const {
+   choosePort,

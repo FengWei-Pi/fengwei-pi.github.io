@@ -1,0 +1,31 @@
+@use 'scss/theme';
+@use "scss/breakpoints";
+
+.cell {
+  border-radius: 50%;
+  border: 2px solid darkgray;
+  background-color: theme.$white;
+}
+
+.blue {
+  background: linear-gradient(skyblue, royalblue);
+}
+
+.red {
+  background: linear-gradient(orange, orangered);
+}
+
+.hoverRed {
+  background: linear-gradient(#ffedcc, #ffdacc);
+}
+
+.hoverBlue {
+  background: linear-gradient(#d3edf8, #d3dcf8);
+}
+
+@include breakpoints.breakpoint-up(md) {
+  .cell { border: 3px solid darkgray; }
+}
+@include breakpoints.breakpoint-up(xl) {
+  .cell { border: 4px solid darkgray; }
+}

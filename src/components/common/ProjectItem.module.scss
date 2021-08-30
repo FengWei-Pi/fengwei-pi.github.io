@@ -1,0 +1,41 @@
+@use "scss/theme";
+@use "scss/breakpoints";
+
+.container {
+	min-height: 0px;
+	border-radius: 5px;
+	// box-shadow: 0 1px 10px 0px rgba(silver, 0.5);
+}
+
+.title {
+	line-height: 1.0;
+}
+@include breakpoints.breakpoint-down(sm) { // TODO: make margins mobile first (add sm breakpoint for margin in theme.scss)
+  .title { margin-top: nth(theme.$margins, 4); }
+}
+
+.imageContainer {
+	border-radius: 5px;
+  background-color: theme.$off-white;
+}
+
+.image {
+	height: 100px;
+  width: auto;
+}
+@include breakpoints.breakpoint-up(sm) {
+  .image {
+    height: auto;
+    width: 125px;
+  }
+}
+@include breakpoints.breakpoint-up(md) {
+  .image {
+    width: 150px;
+  }
+}
+@include breakpoints.breakpoint-up(xl) {
+  .image {
+    width: 200px;
+  }
+}

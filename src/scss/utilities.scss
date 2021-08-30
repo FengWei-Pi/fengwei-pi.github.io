@@ -1,0 +1,23 @@
+%border-orange { border: 1px solid orange; }
+%border-black { border: 1px solid black; }
+%border-green { border: 1px solid green; }
+
+.border-orange { @extend %border-orange; }
+.border-black {	@extend %border-black; }
+.border-green {	@extend %border-green; }
+
+%border-orange-thick { border: 5px solid orange; }
+%border-black-thick { border: 5px solid black; }
+%border-green-thick { border: 5px solid green; }
+
+.border-orange-thick { @extend %border-orange-thick; }
+.border-black-thick {	@extend %border-black-thick; }
+.border-green-thick {	@extend %border-green-thick; }
+
+%background-orange { background-color: orange; }
+%background-blue { background-color: skyblue; }
+%background-green { background-color: green; }
+
+.background-orange { @extend %background-orange; }
+.background-blue {	@extend %background-blue; }
+.background-green {	@extend %background-green; }

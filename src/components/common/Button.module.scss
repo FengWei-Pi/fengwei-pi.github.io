@@ -1,0 +1,59 @@
+@use "scss/theme";
+@use "scss/breakpoints";
+@use './button' as *;
+
+.container {
+	@extend %border;
+	border-radius: theme.$max-width;
+
+	transition: 0.2s;
+}
+@media (hover: hover) {
+	.container:hover {
+		cursor: pointer;
+		@include highlight;
+	}
+}
+.container:active {
+	@include highlight;
+}
+
+.size1  {
+	@extend %font-size-1;
+	height: nth($heights, 1);
+	padding: 0px nth($paddings, 1) 0px nth($paddings, 1);
+}
+.size2 {
+	@extend %font-size-1;
+	height: nth($heights, 2);
+	padding: 0px nth($paddings, 2) 0px nth($paddings, 2);
+}
+.size3 {
+	@extend %font-size-2;
+	height: nth($heights, 3);
+	padding: 0px nth($paddings, 3) 0px nth($paddings, 3);
+}
+.size4 {
+	@extend %font-size-3;
+	height: nth($heights, 4);
+	padding: 0px nth($paddings, 4) 0px nth($paddings, 4);
+}
+
+@include breakpoints.breakpoint-up(md) {
+	.size1 {
+		height: nth($heights-md, 1);
+		padding: 0px nth($paddings-md, 1) 0px nth($paddings-md, 1);
+	}
+	.size2 {
+		height: nth($heights-md, 2);
+		padding: 0px nth($paddings-md, 2) 0px nth($paddings-md, 2);
+	}
+	.size3 {
+	  height: nth($heights-md, 3);
+		padding: 0px nth($paddings-md, 3) 0px nth($paddings-md, 3);
+	}
+	.size4 {
+		height: nth($heights-md, 4);
+		padding: 0px nth($paddings-md, 4) 0px nth($paddings-md, 4);
+	}
+}

@@ -1,0 +1,88 @@
+/*
+Convenience css classes that define flex growth, basis, and direction in general and at
+specific breakpoints and up. Flex basis at breakpoints form the core of the responsive
+layout of the app.
+
+
+Classes except flex-basis classes follow the structure .{class}-{breakpoint},
+where {} are replaced with a correct name, and -{breakpoint} is optional.
+
+{class} is one of flex-1, flex-direction-row, flex-direction-row-reverse, flex-direction-col,
+  flex-direction-col-reverse, flex-basis-auto
+{breakpoint} is one of sm, md, lg, xl
+
+
+Flex basis classes follow the structure .flex-basis-{col}-{breakpoint}, where {} are replaced
+with the correct name, and -{breakpoint} is optional. {col} represents the percent {col}/12,
+where .flex-basis-3 translates to the style flex-basis: 25%.
+
+{col} is one of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+{breakpoint} is one of sm, md, lg, xl
+
+
+ex. // myComponent.js
+    export default MyComponent {
+			return (
+				<div className={`flex-direction-row-reverse flex-basis-12 flex-basis-10-sm`}>
+					My Sample Text
+				</div>
+			)
+		}
+*/
+@use "scss/breakpoints";
+
+// Flex center
+%flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-center { @extend %flex-center; }
+
+// Flex growth class
+.flex-0 { flex: 0 0 0%; }
+.flex-1 { flex: 1 0 0%; }
+
+// Flex direction classes
+.flex-direction-row { flex-direction: row; }
+.flex-direction-row-reverse { flex-direction: row-reverse; }
+.flex-direction-col {
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+.flex-direction-col-reverse {
+	flex-direction: column-reverse;
+	flex-wrap: nowrap;
+}
+
+// Flex basis classes
+$cols: 8.333333%, 16.666667%, 25%, 33.333333%, 41.666667%, 50%, 58.333333%, 66.666667%, 75%, 83.33333%, 91.666667%, 100%;
+
+@each $col in $cols {
+	$i: index($cols, $col);
+	.flex-basis-#{$i} { flex: 0 0 $col };
+}
+.flex-basis-auto { flex: 0 0 auto };
+
+// For each breakpoint
+@each $breakpoint, $value in breakpoints.$breakpoints {
+	@include breakpoints.breakpoint-up($breakpoint) {
+
+		// Define breakpoint flex direction classes
+		.flex-direction-row-#{$breakpoint} { flex-direction: row; }
+		.flex-direction-row-reverse-#{$breakpoint} { flex-direction: row-reverse; }
+		.flex-direction-col-#{$breakpoint} { flex-direction: column; }
+		.flex-direction-col-reverse-#{$breakpoint} { flex-direction: column-reverse; }
+
+		// Define flex growth classes
+		.flex-1-#{$breakpoint} { flex: 1; }
+
+		// Define breakpoint flex basis classes
+		@each $col in $cols {
+			$j: index($cols, $col);
+			.flex-basis-#{$j}-#{$breakpoint} { flex: 0 0 $col };
+		}
+		.flex-basis-auto-#{$breakpoint} { flex: 0 0 auto };
+	}
+}

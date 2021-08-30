@@ -1,0 +1,49 @@
+@use "scss/breakpoints";
+@use './button' as *;
+
+.container {
+	position: relative;
+}
+
+.menuContainer {
+	@extend %border;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: nth($heights, 2) / 2;
+	background-color: white;
+	overflow: hidden;
+	min-width: 100%;
+}
+
+.menuOptionContainer {
+	white-space: nowrap;
+	flex-wrap: nowrap;
+	height: nth($heights, 2);
+	padding: 0px nth($paddings, 2) 0px nth($paddings, 2);
+}
+@media (hover: hover) {
+	.menuOptionContainer:hover {
+		cursor: pointer;
+		@include highlight;
+	}
+}
+.menuOptionContainer:active {
+	@include highlight;
+}
+
+@include breakpoints.breakpoint-up(md) {
+	.menuContainer {
+		border-radius: nth($heights-md, 2) / 2;
+	}
+	.menuOptionContainer {
+		height: nth($heights-md, 2);
+		padding: 0px nth($paddings-md, 2) 0px nth($paddings-md, 2);
+	}
+}
+
+.dropdownIcon, .selectedIcon {
+	margin-right: -5px;
+	margin-left: 10px;
+	font-size: 0.8em;
+}

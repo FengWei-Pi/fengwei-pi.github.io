@@ -1,0 +1,102 @@
+@use "scss/theme";
+@use "scss/breakpoints";
+
+.bgBlue {
+  color: theme.$white;
+  background: linear-gradient(transparent, rgba(theme.$blue-accent,0.2)), theme.$blue-primary
+}
+
+.bgPink {
+  color: theme.$white;
+  background: linear-gradient(transparent, rgba(theme.$pink-accent, 0.5)), theme.$pink-primary
+}
+
+.titleText {
+  @extend %font-weight-normal;
+  margin-bottom: 20px;
+  animation: fadein 1s;
+  white-space: pre-wrap;
+}
+.title2Text {
+  @extend %font-weight-normal;
+  display: inline;
+}
+.textLeft { animation: fadein 1s; }
+.textRight { animation: fadein 1s; }
+@include breakpoints.breakpoint-up(sm) {
+  .textLeft { animation: slideInLeft 1s; }
+  .textRight { animation: slideInRight 1s; }
+}
+
+.image {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+@include breakpoints.breakpoint-up(md) {
+  .image {
+    height: 300px;
+    width: 300px;
+  }
+}
+@include breakpoints.breakpoint-up(xl) {
+  .image {
+    height: 400px;
+    width: 400px;
+  }
+}
+
+/*
+.image {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+@include breakpoints.breakpoint-up(md) {
+  .image {
+    height: 300px;
+    width: 300px;
+  }
+}
+@include breakpoints.breakpoint-up(xl) {
+  .image {
+    height: 400px;
+    width: 400px;
+  }
+}
+*/
+
+/*
+.logo {
+  height: 200px;
+  width: 200px;
+  animation: fadein 1s;
+}
+@include breakpoints.breakpoint-up(md) {
+  .logo {
+    height: 300px;
+    width: 300px;
+  }
+}
+@include breakpoints.breakpoint-up(xl) {
+  .logo {
+    height: 400px;
+    width: 400px;
+  }
+}
+*/
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { margin-left: 20px; opacity: 0; }
+  to   { margin-left: 0px; opacity: 1; }
+}
+@keyframes slideInRight {
+  from { margin-right: 20px; opacity: 0; }
+  to   { margin-right: 0px; opacity: 1; }
+}

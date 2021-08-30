@@ -1,0 +1,171 @@
+/*
+	TODO:documentation
+  flex-basis: 1 to 12
+  margin/padding: 0 to 5
+	font sizes: 1 to 4
+*/
+@use "scss/breakpoints";
+@use "scss/utilities";
+
+// Colors
+$blue1: #245376;
+$blue2: #2770a1;
+$blue3: #3983af;
+$blue4: #4890be;
+$blue5: #5e9fc8;
+
+$pink1: #746c89;
+$pink2: #a584a1;
+$pink3: #cbadbd;
+
+$grey1: #808080; // #5d7897; old
+$grey2: #a6a6a6; // #859cbb; old
+
+$blue-primary: $blue1;
+$blue-accent: $blue3;
+$pink-primary: $pink2;
+$pink-accent: $pink3;
+$grey-primary: $grey1;
+$grey-accent: $grey2;
+
+// Text colors
+$black: black;
+$white: white;
+$off-white: whitesmoke;
+
+// Text size constants
+$font-sizes: 14px, 18px, 22px, 28px;
+$font-sizes-md: 16px, 22px, 30px, 40px;
+$font-sizes-xl: 20px, 28px, 38px, 50px;
+
+@for $i from 1 through length($font-sizes) {
+	%font-size-#{$i} { font-size: nth($font-sizes, $i) }
+	.font-size-#{$i} { font-size: nth($font-sizes, $i) }
+	@include breakpoints.breakpoint-up(md) {
+		%font-size-#{$i} { font-size: nth($font-sizes-md, $i) }
+		.font-size-#{$i} { font-size: nth($font-sizes-md, $i) }
+	}
+	@include breakpoints.breakpoint-up(xl) {
+		%font-size-#{$i} { font-size: nth($font-sizes-xl, $i) }
+		.font-size-#{$i} { font-size: nth($font-sizes-xl, $i) }
+	}
+}
+
+// Text layout
+%break-word {
+	overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.break-word { @extend %break-word; }
+
+// Line height
+%line-height-normal { line-height: normal; }
+%line-height-1 { line-height: 1.5; }
+%line-height-2 { line-height: 1.7; }
+%line-height-3 { line-height: 2.0; }
+.line-height-normal { @extend %line-height-normal; }
+.line-height-1 { @extend %line-height-1; }
+.line-height-2 { @extend %line-height-2; }
+.line-height-3 { @extend %line-height-3; }
+
+// Font weight
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto:wght@300;400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+%font-weight-thin { font-weight: 300 }
+%font-weight-normal { font-weight: 400 }
+%font-weight-bold { font-weight: 600 }
+.font-weight-thin { @extend %font-weight-thin };
+.font-weight-normal { @extend %font-weight-normal };
+.font-weight-bold { @extend %font-weight-bold };
+
+// Text base styles
+%text-primary {
+	@extend %font-size-1;
+	@extend %font-weight-thin;
+	@extend %line-height-1;
+	text-align: center;
+	color: $black;
+	font-family: 'Roboto', 'Open Sans', 'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@include breakpoints.breakpoint-up(sm) {
+	%text-primary { text-align: start; }
+}
+.text-primary { @extend %text-primary; }
+
+// Layout
+$max-width: 1920px;
+.max-width { max-width: $max-width; }
+
+// Margin constants
+$margins: 0px, 3px, 6px, 15px, 30px, 60px;
+$margins-md: 0px, 4px, 8px, 20px, 40px, 80px;
+$margins-xl: 0px, 5px, 10px, 25px, 50px, 100px;
+
+// For each margin
+@for $i from 0 to length($margins) {
+	$margin: nth($margins, $i+1);
+	
+	// Define margin classes
+	.margin-#{$i} { margin: $margin }
+	.margin-left-#{$i} { margin-left: $margin; }
+	.margin-vert-#{$i} { margin-top: $margin; margin-bottom: $margin; }
+	.margin-horz-#{$i} { margin-left: $margin; margin-right: $margin; }
+	.margin-right-#{$i} { margin-right: $margin; }
+	.margin-top-#{$i} { margin-top: $margin; }
+	.margin-bottom-#{$i} { margin-bottom: $margin; }
+
+	// Define padding classes
+	.padding-#{$i} { padding: $margin }
+	.padding-left-#{$i} { padding-left: $margin; }
+	.padding-vert-#{$i} { padding-top: $margin; padding-bottom: $margin; }
+	.padding-horz-#{$i} { padding-left: $margin; padding-right: $margin; }
+	.padding-right-#{$i} { padding-right: $margin; }
+	.padding-top-#{$i} { padding-top: $margin; }
+	.padding-bottom-#{$i} { padding-bottom: $margin; }
+
+	@include breakpoints.breakpoint-up(md) {
+		$margin: nth($margins-md, $i+1);
+	
+		// Define margin classes
+		.margin-#{$i} { margin: $margin }
+		.margin-left-#{$i} { margin-left: $margin; }
+		.margin-vert-#{$i} { margin-top: $margin; margin-bottom: $margin; }
+		.margin-horz-#{$i} { margin-left: $margin; margin-right: $margin; }
+		.margin-right-#{$i} { margin-right: $margin; }
+		.margin-top-#{$i} { margin-top: $margin; }
+		.margin-bottom-#{$i} { margin-bottom: $margin; }
+
+		// Define padding classes
+		.padding-#{$i} { padding: $margin }
+		.padding-left-#{$i} { padding-left: $margin; }
+		.padding-vert-#{$i} { padding-top: $margin; padding-bottom: $margin; }
+		.padding-horz-#{$i} { padding-left: $margin; padding-right: $margin; }
+		.padding-right-#{$i} { padding-right: $margin; }
+		.padding-top-#{$i} { padding-top: $margin; }
+		.padding-bottom-#{$i} { padding-bottom: $margin; }
+	}
+
+	@include breakpoints.breakpoint-up(xl) {
+		$margin: nth($margins-xl, $i+1);
+	
+		// Define margin classes
+		.margin-#{$i} { margin: $margin }
+		.margin-left-#{$i} { margin-left: $margin; }
+		.margin-vert-#{$i} { margin-top: $margin; margin-bottom: $margin; }
+		.margin-horz-#{$i} { margin-left: $margin; margin-right: $margin; }
+		.margin-right-#{$i} { margin-right: $margin; }
+		.margin-top-#{$i} { margin-top: $margin; }
+		.margin-bottom-#{$i} { margin-bottom: $margin; }
+
+		// Define padding classes
+		.padding-#{$i} { padding: $margin }
+		.padding-left-#{$i} { padding-left: $margin; }
+		.padding-vert-#{$i} { padding-top: $margin; padding-bottom: $margin; }
+		.padding-horz-#{$i} { padding-left: $margin; padding-right: $margin; }
+		.padding-right-#{$i} { padding-right: $margin; }
+		.padding-top-#{$i} { padding-top: $margin; }
+		.padding-bottom-#{$i} { padding-bottom: $margin; }
+	}
+}

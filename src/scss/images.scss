@@ -1,0 +1,46 @@
+// Circular logos
+%bg-logo {
+	background-color: lightgray;
+	background-size: cover;
+  border-radius: 50%;
+}
+
+.logoProfile {
+	@extend %bg-logo;
+	background-color: lightblue;
+	background-image: url('/assets/blurred-landscape.jpg');
+}
+
+.logoUWAerial {
+	@extend %bg-logo;
+	background-color: white;
+	background-image: url('/assets/UW-aerial.jpg');
+}
+
+.logoPassionfruit {
+	@extend %bg-logo;
+	background-color: white;
+	background-image: url('/assets/passionfruit-icon.png');
+}
+
+.logoCode {
+	@extend %bg-logo;
+	background-color: black;
+	background-image: url('/assets/code.png');
+}
+
+// Plain url images
+.imageFloodItSite {
+	background-image: url('/assets/flood-it-entire.png');
+	background-repeat: no-repeat;
+}
+
+.imageFloodItGrid {
+	background-image: url('/assets/flood-it-grid.png');
+	background-repeat: no-repeat;
+}
+
+.imageConnectFour {
+	background-image: url('/assets/connect-four.png');
+	background-repeat: no-repeat;
+}
