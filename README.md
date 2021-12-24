@@ -1,1 +1,1 @@
-My personal website built with React. See it here: https://fengwei-pi.github.io/
+This reopsitory houses [my personal website](https://fengwei-pi.github.io/), built with React and hosted statically with Github Pages.
