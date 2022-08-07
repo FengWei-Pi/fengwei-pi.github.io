@@ -5,9 +5,9 @@ import Cell from "./Cell";
 import Button from "components/common/Button";
 import DropdownButton from "components/common/DropdownButton";
 
-import Node from "connectFourModel/monteCarloTreeSearch";
-import * as Network from "connectFourModel/neuralNet";
-import modelStr16 from "connectFourModel/modelStr-16-13.json";
+import Node from "models/connectFour/monteCarloTreeSearch";
+import { getDeserializedModel, predict } from "models/connectFour/tensorflowUtils";
+import modelStr16 from "models/connectFour/model.json";
 
 const numSimulations = 50;
 
@@ -28,10 +28,12 @@ export default function ConnectFour(props) {
   // On mount, get neural network model
   useEffect(() => {
     setTimeout(() => {
-      Network.getDeserializedModel(JSON.stringify(modelStr16))
+      getDeserializedModel(JSON.stringify(modelStr16))
         .then(model => {
           gameRef.current.model = model;
-          gameRef.current.root = new Node({ predictFn: (node) => Network.predict(node.state, model) });
+          gameRef.current.root = new Node({
+            predictFn: (node) => predict(node.state, model)
+          });
           setRenderKey(prev => !prev);
         });
     }, 0);
@@ -59,7 +61,9 @@ export default function ConnectFour(props) {
   // Create new game and ai
   const handleNewGame = () => {
     // TODO: add other models option
-    gameRef.current.root = new Node({ predictFn: (node) => Network.predict(node.state, gameRef.current.model) });
+    gameRef.current.root = new Node({
+      predictFn: (node) => predict(node.state, gameRef.current.model)
+    });
     setRenderKey(prev => !prev);
     setGameOverScore(null);
 
