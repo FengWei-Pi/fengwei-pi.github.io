@@ -23,18 +23,7 @@
 	background-image: url('/assets/passionfruit-icon.png');
 }
 
-.logoCode {
-	@extend %bg-logo;
-	background-color: black;
-	background-image: url('/assets/code.png');
-}
-
 // Plain url images
-.imageFloodItSite {
-	background-image: url('/assets/flood-it-entire.png');
-	background-repeat: no-repeat;
-}
-
 .imageFloodItGrid {
 	background-image: url('/assets/flood-it-grid.png');
 	background-repeat: no-repeat;
