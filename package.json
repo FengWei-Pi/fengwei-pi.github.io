@@ -44,32 +44,12 @@
     ],
     "rules": {
       "prefer-const": "warn",
-      "indent": [
-        "warn",
-        2
-      ],
-      "quotes": [
-        "warn",
-        "double",
-        {
-          "allowTemplateLiterals": true
-        }
-      ],
-      "jsx-quotes": [
-        "warn",
-        "prefer-double"
-      ],
-      "semi": [
-        "warn",
-        "always"
-      ],
+      "indent": ["warn", 2],
+      "quotes": ["warn", "double", { "allowTemplateLiterals": true }],
+      "jsx-quotes": [ "warn", "prefer-double"],
+      "semi": ["warn", "always"],
       "no-unused-vars": "warn",
-      "max-len": [
-        "warn",
-        {
-          "code": 130
-        }
-      ],
+      "max-len": ["warn", { "code": 130 }],
       "no-unreachable": "warn"
     }
   },
