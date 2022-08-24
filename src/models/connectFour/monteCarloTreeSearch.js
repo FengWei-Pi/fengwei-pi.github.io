@@ -1,6 +1,6 @@
 import PD from "probability-distributions";
 
-import ConnectFour from "./connectFour";
+import { ConnectFour } from "./connectFour";
 
 /**
  * Action: {
@@ -146,11 +146,12 @@ export default class Node {
     if (this.isTerminal === true) return -this.terminalValue;
     if (this.isTerminal === null) {
       // Using true value
-      if (this.state.hasWon()) {
+      const terminalValue = this.state.getTerminalValue(this.state.getCurrentPlayer());
+      if (terminalValue === -1) {
         this.isTerminal = true;
         this.terminalValue = -1;
         return -this.terminalValue;
-      } else if (this.state.isFull()) {
+      } else if (terminalValue === 0) {
         this.isTerminal = true;
         this.terminalValue = 0;
         return -this.terminalValue;

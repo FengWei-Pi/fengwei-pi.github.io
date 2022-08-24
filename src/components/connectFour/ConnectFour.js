@@ -39,18 +39,43 @@ export default function ConnectFour(props) {
     }, 0);
   }, []);
 
+  const getBoard = () => {
+    const board = [[], [], [], [], [], [], []];
+
+    if (!gameRef.current.root) return board;
+
+    const pastMoves = gameRef.current.root.state.getPastMoves();
+    const heights = [0, 0, 0, 0, 0, 0, 0];
+    let player = 0;
+
+    for (const move of pastMoves) {
+      board[move].push(player);
+      ++heights[move];
+      player = player ^ 1;
+    }
+
+    for (let i=0; i<7; ++i) {
+      for (let j=heights[i]; j<6; ++j) {
+        board[i].push(-1);
+      }
+    }
+
+    return board;
+  };
+
   const makeAiMove = () => {
     for (let i = 0; i < numSimulations; ++i) gameRef.current.root.simulate();
 
     const action = gameRef.current.root.getMostVisitedAction();
     gameRef.current.root.doAction(action);
 
-    if (gameRef.current.root.state.hasWon()) {
+    const terminalValue = gameRef.current.root.state.getTerminalValue(gameRef.current.root.state.getCurrentPlayer());
+    if (terminalValue === -1) {
       setGameOverScore(-1);
       setHoveringCol(null);
       return;
     }
-    if (gameRef.current.root.state.isFull()) {
+    if (terminalValue === 0) {
       setGameOverScore(0);
       setHoveringCol(null);
       return;
@@ -82,12 +107,12 @@ export default function ConnectFour(props) {
     gameRef.current.root.doAction(action);
 
     // Check if game is over
-    if (gameRef.current.root.state.hasWon()) {
+    if (gameRef.current.root.state.getTerminalValue(gameRef.current.root.state.getCurrentPlayer()) === -1) {
       setGameOverScore(1);
       setHoveringCol(null);
       return;
     }
-    if (gameRef.current.root.state.isFull()) {
+    if (gameRef.current.root.state.getTerminalValue(gameRef.current.root.state.getCurrentPlayer()) === 0) {
       setGameOverScore(0);
       setHoveringCol(null);
       return;
@@ -115,7 +140,7 @@ export default function ConnectFour(props) {
         className={`flex-direction-row padding-2 margin-vert-2 ${styles.container} ${boardClasses}`}
         onMouseLeave={handleHoverLeave}
       >
-        {gameRef.current.root && gameRef.current.root.state.getBoard().map((column, colIndex) => (
+        {getBoard().map((column, colIndex) => (
           <div
             className={`flex-direction-col-reverse ${styles.column}`} key={colIndex.toString()}
             onMouseEnter={() => handleHoverEnter(colIndex)}
