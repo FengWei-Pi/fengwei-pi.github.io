@@ -5,11 +5,12 @@ export enum TerminalValue {
   DRAW = 0
 }
 
-/** An interface for a turn based game model. */
-export type TurnGameBoard<MoveType> = {
-  /** Replacement for copy constructor. */
-  clone: () => TurnGameBoard<MoveType>,
-
+/**
+ * An interface for a turn based game model. The implementation must also
+ * have a constructor that accepts an optional object instance of its own class,
+ * where the newly created object must be a deep copy of the passed object.
+ */
+export interface TurnGameModel<MoveType> {
   /** Makes move for current player. Throws error if move is invalid. */
   makeMove: (move: MoveType) => void,
 

@@ -1,13 +1,14 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./ConnectFour.module.scss";
 import Cell from "./Cell";
 import Button from "components/common/Button";
 import DropdownButton from "components/common/DropdownButton";
 
-import Node from "models/connectFour/monteCarloTreeSearch";
+import { MCTS_Node_NN } from "models/connectFour/monteCarloTreeSearch";
 import { getDeserializedModel, predict } from "models/connectFour/tensorflowUtils";
-import modelStr16 from "models/connectFour/model.json";
+import modelStr from "models/connectFour/model.json";
+import { ConnectFourBoard } from "models/connectFour/connectFourBoard";
 
 const numSimulations = 50;
 
@@ -18,7 +19,7 @@ export default function ConnectFour(props) {
 
   // Use `setRenderKey(prev => !prev)` to re-render component. Used when game state changes.
   const [, setRenderKey] = useState(false);
-  const gameRef = useRef({model: null, root: null});
+  const gameRef = useRef({ model: null, root: null });
 
   const [gameOverScore, setGameOverScore] = useState(null);
   const [hoveringCol, setHoveringCol] = useState(null);
@@ -28,12 +29,21 @@ export default function ConnectFour(props) {
   // On mount, get neural network model
   useEffect(() => {
     setTimeout(() => {
-      getDeserializedModel(JSON.stringify(modelStr16))
+      getDeserializedModel(JSON.stringify(modelStr))
         .then(model => {
           gameRef.current.model = model;
-          gameRef.current.root = new Node({
-            predictFn: (node) => predict(node.state, model)
-          });
+          gameRef.current.root = new MCTS_Node_NN(
+            new ConnectFourBoard(),
+            ConnectFourBoard,
+            (board) => {
+              const [probabilities, value] = predict(board, gameRef.current.model);
+              const priors = new Map(
+                probabilities.map((prob, index) => [index, prob])
+              );
+              return { priors, value };
+            }
+          );
+          
           setRenderKey(prev => !prev);
         });
     }, 0);
@@ -66,8 +76,7 @@ export default function ConnectFour(props) {
   const makeAiMove = () => {
     for (let i = 0; i < numSimulations; ++i) gameRef.current.root.simulate();
 
-    const action = gameRef.current.root.getMostVisitedAction();
-    gameRef.current.root.doAction(action);
+    gameRef.current.root.makeMove(gameRef.current.root.getMostVisitedMove());
 
     const terminalValue = gameRef.current.root.state.getTerminalValue(gameRef.current.root.state.getCurrentPlayer());
     if (terminalValue === -1) {
@@ -86,9 +95,19 @@ export default function ConnectFour(props) {
   // Create new game and ai
   const handleNewGame = () => {
     // TODO: add other models option
-    gameRef.current.root = new Node({
-      predictFn: (node) => predict(node.state, gameRef.current.model)
-    });
+    gameRef.current.root = new MCTS_Node_NN(
+      new ConnectFourBoard(),
+      ConnectFourBoard,
+      (board) => {
+        const [probabilities, value] = predict(board, gameRef.current.model);
+        const priors = new Map(
+          probabilities.map((prob, index) => [index, prob])
+        );
+
+        return { priors, value };
+      }
+    );
+
     setRenderKey(prev => !prev);
     setGameOverScore(null);
 
@@ -103,8 +122,8 @@ export default function ConnectFour(props) {
     const moves = gameRef.current.root.state.getValidMoves();
     if (moves.indexOf(colIndex) < 0) return;
     
-    const action = gameRef.current.root.actions.find(action => action.move === colIndex);
-    gameRef.current.root.doAction(action);
+    gameRef.current.root.simulate();
+    gameRef.current.root.makeMove(colIndex);
 
     // Check if game is over
     if (gameRef.current.root.state.getTerminalValue(gameRef.current.root.state.getCurrentPlayer()) === -1) {

@@ -43,14 +43,36 @@
       "eslint:recommended"
     ],
     "rules": {
-      "prefer-const": "warn",
-      "indent": ["warn", 2],
-      "quotes": ["warn", "double", { "allowTemplateLiterals": true }],
-      "jsx-quotes": [ "warn", "prefer-double"],
-      "semi": ["warn", "always"],
+      "@typescript-eslint/no-unused-vars": "warn",
+      "indent": [
+        "warn",
+        2
+      ],
+      "jsx-quotes": [
+        "warn",
+        "prefer-double"
+      ],
+      "max-len": [
+        "warn",
+        {
+          "code": 120
+        }
+      ],
+      "object-curly-spacing": ["warn", "always"],
+      "no-unreachable": "warn",
       "no-unused-vars": "warn",
-      "max-len": ["warn", { "code": 130 }],
-      "no-unreachable": "warn"
+      "prefer-const": "warn",
+      "quotes": [
+        "warn",
+        "double",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ]
     }
   },
   "babel": {

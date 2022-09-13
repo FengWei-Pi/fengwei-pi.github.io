@@ -1,11 +1,15 @@
 import BitSet from "bitset";
-import { TerminalValue, TurnGameBoard } from "models/turnGame/turnGame";
+import { TerminalValue, TurnGameModel } from "../turnGame/board";
 
 export type ConnectFourMove = number;
 
 // Bitboards based off https://github.com/denkspuren/BitboardC4/blob/master/BitboardDesign.md
-export class ConnectFour implements TurnGameBoard<ConnectFourMove> {
-
+/**
+ * Class representing connect four board with efficient operations.
+ * 
+ * @see https://en.wikipedia.org/wiki/Connect_Four#Gameplay for rules.
+ */
+export class ConnectFourBoard implements TurnGameModel<ConnectFourMove> {
   static NUM_ROWS = 6;
   static NUM_COLS = 7;
 
@@ -16,7 +20,7 @@ export class ConnectFour implements TurnGameBoard<ConnectFourMove> {
 
   // Create new empty connect four game with players zero and one.
   // Player zero moves first.
-  constructor(connectFour? : ConnectFour) {
+  constructor(connectFour? : ConnectFourBoard) {
     if (!connectFour) {
       this.bitboards = [new BitSet(), new BitSet()];
 
@@ -30,10 +34,6 @@ export class ConnectFour implements TurnGameBoard<ConnectFourMove> {
       this.numMoves = connectFour.numMoves;
       this.moves = [...connectFour.moves];
     }
-  }
-
-  clone() {
-    return new ConnectFour(this);
   }
 
   // Returns 0 or 1
@@ -65,7 +65,7 @@ export class ConnectFour implements TurnGameBoard<ConnectFourMove> {
   }
   
   isValidMove(move: number) {
-    if (move < 0 || move >= ConnectFour.NUM_COLS) return false;
+    if (move < 0 || move >= ConnectFourBoard.NUM_COLS) return false;
 
     const TOP = new BitSet("1000000100000010000001000000100000010000001000000");
     if (TOP.get(this.heights[move]) === 0) return true;

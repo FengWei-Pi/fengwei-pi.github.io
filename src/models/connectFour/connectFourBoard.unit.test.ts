@@ -1,14 +1,14 @@
-import { ConnectFour } from "./connectFour";
-import { TerminalValue } from "../turnGame/turnGame";
+import { ConnectFourBoard } from "./connectFourBoard";
+import { TerminalValue } from "../turnGame/board";
 
 describe("New game", () => {
   const getGame = () => {
-    return new ConnectFour();
+    return new ConnectFourBoard();
   };
 
   test("Should clone", () => {
     const game = getGame();
-    const clone = game.clone();
+    const clone = new ConnectFourBoard(game);
 
     expect(clone).not.toBe(game);
     expect(clone).toEqual(game);
@@ -73,7 +73,7 @@ describe("New game", () => {
 
 describe("Game after one move", () => {
   const getGame = () => {
-    const game = new ConnectFour();
+    const game = new ConnectFourBoard();
     game.makeMove(4);
 
     return game;
@@ -81,7 +81,7 @@ describe("Game after one move", () => {
 
   test("Should clone", () => {
     const game = getGame();
-    const clone = game.clone();
+    const clone = new ConnectFourBoard(game);
 
     expect(clone).not.toBe(game);
     expect(clone).toEqual(game);
@@ -152,7 +152,7 @@ describe("Game after one move", () => {
 
 describe("Game after several moves and undos", () => {
   const getGame = () => {
-    const game = new ConnectFour();
+    const game = new ConnectFourBoard();
     const moves = [3, 3, 3, 3, 3, 3, 4, 4, 4];
 
     for (let i=0; i<3; ++i) game.makeMove(moves[i]);
@@ -183,7 +183,7 @@ describe("Game after several moves and undos", () => {
 
   test("Should clone", () => {
     const game = getGame();
-    const clone = game.clone();
+    const clone = new ConnectFourBoard(game);
 
     expect(clone).not.toBe(game);
     expect(clone).toEqual(game);
@@ -244,7 +244,7 @@ describe("Game after several moves and undos", () => {
 
 describe("Game after win", () => {
   const getGame = () => {
-    const game = new ConnectFour();
+    const game = new ConnectFourBoard();
     const moves = [3, 4, 3, 4, 3, 4, 3];
 
     for (let i=0; i<moves.length; ++i) game.makeMove(moves[i]);
@@ -273,7 +273,7 @@ describe("Game after win", () => {
 
   test("Should clone", () => {
     const game = getGame();
-    const clone = game.clone();
+    const clone = new ConnectFourBoard(game);
 
     expect(clone).not.toBe(game);
     expect(clone).toEqual(game);
@@ -323,7 +323,7 @@ describe("Game after win", () => {
 
 describe("Game after win with full board", () => {
   const getGame = () => {
-    const game = new ConnectFour();
+    const game = new ConnectFourBoard();
     const moves = [
       3, 3, 3, 3, 3, 3, 4, 2, 4, 4, 4, 4, 2, 1, 2, 2, 2, 2, 1, 1, 1,
       1, 4, 1, 5, 6, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0
@@ -355,7 +355,7 @@ describe("Game after win with full board", () => {
 
   test("Should clone", () => {
     const game = getGame();
-    const clone = game.clone();
+    const clone = new ConnectFourBoard(game);
 
     expect(clone).not.toBe(game);
     expect(clone).toEqual(game);
@@ -403,7 +403,7 @@ describe("Game after win with full board", () => {
 
 describe("Game after draw", () => {
   const getGame = () => {
-    const game = new ConnectFour();
+    const game = new ConnectFourBoard();
     const moves = [
       3, 3, 3, 3, 3, 3, 4, 2, 2, 4, 4, 2, 4, 1, 2, 4, 1, 4, 2, 2, 1,
       5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 1, 0, 0, 0, 0, 0, 1, 1, 0
@@ -435,7 +435,7 @@ describe("Game after draw", () => {
 
   test("Should clone", () => {
     const game = getGame();
-    const clone = game.clone();
+    const clone = new ConnectFourBoard(game);
 
     expect(clone).not.toBe(game);
     expect(clone).toEqual(game);
