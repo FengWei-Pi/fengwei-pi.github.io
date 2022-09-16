@@ -1,25 +1,50 @@
+/*
+ * Running this test (and any other test using tfjs) will show errors in the console
+ * saying HTMLCanvasElement not implemented. This is because tfjs will try to load
+ * webGL backend used for browsers and fail. Tests will still work since tfjs will
+ * fallback to cpu backend.
+ * 
+ * See https://github.com/tensorflow/tfjs/issues/540 for more information.
+ */
+
 import { MCTS_Node_NN } from "./monteCarloTreeSearch";
 import { ConnectFourBoard } from "./connectFourBoard";
+import { ConnectFourNeuralNet } from "./connectFourNeuralNet";
+import { TurnGameNeuralNet } from "../turnGame/neuralNet";
+import modelJson from "./model.json";
 import type { ConnectFourMove } from "./connectFourBoard";
 
+const mockNeuralNet : jest.Mocked<ConnectFourNeuralNet> = {
+  // @ts-expect-error private members are required to be mocked, even though they shouldn't be.
+  // Problem with typescript and jest.
+  model: null,
+  getInputTensorsFromBitboards: jest.fn(),
+  predict: jest.fn(),
+  getModel: jest.fn(),
+  getModelStr: jest.fn()
+};
+
 describe("New node", () => {
-  test("Should get state", () => {
+  test("Should get state", async () => {
     const board = new ConnectFourBoard();
-    const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(board, ConnectFourBoard);
+
+    const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
+      board,
+      ConnectFourBoard,
+      mockNeuralNet
+    );
 
     expect(node.getState()).toBe(board);
   });
-
-  test("Should simulate with default evaluate function", () => {
+  
+  test("Should simulate", async () => {
     const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
       new ConnectFourBoard(),
-      ConnectFourBoard
+      ConnectFourBoard,
+      mockNeuralNet
     );
-    expect(node.simulate()).toBe(-0);
-  });
-
-  test("Should simulate with provided evaluate function", () => {
-    const evaluate = () => {
+    
+    mockNeuralNet.predict.mockImplementationOnce(() => {
       const priors = new Map([
         [0, 0],
         [1, 0],
@@ -31,23 +56,23 @@ describe("New node", () => {
       ]);
 
       return { priors, value: 0.5 };
-    };
-
-    const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
-      new ConnectFourBoard(),
-      ConnectFourBoard,
-      evaluate
-    );
+    });
 
     expect(node.simulate()).toBe(-0.5);
   });
 
-  test("Should get most visited move", () => {
-    const evaluate = () => {
+  test("Should get most visited move", async () => {
+    const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
+      new ConnectFourBoard(),
+      ConnectFourBoard,
+      mockNeuralNet
+    );
+
+    mockNeuralNet.predict.mockImplementation(() => {
       const priors = new Map([
         [0, 0],
         [1, 0],
-        [2, 0],
+        [2, 1],
         [3, 0],
         [4, 0],
         [5, 0],
@@ -55,13 +80,7 @@ describe("New node", () => {
       ]);
 
       return { priors, value: 0.5 };
-    };
-
-    const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
-      new ConnectFourBoard(),
-      ConnectFourBoard,
-      evaluate
-    );
+    });
 
     for (let i=0; i<10; ++i) {
       node.simulate();
@@ -73,8 +92,23 @@ describe("New node", () => {
   test("Should make move", () => {
     const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
       new ConnectFourBoard(),
-      ConnectFourBoard
+      ConnectFourBoard,
+      mockNeuralNet
     );
+    
+    mockNeuralNet.predict.mockImplementation(() => {
+      const priors = new Map([
+        [0, 0],
+        [1, 0],
+        [2, 0],
+        [3, 0],
+        [4, 0],
+        [5, 0],
+        [6, 0]
+      ]);
+
+      return { priors, value: 1 };
+    });
 
     node.simulate();
     node.makeMove(3);
@@ -85,8 +119,10 @@ describe("New node", () => {
   });
 });
 
-describe("Node with Connect Four board", () => {
-  test("Should win in one move", () => {
+describe("Node with provided Connect Four board", () => {
+  const network = TurnGameNeuralNet.build(ConnectFourNeuralNet, JSON.stringify(modelJson));
+
+  test("Should win in one move", async () => {
     const board = new ConnectFourBoard();
     board.makeMove(3);
     board.makeMove(4);
@@ -97,17 +133,18 @@ describe("Node with Connect Four board", () => {
 
     const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
       board,
-      ConnectFourBoard
+      ConnectFourBoard,
+      await network
     );
 
-    for (let i=0; i<200; ++i) {
+    for (let i=0; i<50; ++i) {
       node.simulate();
     }
 
     expect(node.getMostVisitedMove()).toBe(3);
   });
 
-  test("Should prevent loss in one move", () => {
+  test("Should prevent loss in one move", async () => {
     const board = new ConnectFourBoard();
     board.makeMove(3);
     board.makeMove(4);
@@ -117,17 +154,18 @@ describe("Node with Connect Four board", () => {
 
     const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
       board,
-      ConnectFourBoard
+      ConnectFourBoard,
+      await network
     );
 
-    for (let i=0; i<200; ++i) {
+    for (let i=0; i<50; ++i) {
       node.simulate();
     }
 
     expect(node.getMostVisitedMove()).toBe(3);
   });
 
-  test("Should win in two moves", () => {
+  test("Should win in two moves", async () => {
     const board = new ConnectFourBoard();
     board.makeMove(3);
     board.makeMove(3);
@@ -137,16 +175,17 @@ describe("Node with Connect Four board", () => {
     const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
       board,
       ConnectFourBoard,
+      await network
     );
 
-    for (let i=0; i<800; ++i) {
+    for (let i=0; i<50; ++i) {
       node.simulate();
     }
 
     expect([2, 5]).toContain(node.getMostVisitedMove());
   });
 
-  test("Should prevent loss in two move", () => {
+  test("Should prevent loss in two move", async () => {
     const board = new ConnectFourBoard();
     board.makeMove(3);
     board.makeMove(3);
@@ -155,9 +194,10 @@ describe("Node with Connect Four board", () => {
     const node = new MCTS_Node_NN<ConnectFourMove, ConnectFourBoard>(
       board,
       ConnectFourBoard,
+      await network
     );
     
-    for (let i=0; i<1600; ++i) {
+    for (let i=0; i<50; ++i) {
       node.simulate();
     }
 

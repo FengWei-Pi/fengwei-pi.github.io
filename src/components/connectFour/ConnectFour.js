@@ -6,9 +6,10 @@ import Button from "components/common/Button";
 import DropdownButton from "components/common/DropdownButton";
 
 import { MCTS_Node_NN } from "models/connectFour/monteCarloTreeSearch";
-import { getDeserializedModel, predict } from "models/connectFour/tensorflowUtils";
-import modelStr from "models/connectFour/model.json";
+import modelJson from "models/connectFour/model.json";
 import { ConnectFourBoard } from "models/connectFour/connectFourBoard";
+import { ConnectFourNeuralNet } from "models/connectFour/connectFourNeuralNet";
+import { TurnGameNeuralNet } from "models/turnGame/neuralNet";
 
 const numSimulations = 50;
 
@@ -19,7 +20,7 @@ export default function ConnectFour(props) {
 
   // Use `setRenderKey(prev => !prev)` to re-render component. Used when game state changes.
   const [, setRenderKey] = useState(false);
-  const gameRef = useRef({ model: null, root: null });
+  const gameRef = useRef({ neuralNet: null, root: null });
 
   const [gameOverScore, setGameOverScore] = useState(null);
   const [hoveringCol, setHoveringCol] = useState(null);
@@ -28,24 +29,19 @@ export default function ConnectFour(props) {
 
   // On mount, get neural network model
   useEffect(() => {
-    setTimeout(() => {
-      getDeserializedModel(JSON.stringify(modelStr))
-        .then(model => {
-          gameRef.current.model = model;
-          gameRef.current.root = new MCTS_Node_NN(
-            new ConnectFourBoard(),
-            ConnectFourBoard,
-            (board) => {
-              const [probabilities, value] = predict(board, gameRef.current.model);
-              const priors = new Map(
-                probabilities.map((prob, index) => [index, prob])
-              );
-              return { priors, value };
-            }
-          );
+    setTimeout(async () => {
+      gameRef.current.neuralNet = await TurnGameNeuralNet.build(
+        ConnectFourNeuralNet,
+        JSON.stringify(modelJson)
+      );
+
+      gameRef.current.root = new MCTS_Node_NN(
+        new ConnectFourBoard(),
+        ConnectFourBoard,
+        gameRef.current.neuralNet
+      );
           
-          setRenderKey(prev => !prev);
-        });
+      setRenderKey(prev => !prev);
     }, 0);
   }, []);
 
@@ -93,19 +89,12 @@ export default function ConnectFour(props) {
   };
 
   // Create new game and ai
-  const handleNewGame = () => {
+  const handleNewGame = async () => {
     // TODO: add other models option
     gameRef.current.root = new MCTS_Node_NN(
       new ConnectFourBoard(),
       ConnectFourBoard,
-      (board) => {
-        const [probabilities, value] = predict(board, gameRef.current.model);
-        const priors = new Map(
-          probabilities.map((prob, index) => [index, prob])
-        );
-
-        return { priors, value };
-      }
+      gameRef.current.neuralNet
     );
 
     setRenderKey(prev => !prev);

@@ -1,5 +1,6 @@
 import PD from "probability-distributions";
 
+import { TurnGameNeuralNet } from "../turnGame/neuralNet";
 import { TerminalValue } from "../turnGame/board";
 import type { TurnGameModel } from "../turnGame/board";
 import type { MCTS } from "../turnGame/mcts";
@@ -37,8 +38,8 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
   // Controls noise added to priors. Values less than 1 favors one random prior,
   // values greater than 1 flattens the prior distribution.
   /**
-   * Alpha parameter of Dirichlet distribution. Values drawn from dirichlet distribution are
-   * added to priors of action values.
+   * Alpha parameter of Dirichlet distribution. Values drawn from dirichlet distribution
+   * are added to priors of action values.
    * 
    * @see https://medium.com/oracledevs/lessons-from-alphazero-part-3-parameter-tweaking-4dceb78ed1e5#9847
    */
@@ -54,42 +55,20 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
   private ctor: new (state: GameType) => GameType;
   private actions: Map<MoveType, Action<MoveType, GameType>> = new Map();
   private actionsChosenTotal = 0;
-  private evaluate: (
-    state: GameType
-  ) => {
-    priors: Map<MoveType, number>,
-    value: number
-  } = (state: GameType) => {
-    const validMoves = state.getValidMoves();
-    const priors = new Map();
+  private network: TurnGameNeuralNet<MoveType, GameType>;
 
-    validMoves.forEach((move) => {
-      priors.set(move, 1/validMoves.length);
-    });
-
-    return { priors, value: 0 };
-  };
   // Undefined if terminal value hasn't been checked yet. Null if game is not terminal.
   // Number if game is terminal.
   private terminalValue: number | null | undefined;
 	
-  /**
-   * Optionally provide an `evaluate` function which returns a prior distribution over all moves
-   * and an numerical assessment of the provided state for the current player.
-   * 
-	 * `evaluate` defaults to uniform probability over all valid moves with value of 0.
-	 */
   constructor(
     state: GameType,
     ctor: new (state: GameType) => GameType,
-    evaluate?: (state: GameType) => {
-      priors: Map<MoveType, number>,
-      value: number
-    },
+    network: TurnGameNeuralNet<MoveType, GameType>
   ) {
     this.state = state;
     this.ctor = ctor;
-    if (evaluate) this.evaluate = evaluate;
+    this.network = network;
   }
 
   /**
@@ -117,7 +96,7 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
 
   /** Initialize actions from evaluation of current state and valid moves. */
   private expand() {
-    const { priors, value } = this.evaluate(this.state);
+    const { priors, value } =this.network.predict(this.state);
 
     const validMoves = this.state.getValidMoves();
 
@@ -139,7 +118,7 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
       const child = new MCTS_Node_NN<MoveType, GameType>(
         new this.ctor(this.state),
         this.ctor,
-        this.evaluate
+        this.network
       );
       child.state.makeMove(move);
 
