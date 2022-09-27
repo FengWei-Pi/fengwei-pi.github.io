@@ -10,13 +10,15 @@
     "@testing-library/user-event": "^12.8.3",
     "bitset": "^5.1.1",
     "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
     "probability-distributions": "^0.9.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "sass": "^1.32.8",
+    "stream-browserify": "^3.0.0",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
@@ -26,14 +28,15 @@
     "@types/react-dom": "^18.0.6",
     "gh-pages": "^4.0.0",
     "patch-package": "^6.4.7",
+    "react-app-rewired": "^2.2.1",
     "typescript": "^4.7.4"
   },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -58,9 +61,12 @@
           "code": 120
         }
       ],
-      "object-curly-spacing": ["warn", "always"],
       "no-unreachable": "warn",
       "no-unused-vars": "warn",
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
       "prefer-const": "warn",
       "quotes": [
         "warn",
