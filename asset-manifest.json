@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.a4fd407c.chunk.css",
-    "main.js": "/static/js/main.9392872f.chunk.js",
-    "main.js.map": "/static/js/main.9392872f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.1b03ff01.js",
-    "runtime-main.js.map": "/static/js/runtime-main.1b03ff01.js.map",
-    "static/js/2.0749d928.chunk.js": "/static/js/2.0749d928.chunk.js",
-    "static/js/2.0749d928.chunk.js.map": "/static/js/2.0749d928.chunk.js.map",
+    "main.css": "/static/css/main.5601f614.css",
+    "main.js": "/static/js/main.6a03475d.js",
+    "static/js/51.0092f631.chunk.js": "/static/js/51.0092f631.chunk.js",
+    "static/js/577.ab5e6486.chunk.js": "/static/js/577.ab5e6486.chunk.js",
+    "static/media/UW-aerial.jpg": "/static/media/UW-aerial.79fad263ddbf98acf69c.jpg",
+    "static/media/connect-four.png": "/static/media/connect-four.2493aa3425c69f1ee5bb.png",
+    "static/media/passionfruit-icon.png": "/static/media/passionfruit-icon.d4ad74baed17683677c2.png",
+    "static/media/blurred-landscape.jpg": "/static/media/blurred-landscape.25ecedb6d9f4f3eb81ca.jpg",
     "index.html": "/index.html",
-    "static/css/main.a4fd407c.chunk.css.map": "/static/css/main.a4fd407c.chunk.css.map",
-    "static/js/2.0749d928.chunk.js.LICENSE.txt": "/static/js/2.0749d928.chunk.js.LICENSE.txt",
-    "static/media/base.scss": "/static/media/passionfruit-icon.d4ad74ba.png"
+    "main.5601f614.css.map": "/static/css/main.5601f614.css.map",
+    "main.6a03475d.js.map": "/static/js/main.6a03475d.js.map",
+    "51.0092f631.chunk.js.map": "/static/js/51.0092f631.chunk.js.map",
+    "577.ab5e6486.chunk.js.map": "/static/js/577.ab5e6486.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.1b03ff01.js",
-    "static/js/2.0749d928.chunk.js",
-    "static/css/main.a4fd407c.chunk.css",
-    "static/js/main.9392872f.chunk.js"
+    "static/css/main.5601f614.css",
+    "static/js/main.6a03475d.js"
   ]
 }
