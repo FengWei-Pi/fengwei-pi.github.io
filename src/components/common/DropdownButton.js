@@ -9,7 +9,7 @@ import useOuterClick from "hooks/useOuterClick";
  * Button that opens a dropdown menu when pressed.
  * 
  * @param {Object} props
- * @param {Array<string>} props.options
+ * @param {Array<string>} props.menuOptions
  * @param {number} props.size - Either 1, 2, 3, or 4. 1 is smallest size, 4 is biggest.
  * @param {Function} props.onChangeOptionIndex - Receives the new index as the parameter.
  * @param {Function} [props.onClick]
@@ -69,7 +69,7 @@ export default function DropdownButton(props) {
               onClick={() => handleOptionClick(index)}
             >
               <div className="flex-1">{option}</div>
-              <BsCheck className={styles.selectedIcon} style={index !== selectedIndex && {opacity: 0}} />
+              <BsCheck className={styles.selectedIcon} style={index !== selectedIndex && { opacity: 0 }} />
             </div>
           ))}
         </div>
