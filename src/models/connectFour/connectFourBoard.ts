@@ -1,5 +1,5 @@
 import BitSet from "bitset";
-import { TerminalValue, TurnGameModel } from "../turnGame/board";
+import { TerminalValue, TurnGameModel } from "../turnGame/model";
 
 export type ConnectFourMove = number;
 
@@ -21,7 +21,7 @@ export class ConnectFourBoard implements TurnGameModel<ConnectFourMove> {
   // Create new empty connect four game with players zero and one.
   // Player zero moves first.
   constructor(connectFour? : ConnectFourBoard) {
-    if (!connectFour) {
+    if (connectFour === undefined) {
       this.bitboards = [new BitSet(), new BitSet()];
 
       this.heights = [0, 7, 14, 21, 28, 35, 42];
@@ -57,10 +57,12 @@ export class ConnectFourBoard implements TurnGameModel<ConnectFourMove> {
     const col = this.moves.pop()!;
     const move = new BitSet([--this.heights[col]]);
     this.bitboards[this.numMoves & 1] = move.xor(this.bitboards[this.numMoves & 1]);
+
+    return col;
   }
 
   // Returns true if the game is full and no more moves can be made
-  _isFull() {
+  private isFull() {
     return this.numMoves >= 42;
   }
   
@@ -98,14 +100,14 @@ export class ConnectFourBoard implements TurnGameModel<ConnectFourMove> {
     // If there's no winner and game is not full, return game is ongoing.
     // Otherwise, there's no winner and game is full, return draw.
     if (!hasWon) {
-      if (!this._isFull()) return null;
-      return TerminalValue.DRAW;
+      if (!this.isFull()) return null;
+      return TerminalValue.Draw;
     }
 
     // If the given player is the current player, return loss
-    if (this.getCurrentPlayer() === player) return TerminalValue.LOSS;
+    if (this.getCurrentPlayer() === player) return TerminalValue.Loss;
     // If the given player is the previous player, return win
-    else return TerminalValue.WIN;
+    else return TerminalValue.Win;
   }
 
   getValidMoves() {

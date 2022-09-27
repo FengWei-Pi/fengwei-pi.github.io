@@ -1,9 +1,9 @@
 import PD from "probability-distributions";
 
-import { TurnGameNeuralNet } from "../turnGame/neuralNet";
-import { TerminalValue } from "../turnGame/board";
-import type { TurnGameModel } from "../turnGame/board";
-import type { MCTS } from "../turnGame/mcts";
+import { TurnGameNeuralNet } from "./neuralNet";
+import { TerminalValue } from "./model";
+import type { TurnGameModel } from "./model";
+import type { MCTS } from "./mcts";
 
 type Action<MoveType, GameType extends TurnGameModel<MoveType>> = {
   node: MCTS_Node_NN<MoveType, GameType>,
@@ -145,7 +145,7 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
 
     this.actions.forEach((action, move) => {
       bestAction = this.actions.get(bestMove);
-      if (!bestMove || (bestAction && action.numChosen > bestAction.numChosen)) {
+      if (bestMove === undefined || (bestAction && action.numChosen > bestAction.numChosen)) {
         bestMove = move;
       }
     });
@@ -156,7 +156,7 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
   makeMove(move: MoveType) {
     const action = this.actions.get(move);
 
-    if (!action) throw new Error("Move not found");
+    if (action === undefined) throw new Error("Move not found");
 
     this.state = action.node.state;
     this.actions = action.node.actions;
@@ -170,9 +170,9 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
       // from the evaluate function.
       const terminalValue = this.state.getTerminalValue(this.state.getCurrentPlayer());
 
-      if (terminalValue === TerminalValue.LOSS) {
+      if (terminalValue === TerminalValue.Loss) {
         this.terminalValue = -1;
-      } else if (terminalValue === TerminalValue.WIN) {
+      } else if (terminalValue === TerminalValue.Win) {
         this.terminalValue = 0;
       } else {
         this.terminalValue = null;

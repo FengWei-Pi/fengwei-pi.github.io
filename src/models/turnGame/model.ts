@@ -1,9 +1,15 @@
 /** Numerical values for win, loss, and draw. */
 export enum TerminalValue {
-  WIN = 1,
-  LOSS = -1,
-  DRAW = 0
+  Win = 1,
+  Loss = -1,
+  Draw = 0
 }
+
+// TODO: replace getPastMoves with getState as function, and add StateType as type parameter.
+// Currently, class is mutable and can cause problems. getState should represent
+// an immutable object that encapsulates the entire state, including the players'
+// terminal values. Additionally, for a large number of moves, this is more efficient
+// than getPastMoves for representing game state.
 
 /**
  * An interface for a turn based game model. The implementation must also
@@ -14,7 +20,7 @@ export interface TurnGameModel<MoveType> {
   /** Makes move for current player. Throws error if move is invalid. */
   makeMove: (move: MoveType) => void,
 
-  /** Throws error if there are no moves. */
+  /** Returns the move that was undone. Throws error if there were no moves. */
   undoMove: (move: MoveType) => void,
 
   isValidMove: (move: MoveType) => boolean,

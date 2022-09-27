@@ -1,4 +1,4 @@
-import type { TurnGameModel } from "./board";
+import type { TurnGameModel } from "./model";
 
 /**
  * Interface for a node of monte carlo tree search for two players.

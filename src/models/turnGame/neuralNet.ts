@@ -1,6 +1,6 @@
 import * as tf from "@tensorflow/tfjs";
 import buf from "buffer/";
-import type { TurnGameModel } from "./board";
+import type { TurnGameModel } from "./model";
 
 const Buffer = buf.Buffer;
 
@@ -21,12 +21,16 @@ export abstract class TurnGameNeuralNet<MoveType, TurnGameType extends TurnGameM
   /** Returns the TensorFlow layers model from the provided `modelStr` */
   private static getDeserializedModel(modelStr : string) {
     const json = JSON.parse(modelStr);
-    const weightData = new Uint8Array(Buffer.from(json.weightData, "base64")).buffer;
+    return TurnGameNeuralNet.getDeserializedModelFromJson(json);
+  }
 
+  private static getDeserializedModelFromJson(modelJson) {
+    const weightData = new Uint8Array(Buffer.from(modelJson.weightData, "base64")).buffer;
+    
     return tf.loadLayersModel(
       tf.io.fromMemory({
-        modelTopology: json.modelTopology,
-        weightSpecs: json.weightSpecs,
+        modelTopology: modelJson.modelTopology,
+        weightSpecs: modelJson.weightSpecs,
         weightData: weightData
       })
     );
@@ -40,8 +44,7 @@ export abstract class TurnGameNeuralNet<MoveType, TurnGameType extends TurnGameM
     // @ts-expect-error Using TensorFlow save features to get model data. See tf.io.ModelArtifacts
     const result = await model.save(tf.io.withSaveHandler(async modelArtifacts => modelArtifacts));
 
-    // @ts-expect-error Converting ArrayBuffer to string. Error reason unknown since
-    // tf.io.ModelArtifacts has property modelTopology which is also an ArrayBuffer
+    // @ts-expect-error Converting ArrayBuffer to string
     result.weightData = Buffer.from(result.weightData).toString("base64");
 
     return JSON.stringify(result);
@@ -51,9 +54,13 @@ export abstract class TurnGameNeuralNet<MoveType, TurnGameType extends TurnGameM
   // See https://stackoverflow.com/a/43433773
   static async build<MoveType, TurnGameType extends TurnGameModel<MoveType>>(
     constructor: new (model: tf.LayersModel) => TurnGameNeuralNet<MoveType, TurnGameType>,
-    modelStr: string
+    modelStr: string | Object
   ) {
-    const model = await TurnGameNeuralNet.getDeserializedModel(modelStr);
+    let model;
+
+    if (typeof modelStr === "string") model = await TurnGameNeuralNet.getDeserializedModel(modelStr);
+    else model = await TurnGameNeuralNet.getDeserializedModelFromJson(modelStr);
+
     return new constructor(model);
   }
   

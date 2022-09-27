@@ -7,12 +7,12 @@
  * See https://github.com/tensorflow/tfjs/issues/540 for more information.
  */
 
-import { MCTS_Node_NN } from "./monteCarloTreeSearch";
-import { ConnectFourBoard } from "./connectFourBoard";
-import { ConnectFourNeuralNet } from "./connectFourNeuralNet";
-import { TurnGameNeuralNet } from "../turnGame/neuralNet";
-import modelJson from "./model.json";
-import type { ConnectFourMove } from "./connectFourBoard";
+import { MCTS_Node_NN } from "./mcts_nn";
+import { TurnGameNeuralNet } from "./neuralNet";
+import { ConnectFourBoard } from "../connectFour/connectFourBoard";
+import { ConnectFourNeuralNet } from "../connectFour/connectFourNeuralNet";
+import modelJson from "../connectFour/model.json";
+import type { ConnectFourMove } from "../connectFour/connectFourBoard";
 
 const mockNeuralNet : jest.Mocked<ConnectFourNeuralNet> = {
   // @ts-expect-error private members are required to be mocked, even though they shouldn't be.
@@ -120,7 +120,7 @@ describe("New node", () => {
 });
 
 describe("Node with provided Connect Four board", () => {
-  const network = TurnGameNeuralNet.build(ConnectFourNeuralNet, JSON.stringify(modelJson));
+  const network = TurnGameNeuralNet.build(ConnectFourNeuralNet, modelJson);
 
   test("Should win in one move", async () => {
     const board = new ConnectFourBoard();

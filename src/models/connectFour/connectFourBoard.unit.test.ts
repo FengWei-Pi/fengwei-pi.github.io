@@ -1,5 +1,5 @@
 import { ConnectFourBoard } from "./connectFourBoard";
-import { TerminalValue } from "../turnGame/board";
+import { TerminalValue } from "../turnGame/model";
 
 describe("New game", () => {
   const getGame = () => {
@@ -141,7 +141,7 @@ describe("Game after one move", () => {
   test("Should undo move", () => {
     const game = getGame();
 
-    expect(() => game.undoMove()).not.toThrow();
+    expect(game.undoMove()).toBe(4);
     expect(game.getCurrentPlayer()).toBe(0);
     expect(game.getTerminalValue(0)).toBe(null);
     expect(game.getTerminalValue(1)).toBe(null);
@@ -311,8 +311,8 @@ describe("Game after win", () => {
 
   test("Should get terminal value", () => {
     const game = getGame();
-    expect(game.getTerminalValue(0)).toBe(TerminalValue.WIN);
-    expect(game.getTerminalValue(1)).toBe(TerminalValue.LOSS);
+    expect(game.getTerminalValue(0)).toBe(TerminalValue.Win);
+    expect(game.getTerminalValue(1)).toBe(TerminalValue.Loss);
   });
 
   test("Should throw getting terminal value of invalid player", () => {
@@ -391,8 +391,8 @@ describe("Game after win with full board", () => {
 
   test("Should get terminal value", () => {
     const game = getGame();
-    expect(game.getTerminalValue(0)).toBe(TerminalValue.LOSS);
-    expect(game.getTerminalValue(1)).toBe(TerminalValue.WIN);
+    expect(game.getTerminalValue(0)).toBe(TerminalValue.Loss);
+    expect(game.getTerminalValue(1)).toBe(TerminalValue.Win);
   });
 
   test("Should throw getting terminal value of invalid player", () => {
@@ -471,8 +471,8 @@ describe("Game after draw", () => {
 
   test("Should get terminal value", () => {
     const game = getGame();
-    expect(game.getTerminalValue(0)).toBe(TerminalValue.DRAW);
-    expect(game.getTerminalValue(1)).toBe(TerminalValue.DRAW);
+    expect(game.getTerminalValue(0)).toBe(TerminalValue.Draw);
+    expect(game.getTerminalValue(1)).toBe(TerminalValue.Draw);
   });
 
   test("Should throw getting terminal value of invalid player", () => {
