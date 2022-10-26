@@ -116,7 +116,7 @@ export default function ConnectFour(props) {
   }, [game]);
 
   return (
-    <div className={`flex-direction-col align-items-center`}>
+    <div className="flex-direction-col align-items-center">
       <div
         className={`flex-direction-row padding-2 margin-vert-2 ${styles.container} ${boardClasses}`}
         onMouseLeave={handleHoverLeave}
@@ -137,7 +137,7 @@ export default function ConnectFour(props) {
                   game?.getCurrentPlayer() === playerIndexRef.current &&
                   playerIndexRef.current
                 }
-                containerClasses={`margin-1`}
+                containerClasses="margin-1"
               />
             ))}
           </div>
@@ -156,9 +156,10 @@ export default function ConnectFour(props) {
           </div>
         }
       </div>
-      <div className={`justify-content-center margin-vert-1`}>
+      <div className="justify-content-center margin-vert-1">
         <DropdownButton
-          className="margin-horz-2 margin-vert-1"
+          className="margin-horz-2 margin-vert-1 font-size-1"
+          classNameOption="font-size-1"
           onChange={index => playerIndexRef.current = index}
         >
           <div>Player 1</div>
@@ -166,7 +167,7 @@ export default function ConnectFour(props) {
         </DropdownButton>
         <Button
           onClick={handleNewGamePress}
-          className={"margin-horz-2 margin-vert-1"}
+          className="margin-horz-2 margin-vert-1 font-size-1"
         >
           New Game
         </Button>

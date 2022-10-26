@@ -58,7 +58,7 @@ export default function ProjectItem(props) {
             {buttons.map((button, index) => (
               <Button
                 key={index.toString()}
-                className="margin-horz-2"
+                className="margin-horz-2 font-size-1"
                 onClick={button.onClick}
               >
                 {button.text}

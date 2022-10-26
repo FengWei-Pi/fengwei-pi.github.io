@@ -11,6 +11,7 @@ export { ButtonType };
 // will be focused when an option was focused and dropdown is closed.
 export const DropdownButton = (props: {
   className?: string;
+  classNameOption?: string;
   children: React.ReactNode;
   href?: string;
   onChange?: (selectedIndex: number) => void;
@@ -126,7 +127,7 @@ export const DropdownButton = (props: {
               aria-selected={index === trueSelectedIndex}
             >
               <Button
-                className={styles.option}
+                className={`${styles.option} ${props.classNameOption}`}
                 type={ButtonType.Text}
                 onClick={() => onOptionClick(index)}
                 onFocus={() => onFocus(index)}

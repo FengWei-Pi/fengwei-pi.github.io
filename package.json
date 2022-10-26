@@ -70,6 +70,12 @@
         "always"
       ],
       "prefer-const": "warn",
+      "react/jsx-curly-brace-presence": [
+        "warn",
+        {
+          "propElementValues": "always" 
+        }
+      ],
       "quotes": [
         "warn",
         "double",
