@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 
 export default function useOuterClick(callback) {
   const callbackRef = useRef(); // initialize mutable ref, which stores callback
@@ -19,5 +19,5 @@ export default function useOuterClick(callback) {
     return () => document.removeEventListener("click", handleClick, { capture: true });
   }, []);
       
-  return innerRef; // convenience for client (doesn't need to init ref himself) 
+  return innerRef; // convenience for client (doesn't need to init ref themself) 
 }

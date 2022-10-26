@@ -1,22 +1,21 @@
 /*
-Breakpoint mixins allow for different css styles at different screen widths.
-Four breakpoints are defined: sm, md, lg, and xl. Use breakpoint-up or beakpoint-down
-to either include the css content at the specified size and up or down.
-
-ex. // myScssFile.scss
-    @use "scss/breakpoints";
-
-    // width is 100% at size md and below, and 100% at above size md
-    .myClass {
-      width: 100%;
-    }
-    @include breakpoints.breakpoint-up(md) {
-      .myClass {
-        width: 80%;
-        }
-      }
-    }
-*/
+ * Breakpoint mixins allow for different css styles at different screen widths.
+ * Four breakpoints are defined: sm, md, lg, and xl. Use breakpoint-up or beakpoint-down
+ * to either include the css content at the specified size and up or down.
+ *
+ * ex. // myScssFile.scss
+ * @use "scss/breakpoints";
+ *
+ * // width is 100% at size md and below, and 100% at above size md
+ * .myClass {
+ *   width: 100%;
+ * }
+ * @include breakpoints.breakpoint-up(md) {
+ *   .myClass {
+ *     width: 80%;
+ *   }
+ * }
+ */
 @use "sass:map";
 
 $breakpoints: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);
@@ -28,7 +27,7 @@ $breakpoints: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);
       @content;
     }
   } @else {
-    @error "In breakpoint-up, breakpoint #{$breakpoint} invalid, must be one of sm, md, lg, or xl";
+    @error "breakpoint #{$breakpoint} invalid, must be one of sm, md, lg, or xl";
   }
 }
 
@@ -39,6 +38,6 @@ $breakpoints: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);
       @content;
     }
   } @else {
-    @error "In breakpoint-down, breakpoint #{$breakpoint} invalid, must be one of sm, md, lg, or xl";
+    @error "breakpoint #{$breakpoint} invalid, must be one of sm, md, lg, or xl";
   }
 }

@@ -1,13 +1,14 @@
 // Import all required scss files. Base is imported at the top level of the app,
 // making the defined classes available app wide.
-@use "scss/breakpoints";
-@use "scss/theme";
-@use "scss/flex";
-@use "scss/alignment";
-// @use "scss/margins";
-@use "scss/utilities";
-@use "scss/images";
-@use "scss/dimension";
+@use "./alignment";
+@use "./breakpoints";
+@use "./colors";
+@use "./dimension";
+@use "./flex";
+@use "./font";
+@use "./images";
+@use "./theme";
+@use "./utilities";
 
 /*
 Make default display flex, wrap, and padding + border be included in width and height
@@ -23,13 +24,28 @@ From https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Ba
 */
 div {
   display: flex;
-  box-sizing: border-box;
   flex-wrap: wrap;
 }
 
+// Apply border box sizing to everything
+// See https://stackoverflow.com/questions/51447962/to-apply-border-box-in-all-css-rules
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
-  @extend %text-primary;
   margin: 0;
-  background-color: white;
+  background-color: colors.$surface;
   image-rendering: -webkit-optimize-contrast;
+}
+
+:root {
+  --primary-color: #{colors.$primary-color};
+  --on-primary-color: #{colors.$on-primary-color};
+  --secondary-color: #{colors.$secondary-color};
+  --on-secondary-color: #{colors.$on-secondary-color};
+  --surface-color: #{colors.$surface-color};
+  --on-surface-color: #{colors.$on-surface-color};
+  --surface-variant-color: #{colors.$surface-variant-color};
+  --on-surface-variant-color: #{colors.$on-surface-variant-color};
 }

@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useRef, useState, useMemo } from "react";
 
 import styles from "./ConnectFour.module.scss";
 import Cell from "./Cell";
-import Button from "components/common/Button";
-import DropdownButton from "components/common/DropdownButton";
+import { Button } from "components/common/Button";
+import { DropdownButton } from "components/common/DropdownButton";
 
 import { ConnectFourController } from "models/connectFour/connectFourController";
 import { ConnectFourNNStrategyMultiThread } from "models/connectFour/connectFourNNStrategyMultiThread";
@@ -156,17 +158,18 @@ export default function ConnectFour(props) {
       </div>
       <div className={`justify-content-center margin-vert-1`}>
         <DropdownButton
-          menuOptions={["Player 1", "Player 2"]}
-          size={2}
-          containerClasses="margin-horz-2 margin-vert-1"
-          onChangeOptionIndex={index => playerIndexRef.current = index}
-        />
+          className="margin-horz-2 margin-vert-1"
+          onChange={index => playerIndexRef.current = index}
+        >
+          <div>Player 1</div>
+          <div>Player 2</div>
+        </DropdownButton>
         <Button
-          text="New Game"
-          size={2}
           onClick={handleNewGamePress}
-          containerClasses={"margin-horz-2 margin-vert-1"}
-        />
+          className={"margin-horz-2 margin-vert-1"}
+        >
+          New Game
+        </Button>
       </div>
     </div>
   );

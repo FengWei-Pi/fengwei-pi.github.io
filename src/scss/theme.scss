@@ -86,8 +86,6 @@ $font-sizes-xl: 20px, 28px, 38px, 50px;
 	text-align: center;
 	color: $black;
 	font-family: 'Roboto', 'Open Sans', 'Source Sans Pro', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 @include breakpoints.breakpoint-up(sm) {
 	%text-primary { text-align: start; }

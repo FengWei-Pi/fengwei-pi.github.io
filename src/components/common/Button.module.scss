@@ -1,59 +1,67 @@
-@use "scss/theme";
-@use "scss/breakpoints";
-@use './button' as *;
+@use "scss/colors";
+
+/**
+ * Sets background to background-color blended with an opacity adjusted content-rgb.
+ */
+@mixin background-blend($background-color, $content-rgb, $opacity) {
+  background: linear-gradient(
+    0,
+    rgba($content-rgb, $opacity),
+    rgba($content-rgb, $opacity)
+  ), $background-color;
+}
 
 .container {
-	@extend %border;
-	border-radius: theme.$max-width;
-
-	transition: 0.2s;
+  align-items: center;
+  border: none;
+  border-radius: 24px;
+  color: colors.$on-primary;
+  cursor: pointer;
+  display: inline;
+  padding: 8px 16px;
 }
-@media (hover: hover) {
-	.container:hover {
-		cursor: pointer;
-		@include highlight;
-	}
-}
-.container:active {
-	@include highlight;
-}
-
-.size1  {
-	@extend %font-size-1;
-	height: nth($heights, 1);
-	padding: 0px nth($paddings, 1) 0px nth($paddings, 1);
-}
-.size2 {
-	@extend %font-size-1;
-	height: nth($heights, 2);
-	padding: 0px nth($paddings, 2) 0px nth($paddings, 2);
-}
-.size3 {
-	@extend %font-size-2;
-	height: nth($heights, 3);
-	padding: 0px nth($paddings, 3) 0px nth($paddings, 3);
-}
-.size4 {
-	@extend %font-size-3;
-	height: nth($heights, 4);
-	padding: 0px nth($paddings, 4) 0px nth($paddings, 4);
+.container:focus {
+  // Disables possible browser default shadow and outline for focus-visible
+  box-shadow: none;
+  outline: none;
 }
 
-@include breakpoints.breakpoint-up(md) {
-	.size1 {
-		height: nth($heights-md, 1);
-		padding: 0px nth($paddings-md, 1) 0px nth($paddings-md, 1);
-	}
-	.size2 {
-		height: nth($heights-md, 2);
-		padding: 0px nth($paddings-md, 2) 0px nth($paddings-md, 2);
-	}
-	.size3 {
-	  height: nth($heights-md, 3);
-		padding: 0px nth($paddings-md, 3) 0px nth($paddings-md, 3);
-	}
-	.size4 {
-		height: nth($heights-md, 4);
-		padding: 0px nth($paddings-md, 4) 0px nth($paddings-md, 4);
-	}
+.filled {
+  background-color: colors.$primary;
+}
+.filled:focus {
+  border: 2px solid colors.$on-surface;
+  box-shadow: inset 0 0 0 2px colors.$surface;
+  margin: -2px;
+}
+.filled:hover {
+  @include background-blend(colors.$primary, colors.$on-primary-rgb, colors.$hover-opacity);
+}
+.filled:active {
+  @include background-blend(colors.$primary, colors.$on-primary-rgb, colors.$pressed-opacity);
+}
+
+.outline {
+  background-color: transparent;
+  border: 2px solid colors.$on-surface;
+  padding: 6px 14px;
+}
+.outline:focus {
+  box-shadow: 0 0 0 2px colors.$surface, 0 0 0 4px colors.$on-surface;
+}
+
+.text {
+  background-color: transparent;
+}
+.text:focus {
+  border: 2px solid colors.$on-surface;
+  box-shadow: inset 0 0 0 2px colors.$surface;
+  margin: -2px;
+}
+
+.outline:hover, .text:hover {
+  @include background-blend(transparent, colors.$on-primary-rgb, colors.$hover-opacity);
+}
+.outline:active, .text:active {
+  @include background-blend(transparent, colors.$on-primary-rgb, colors.$pressed-opacity);
 }
