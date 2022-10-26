@@ -21,6 +21,7 @@ $surface-rgb: var(--surface-color);
 $on-surface-rgb: var(--on-surface-color);
 $surface-variant-rgb: var(--surface-variant-color);
 $on-surface-variant-rgb: var(--on-surface-variant-color);
+$outline-rgb: var(--outline-color);
 
 $primary: rgb($primary-rgb);
 $on-primary: rgb($on-primary-rgb);
@@ -30,6 +31,7 @@ $surface: rgb($surface-rgb);
 $on-surface: rgb($on-surface-rgb);
 $surface-variant: rgb($surface-variant-rgb);
 $on-surface-variant: rgb($on-surface-variant-rgb);
+$outline: rgb($outline-rgb);
 
 $hover-opacity: 0.08;
 $pressed-opacity: 0.12;
@@ -44,3 +46,4 @@ $surface-color: 255, 255, 255; // #fff;
 $on-surface-color: 0, 0, 0; // #000;
 $surface-variant-color: 221, 227, 234; // #dde3ea;
 $on-surface-variant-color: 65, 72, 77; // #41484d;
+$outline-color: 139, 146, 152; // #8b9298
