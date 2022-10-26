@@ -9,6 +9,7 @@ export enum ButtonType {
   Text
 }
 
+// Passing `ref` as prop causes errors; custom ref prop needs different name than `ref`.
 export const Button = React.forwardRef<any, {
   className?: string;
   children?: React.ReactNode;

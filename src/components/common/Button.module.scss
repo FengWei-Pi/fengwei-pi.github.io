@@ -43,8 +43,8 @@
 
 .outline {
   background-color: transparent;
-  border: 2px solid colors.$on-surface;
-  padding: 6px 14px;
+  border: 1px solid colors.$on-surface;
+  padding: 7px 15px;
 }
 .outline:focus {
   box-shadow: 0 0 0 2px colors.$surface, 0 0 0 4px colors.$on-surface;
