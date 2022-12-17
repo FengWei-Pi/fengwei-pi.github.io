@@ -10,22 +10,6 @@
 @use "./theme";
 @use "./utilities";
 
-/*
-Make default display flex, wrap, and padding + border be included in width and height
-
-By default:
-  Items display in a row (the flex-direction property's default is row).
-  The items start from the start edge of the main axis.
-  The items do not stretch on the main dimension, but can shrink.
-  The items will stretch to fill the size of the cross axis.
-  The flex-basis property is set to auto.
-  The flex-wrap property is set to nowrap. (overwritten below to wrap for all div)
-From https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox#the_flex_container
-*/
-div {
-  display: flex;
-  flex-wrap: wrap;
-}
 
 // Apply border box sizing to everything
 // See https://stackoverflow.com/questions/51447962/to-apply-border-box-in-all-css-rules
@@ -34,19 +18,19 @@ div {
 }
 
 body {
-  margin: 0;
   background-color: colors.$surface;
-  image-rendering: -webkit-optimize-contrast;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-  --primary-color: #{colors.$primary-color};
-  --on-primary-color: #{colors.$on-primary-color};
-  --secondary-color: #{colors.$secondary-color};
-  --on-secondary-color: #{colors.$on-secondary-color};
-  --surface-color: #{colors.$surface-color};
-  --on-surface-color: #{colors.$on-surface-color};
-  --surface-variant-color: #{colors.$surface-variant-color};
-  --on-surface-variant-color: #{colors.$on-surface-variant-color};
-  --outline-color: #{colors.$outline-color};
+  --primary-color: #{colors.$theme-primary-color};
+  --on-primary-color: #{colors.$theme-on-primary-color};
+  --secondary-color: #{colors.$theme-secondary-color};
+  --on-secondary-color: #{colors.$theme-on-secondary-color};
+  --surface-color: #{colors.$theme-surface-color};
+  --on-surface-color: #{colors.$theme-on-surface-color};
+  --surface-variant-color: #{colors.$theme-surface-variant-color};
+  --on-surface-variant-color: #{colors.$theme-on-surface-variant-color};
+  --outline-color: #{colors.$theme-outline-color};
 }

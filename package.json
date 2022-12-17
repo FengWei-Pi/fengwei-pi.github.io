@@ -11,14 +11,27 @@
     "bitset": "^5.1.1",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
+    "fit-curve": "^0.2.0",
+    "gray-matter": "^4.0.3",
+    "hast-to-hyperscript": "^10.0.1",
+    "mdast": "^3.0.0",
+    "mdast-util-from-markdown": "^1.2.0",
+    "mdast-util-gfm": "^2.0.1",
+    "mdast-util-to-hast": "^12.2.4",
+    "mdast-util-to-string": "^3.1.0",
+    "micromark-extension-gfm": "^2.0.1",
     "probability-distributions": "^0.9.1",
+    "process": "^0.11.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-markdown": "^8.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
+    "rehype-stringify": "^9.0.3",
     "sass": "^1.32.8",
     "stream-browserify": "^3.0.0",
+    "unist-util-visit": "^4.1.1",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
@@ -73,7 +86,7 @@
       "react/jsx-curly-brace-presence": [
         "warn",
         {
-          "propElementValues": "always" 
+          "propElementValues": "always"
         }
       ],
       "quotes": [

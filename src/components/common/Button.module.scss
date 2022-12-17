@@ -1,38 +1,48 @@
 @use "scss/colors";
 
 /**
- * Sets background to background-color blended with an opacity adjusted content-rgb.
+ * Sets background to `background-color` blended with an `opacity` adjusted `content-rgb`.
+ * `content-rgb` is animatable on the `background-color` property.
  */
 @mixin background-blend($background-color, $content-rgb, $opacity) {
-  background: linear-gradient(
-    0,
-    rgba($content-rgb, $opacity),
-    rgba($content-rgb, $opacity)
-  ), $background-color;
+  // Goal is background layer with transluscent layer on top that allows transitions
+  // between different trasluscent layers.
+
+  // Intuitively, `background-color` should be set as background-color property and
+  // content-rgb can be set to a flat gradient, which appears on top. However, gradients
+  // are not animatable. Therefore, `background-color` is set as the flat gradient while
+  // `content-rgb` with `opacity` is set as background's color, and blend mode is set
+  // so they blend.
+  background-blend-mode: multiply;
+  background-color: rgba($content-rgb, $opacity);
+  background-image: linear-gradient(0, $background-color, $background-color);
 }
 
 .container {
   align-items: center;
   border: none;
-  border-radius: 24px;
+  border-radius: 1.5em;
   color: colors.$on-primary;
   cursor: pointer;
-  display: inline;
-  padding: 8px 16px;
+  display: inline-flex;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  white-space: nowrap;
 }
-.container:focus {
+.container:focus-visible {
   // Disables possible browser default shadow and outline for focus-visible
   box-shadow: none;
   outline: none;
 }
 
 .filled {
-  background-color: colors.$primary;
+  @include background-blend(colors.$primary, colors.$on-primary-rgb, 0);
+  transition: background-color 0.1s;
 }
-.filled:focus {
+.filled:focus-visible {
   border: 2px solid colors.$on-surface;
-  box-shadow: inset 0 0 0 2px colors.$surface;
-  margin: -2px;
+  margin: -1px;
+  padding: calc(0.5em - 1px) calc(1em - 1px);
 }
 .filled:hover {
   @include background-blend(colors.$primary, colors.$on-primary-rgb, colors.$hover-opacity);
@@ -42,21 +52,24 @@
 }
 
 .outline {
-  background-color: transparent;
+  @include background-blend(transparent, colors.$on-primary-rgb, 0);
   border: 1px solid colors.$outline;
-  padding: 7px 15px;
+  padding: calc(0.5em - 1px) calc(1em - 1px);
+  transition: background-color 0.1s;
 }
-.outline:focus {
-  box-shadow: 0 0 0 2px colors.$surface, 0 0 0 4px colors.$on-surface;
+.outline:focus-visible {
+  border: 2px solid colors.$on-surface;
+  margin: -1px;
 }
 
 .text {
-  background-color: transparent;
+  @include background-blend(transparent, colors.$on-primary-rgb, 0);
+  transition: background-color 0.1s;
 }
-.text:focus {
+.text:focus-visible {
   border: 2px solid colors.$on-surface;
-  box-shadow: inset 0 0 0 2px colors.$surface;
-  margin: -2px;
+  margin: -1px;
+  padding: calc(0.5em - 1px) calc(1em - 1px);
 }
 
 .outline:hover, .text:hover {

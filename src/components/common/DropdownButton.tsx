@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BsChevronDown, BsChevronUp, BsCheck } from "react-icons/bs";
 
-import { Button, ButtonType } from "./Button";
+import { Button } from "./Button";
+import type { ButtonType } from "./Button";
 import styles from "./DropdownButton.module.scss";
 
-export { ButtonType };
+export type { ButtonType };
 
-// TODO improvements
-// When option is focused and dropdown is closed, set focus back to button. Currently, nothing
-// will be focused when an option was focused and dropdown is closed.
+// TODO When option is focused and dropdown is closed, set focus back to button.
+// Currently, nothing will be focused when an option was focused and dropdown is closed.
 export const DropdownButton = (props: {
   className?: string;
   classNameOption?: string;
@@ -18,9 +18,8 @@ export const DropdownButton = (props: {
   /** Defaults to 0 */
   selectedIndex?: number;
   /**
-   * Changes the appearance and emphasis of button.
-   * ButtonType.Filled is high emphasis, ButtonType.Outline is medium, ButtonType.Text is low.
-   * Defaults to outline.
+   * Changes the appearance and emphasis of button. 'filled' is high emphasis,
+   * 'outline' is medium, and 'text' is low. Defaults to outline.
    */
    type?: ButtonType;
 }) => {
@@ -57,7 +56,6 @@ export const DropdownButton = (props: {
   // Update option focus when focusedIndex changes
   useEffect(() => {
     optionsRef.current[tabIndex]?.focus();
-    console.log("switching tab index to element index ", tabIndex);
   }, [tabIndex]);
 
   // Handle escape key and mouse presses
@@ -65,13 +63,15 @@ export const DropdownButton = (props: {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!isOpen) return;
 
-      if (event.key === "Escape") setIsOpen(false);
-      else if (event.key === "ArrowUp") {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        event.preventDefault();
+      } else if (event.key === "ArrowUp") {
         setTabIndex(prev => prev === -1 ? children.length-1 : Math.max(0, prev-1));
-        console.log("arrow up key");
+        event.preventDefault();
       } else if (event.key === "ArrowDown") {
         setTabIndex(prev => Math.min(children.length-1, prev+1));
-        console.log("arrow down key");
+        event.preventDefault();
       }
     };
 
@@ -104,7 +104,7 @@ export const DropdownButton = (props: {
   return (
     <div className={styles.container} ref={containerRef}>
       <Button
-        className={`${styles.button} ${props.className}`}
+        className={`${props.className}`}
         type={props.type}
         onClick={onButtonClick}
         ref={buttonRef}
@@ -113,8 +113,8 @@ export const DropdownButton = (props: {
       >
         {children[trueSelectedIndex]}
         {isOpen ?
-          <BsChevronUp size="1rem" className={styles.icon} /> :
-          <BsChevronDown size="1rem" className={styles.icon} />
+          <BsChevronUp className={styles.icon} /> :
+          <BsChevronDown className={styles.icon} />
         }
       </Button>
       {isOpen && (
@@ -128,14 +128,14 @@ export const DropdownButton = (props: {
             >
               <Button
                 className={`${styles.option} ${props.classNameOption}`}
-                type={ButtonType.Text}
+                type="text"
                 onClick={() => onOptionClick(index)}
                 onFocus={() => onFocus(index)}
                 ref={(el) => optionsRef.current[index]= el}
                 tabIndex={index === tabIndex ? 0 : -1}
               >
                 {child}
-                {index === trueSelectedIndex && <BsCheck size="1rem" className={styles.icon} />}
+                {index === trueSelectedIndex && <BsCheck className={styles.icon} />}
               </Button>
             </li>
           ))}

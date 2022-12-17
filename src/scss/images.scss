@@ -5,12 +5,6 @@
   border-radius: 50%;
 }
 
-.logoProfile {
-	@extend %bg-logo;
-	background-color: lightblue;
-	background-image: url('/assets/blurred-landscape.jpg');
-}
-
 .logoUWAerial {
 	@extend %bg-logo;
 	background-color: white;

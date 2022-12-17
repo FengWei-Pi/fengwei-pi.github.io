@@ -1,4 +1,4 @@
-/*
+/**
  * Breakpoint mixins allow for different css styles at different screen widths.
  * Four breakpoints are defined: sm, md, lg, and xl. Use breakpoint-up or beakpoint-down
  * to either include the css content at the specified size and up or down.
@@ -6,24 +6,27 @@
  * ex. // myScssFile.scss
  * @use "scss/breakpoints";
  *
- * // width is 100% at size md and below, and 100% at above size md
+ * // width is 100% at size md and below, and 80% at above size md
  * .myClass {
  *   width: 100%;
- * }
- * @include breakpoints.breakpoint-up(md) {
- *   .myClass {
+ *   @include breakpoints.breakpoint-up(md) {
  *     width: 80%;
  *   }
  * }
  */
 @use "sass:map";
 
-$breakpoints: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+$breakpoints: (sm: $sm, md: $md, lg: $lg, xl: xl);
 
 @mixin breakpoint-up($breakpoint) {
 	$min: map.get($breakpoints, $breakpoint);
   @if $min {
-    @media (min-width: $min) {
+    @media screen and (min-width: $min) {
       @content;
     }
   } @else {
@@ -34,7 +37,7 @@ $breakpoints: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);
 @mixin breakpoint-down($breakpoint) {
 	$min: map.get($breakpoints, $breakpoint);
   @if $min {
-    @media (max-width: $min) {
+    @media screen and (max-width: $min) {
       @content;
     }
   } @else {

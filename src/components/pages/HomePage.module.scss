@@ -1,0 +1,111 @@
+@use "scss/breakpoints";
+@use "scss/colors";
+@use "scss/font";
+
+.headerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding: 75px 0;
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+
+  @include breakpoints.breakpoint-up(md) {
+    flex-wrap: nowrap;
+    padding: 100px 0;
+  }
+}
+
+.headerBackgroundContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.headerBackground {
+  background: url('/assets/landscape.jpg'), rgba(colors.$surface-variant-rgb, 0.8);
+  background-blend-mode: color;
+  background-size: cover;
+  filter: blur(30px);
+  width: 120%;
+  height: 120%;
+  transform: translateX(-10%) translateY(-10%);
+}
+
+.headerProfileContainer {
+  text-align: center;
+  width: 100%;
+
+  @include breakpoints.breakpoint-up(md) {
+    padding-left: 40px;
+    width: auto;
+  }
+}
+
+.headerProfileImage {
+  background-color: colors.$surface-variant;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.headerText {
+  color: colors.$on-primary;
+  flex-shrink: 1;
+  font-size: font.$title-sm-font-size;
+  margin: 0;
+  padding: 50px 25px 0 25px;
+  
+  @include breakpoints.breakpoint-up(md) {
+    font-size: font.$title-md-font-size;
+    padding: 0 40px 0 calc(5% - 5px);
+  }
+}
+
+.headerTextEmphasis {
+  font-size: font.$headline-lg-font-size;
+  padding: 5px 0 10px 0;
+  width: min-content;
+
+  @include breakpoints.breakpoint-up(md) {
+    font-size: font.$display-font-size;
+  }
+}
+
+.articlesContainer {
+  max-width: breakpoints.$lg;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 10px;
+
+  @include breakpoints.breakpoint-up(md) {
+    padding: 40px;
+  }
+}
+
+.articleContainer {
+  display: flex;
+  padding: 20px 0px;
+  position: relative;
+  width: 100%;
+
+  @include breakpoints.breakpoint-up(md) {
+    padding: 40px 0;
+  }
+}
+
+.articleRight {
+  justify-content: flex-end;
+}
+
+.articleCard {
+  background-color: colors.$surface-variant;
+}
