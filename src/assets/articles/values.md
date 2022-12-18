@@ -23,6 +23,6 @@ I emphasize effort because individuals perform better when they perceive ability
 pp. 153-156 Fundamental Attribution Error
 [^3]: Heine, S. J. (2015). Cultural Psychology. W. W. Norton, Incorporated.  
 pp. 54-56, Evolutionary Advantage of a Large Brain
-[^4]: Cultural Psychology, pp. 42-44, Imitative Learning
-[^5]: Social Psychology, pp. 528-529, Intelligence: Thing or Process?
+[^4]: Cultural Psychology[^3], pp. 42-44, Imitative Learning
+[^5]: Social Psychology[^2], pp. 528-529, Intelligence: Thing or Process?
 [^6]: Wikipedia contributors. (2022, December 12). Learned helplessness. Wikipedia. https://en.wikipedia.org/wiki/Learned_helplessness
