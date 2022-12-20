@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.5601f614.css",
-    "main.js": "/static/js/main.6a03475d.js",
-    "static/js/51.0092f631.chunk.js": "/static/js/51.0092f631.chunk.js",
-    "static/js/577.ab5e6486.chunk.js": "/static/js/577.ab5e6486.chunk.js",
+    "main.css": "/static/css/main.29ee6f01.css",
+    "main.js": "/static/js/main.a8601cf3.js",
+    "static/js/51.bda2fd26.chunk.js": "/static/js/51.bda2fd26.chunk.js",
+    "static/js/577.175fd2e2.chunk.js": "/static/js/577.175fd2e2.chunk.js",
     "static/media/UW-aerial.jpg": "/static/media/UW-aerial.79fad263ddbf98acf69c.jpg",
     "static/media/connect-four.png": "/static/media/connect-four.2493aa3425c69f1ee5bb.png",
+    "static/media/headshot-3-small.jpg": "/static/media/headshot-3-small.95764a585924ff1dd376.jpg",
+    "static/media/Roboto-Regular.woff2": "/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
+    "static/media/landscape-forest.jpg": "/static/media/landscape-forest.4b4255ceb0375868b8b8.jpg",
+    "static/media/landscape.jpg": "/static/media/landscape.2cb018f5176b5a3a3fc7.jpg",
     "static/media/passionfruit-icon.png": "/static/media/passionfruit-icon.d4ad74baed17683677c2.png",
-    "static/media/blurred-landscape.jpg": "/static/media/blurred-landscape.25ecedb6d9f4f3eb81ca.jpg",
     "index.html": "/index.html",
-    "main.5601f614.css.map": "/static/css/main.5601f614.css.map",
-    "main.6a03475d.js.map": "/static/js/main.6a03475d.js.map",
-    "51.0092f631.chunk.js.map": "/static/js/51.0092f631.chunk.js.map",
-    "577.ab5e6486.chunk.js.map": "/static/js/577.ab5e6486.chunk.js.map"
+    "main.29ee6f01.css.map": "/static/css/main.29ee6f01.css.map",
+    "main.a8601cf3.js.map": "/static/js/main.a8601cf3.js.map",
+    "51.bda2fd26.chunk.js.map": "/static/js/51.bda2fd26.chunk.js.map",
+    "577.175fd2e2.chunk.js.map": "/static/js/577.175fd2e2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5601f614.css",
-    "static/js/main.6a03475d.js"
+    "static/css/main.29ee6f01.css",
+    "static/js/main.a8601cf3.js"
   ]
 }
