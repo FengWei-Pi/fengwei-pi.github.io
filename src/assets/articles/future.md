@@ -1,4 +1,4 @@
-# Future Learnings
+# The Future
 
 - **Python**. Python is the language standard for machine learning and artificial intelligence, both for research and production. I'm interested in learning the language and its rich development ecosystem.
 
