@@ -18,6 +18,10 @@
 }
 
 body {
+  font-family: "Roboto Regular", sans-serif;
+  font-size: font.$body-font-size;
+  color: colors.$on-surface;
+
   background-color: colors.$surface;
   margin: 0;
   padding: 0;
