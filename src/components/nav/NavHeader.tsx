@@ -8,6 +8,7 @@ import styles from "./NavHeader.module.scss";
 export const NavHeader = () => {
   const history = useHistory();
 
+  // TODO don't push if on same page
   return (
     <nav aria-label="Main">
       <ul className={styles.list}>
