@@ -1,9 +1,4 @@
-/*
-	TODO:documentation
-  flex-basis: 1 to 12
-  margin/padding: 0 to 5
-	font sizes: 1 to 4
-*/
+// TODO remove file, and refactor these classes away from connect four.
 @use "scss/breakpoints";
 @use "scss/utilities";
 
@@ -86,8 +81,6 @@ $font-sizes-xl: 20px, 28px, 38px, 50px;
 	text-align: center;
 	color: $black;
 	font-family: 'Roboto', 'Open Sans', 'Source Sans Pro', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 @include breakpoints.breakpoint-up(sm) {
 	%text-primary { text-align: start; }

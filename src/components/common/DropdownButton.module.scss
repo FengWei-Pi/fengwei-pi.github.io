@@ -1,49 +1,61 @@
-@use "scss/breakpoints";
-@use './button' as *;
+@use "scss/colors";
 
 .container {
-	position: relative;
+  display: inline-block;
+  position: relative;
 }
 
-.menuContainer {
-	@extend %border;
-	position: absolute;
-	top: 0;
-	left: 0;
-	border-radius: nth($heights, 2) / 2;
-	background-color: white;
-	overflow: hidden;
-	min-width: 100%;
+.dropdownContainer {
+  background-color: colors.$surface;
+  border: 1px solid colors.$outline;
+  border-radius: 1em;
+  margin: 0; // Gets rid of list margin
+  overflow: hidden;
+  list-style-type: none;
+  padding: 0;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  position: absolute;
+  z-index: 1;
 }
 
-.menuOptionContainer {
-	white-space: nowrap;
-	flex-wrap: nowrap;
-	height: nth($heights, 2);
-	padding: 0px nth($paddings, 2) 0px nth($paddings, 2);
-}
-@media (hover: hover) {
-	.menuOptionContainer:hover {
-		cursor: pointer;
-		@include highlight;
-	}
-}
-.menuOptionContainer:active {
-	@include highlight;
+.listItem {
+  list-style: none; // Gets rid of list bullet points
 }
 
-@include breakpoints.breakpoint-up(md) {
-	.menuContainer {
-		border-radius: nth($heights-md, 2) / 2;
-	}
-	.menuOptionContainer {
-		height: nth($heights-md, 2);
-		padding: 0px nth($paddings-md, 2) 0px nth($paddings-md, 2);
-	}
+.option {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
 }
 
-.dropdownIcon, .selectedIcon {
-	margin-right: -5px;
-	margin-left: 10px;
-	font-size: 0.8em;
+// Apply hover styling to focused options
+.option:focus-visible {
+  border: none;
+  box-shadow: none;
+  background: linear-gradient(
+    0,
+    rgba(colors.$on-primary-rgb, colors.$hover-opacity),
+    rgba(colors.$on-primary-rgb, colors.$hover-opacity)
+  ), colors.$surface;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+.option:active {
+  border: none;
+  box-shadow: none;
+  background: linear-gradient(
+    0,
+    rgba(colors.$on-primary-rgb, colors.$pressed-opacity),
+    rgba(colors.$on-primary-rgb, colors.$pressed-opacity)
+  ), colors.$surface;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+.icon {
+  margin-left: 0.33em;
+  margin-right: -0.17em;
 }

@@ -1,5 +1,5 @@
 import styles from "./ProjectItem.module.scss";
-import Button from "./Button";
+import { Button } from "./Button";
 
 // TODO: see if ProjectItem and ImageSection can consolidated into one component (both have image, then title, then body text)
 /**
@@ -58,12 +58,12 @@ export default function ProjectItem(props) {
             {buttons.map((button, index) => (
               <Button
                 key={index.toString()}
-                text={button.text}
-                size={2}
-                containerClasses="margin-horz-2"
+                className="margin-horz-2 font-size-1"
                 onClick={button.onClick}
-                customIconComponent={button.icon}
-              />
+              >
+                {button.text}
+                {button.icon}
+              </Button>
             ))}
           </div>
         )}

@@ -1,0 +1,52 @@
+@use "sass:color";
+
+/** 
+ * Color system is somewhat based on Material Design 3 color system.
+ * See https://m3.material.io/styles/color/the-color-system/key-colors-tones for MD3's
+ * color system and https://m3.material.io/theme-builder#/custom for building a theme.
+ *
+ * Primary and secondary colors are used for backgrounds of ui components. On primary and
+ * secondary are used for elements that appear on top of the components, such as text.
+ *
+ * Surface colors are used for large surfaces, such as the page background.
+ *
+ * Hover and pressed colors are used as an additional layer of color in between the main
+ * color and the content, such as in between a button's background and the text.
+ */
+
+// Convenience scss variables to get the current theme's colors
+$primary-rgb: var(--primary-color);
+$on-primary-rgb: var(--on-primary-color);
+$secondary-rgb: var(--secondary-color);
+$on-secondary-rgb: var(--on-secondary-color);
+$surface-rgb: var(--surface-color);
+$on-surface-rgb: var(--on-surface-color);
+$surface-variant-rgb: var(--surface-variant-color);
+$on-surface-variant-rgb: var(--on-surface-variant-color);
+$outline-rgb: var(--outline-color);
+
+$primary: rgb($primary-rgb);
+$on-primary: rgb($on-primary-rgb);
+$secondary: rgb($secondary-rgb);
+$on-secondary: rgb($on-secondary-rgb);
+$surface: rgb($surface-rgb);
+$on-surface: rgb($on-surface-rgb);
+$surface-variant: rgb($surface-variant-rgb);
+$on-surface-variant: rgb($on-surface-variant-rgb);
+$outline: rgb($outline-rgb);
+
+// Opacity of layer that appears on top of background
+$hover-opacity: 0.08;
+$pressed-opacity: 0.12;
+
+// Default color theme. Colors are defined in rgb triplets so alpha can be changed dynamically.
+// Not intended to be used directly; use the variables defined above instead.
+$theme-primary-color: 198, 231, 255; // #c6e7ff;
+$theme-on-primary-color: 0, 30, 46; // #001e2e;
+$theme-secondary-color: 255, 217, 223; // #ffd9df;
+$theme-on-secondary-color: 63, 0, 22; // #3f0016;
+$theme-surface-color: 255, 255, 255; // #fff;
+$theme-on-surface-color: 10, 10, 10; // #0a0a0a;
+$theme-surface-variant-color: 235, 241, 248; // #ebf1f8;
+$theme-on-surface-variant-color: 43, 49, 55; // #2b3137;
+$theme-outline-color: 139, 146, 152; // #8b9298;
