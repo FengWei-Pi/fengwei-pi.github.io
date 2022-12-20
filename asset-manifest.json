@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.29ee6f01.css",
-    "main.js": "/static/js/main.55bd05eb.js",
+    "main.css": "/static/css/main.00e362db.css",
+    "main.js": "/static/js/main.53348f12.js",
     "static/js/51.bda2fd26.chunk.js": "/static/js/51.bda2fd26.chunk.js",
     "static/js/577.175fd2e2.chunk.js": "/static/js/577.175fd2e2.chunk.js",
     "static/media/UW-aerial.jpg": "/static/media/UW-aerial.79fad263ddbf98acf69c.jpg",
@@ -12,13 +12,13 @@
     "static/media/landscape.jpg": "/static/media/landscape.2cb018f5176b5a3a3fc7.jpg",
     "static/media/passionfruit-icon.png": "/static/media/passionfruit-icon.d4ad74baed17683677c2.png",
     "index.html": "/index.html",
-    "main.29ee6f01.css.map": "/static/css/main.29ee6f01.css.map",
-    "main.55bd05eb.js.map": "/static/js/main.55bd05eb.js.map",
+    "main.00e362db.css.map": "/static/css/main.00e362db.css.map",
+    "main.53348f12.js.map": "/static/js/main.53348f12.js.map",
     "51.bda2fd26.chunk.js.map": "/static/js/51.bda2fd26.chunk.js.map",
     "577.175fd2e2.chunk.js.map": "/static/js/577.175fd2e2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.29ee6f01.css",
-    "static/js/main.55bd05eb.js"
+    "static/css/main.00e362db.css",
+    "static/js/main.53348f12.js"
   ]
 }
