@@ -23,6 +23,7 @@ export const HomePage = () => {
   const [headerTitleElement, setHeaderTitleElement] = useState<HTMLDivElement | null>(null);
   const [headerElement, setHeaderElement] = useState<HTMLDivElement | null>(null);
 
+  // Refs used for positioning canvas for drawing paths
   const setArticleRef = useCallback((el: HTMLDivElement | null, index: number) => {
     if (el === null) return;
 
@@ -106,30 +107,6 @@ export const HomePage = () => {
           );
         })}
       </div>
-
-      {/* TODO debug remove
-      <div style={{ padding: 50 }}>
-        <Button type="filled" onClick={() => console.log("button clicked")}>patterns Êg</Button>
-        <Button type="filled" onClick={() => console.log("button clicked")}>overview</Button>
-        <Button type="outline" onClick={() => console.log("button clicked")}>patterns Êg</Button>
-        <Button type="outline" onClick={() => console.log("button clicked")}>overview</Button>
-        <Button type="text" onClick={() => console.log("button clicked")}>patterns Êg</Button>
-        <Button type="text" onClick={() => console.log("button clicked")}>overview</Button>
-        <DropdownButton selectedIndex={2}>
-          <>Option 1</>
-          <>Option 123456789101231232 24314 2314 1234 2432421342</>
-          <>Option 76</>
-        </DropdownButton>
-        <DropdownButton>
-          <>Option 1</>
-          <img src="https://picsum.photos/200" alt="random"/>
-          <>Option 76</>
-        </DropdownButton>
-        <p>Body Text The Material Design type scale includes a range of contrasting styles that support the needs of your product and its content.
-
-The type scale is a combination of thirteen styles that are supported by the type system. It contains reusable categories of text, each with an intended application and meaning.</p>
-      </div>
-      */}
     </>
   );
 };

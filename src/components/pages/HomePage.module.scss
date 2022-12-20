@@ -29,6 +29,16 @@
   overflow: hidden;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
 .headerBackground {
   background: url('/assets/landscape.jpg'), rgba(colors.$surface-variant-rgb, 0.8);
   background-blend-mode: color;
@@ -37,6 +47,7 @@
   width: 120%;
   height: 120%;
   transform: translateX(-10%) translateY(-10%);
+  animation: fadeIn 0.5s;
 }
 
 .headerProfileContainer {
@@ -55,6 +66,7 @@
   height: 200px;
   width: 200px;
   object-fit: cover;
+  animation: fadeIn 0.3s;
 }
 
 .headerText {

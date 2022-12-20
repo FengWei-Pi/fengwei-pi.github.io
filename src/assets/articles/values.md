@@ -16,7 +16,7 @@ For these reasons, I loved talking to workmates about the intricacies of technic
 
 Success is a universal goal. Individually, the determining factor is often focused on a person's skill, but emphasizing ability neglects how it might change over time.
 
-I emphasize effort because individuals perform better when they perceive ability as a malleable, improvable trait[^5]. When viewed otherwise, people become discouraged after a string of failures[^6]. To embrace challenges, criticism, and mistakes as a way to learn, I strive somewhat paradoxically less for the desired result and more for a substantial effort.
+I emphasize effort because individuals perform better when they perceive ability as a malleable, improvable trait[^5]. When viewed otherwise, people become discouraged after a string of failures[^6]. To embrace challenges, criticism, and mistakes as a way to improve, I strive somewhat paradoxically less for an impressive result and more for a substantial effort.
 
 [^1]: Connect, Then Lead. (2014, November 2). Harvard Business Review. https://hbr.org/2013/07/connect-then-lead
 [^2]: Gilovich, T., Keltner, D., Chen, S., & Nisbett, R. E. (2018). Social Psychology (Fifth). W. W. Norton & Company.  
