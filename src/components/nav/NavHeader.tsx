@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { Button } from "components/common/Button";
 
@@ -7,19 +7,24 @@ import styles from "./NavHeader.module.scss";
 // TODO add collapsing functionality for smaller screens
 export const NavHeader = () => {
   const history = useHistory();
+  const location = useLocation();
 
-  // TODO don't push if on same page
+  const navigate = (url: string) => {
+    if (location.pathname === url) return;
+    history.push(url);
+  };
+
   return (
     <nav aria-label="Main">
       <ul className={styles.list}>
         <li className={styles.title}>
-          <Button className={styles.button} type="text" onClick={() => history.push("/")}>FengWei Pi</Button>
+          <Button className={styles.button} type="text" onClick={() => navigate("/")}>FengWei Pi</Button>
         </li>
         <li>
-          <Button className={styles.button} type="text" onClick={() => history.push("/")}>Journey</Button>
+          <Button className={styles.button} type="text" onClick={() => navigate("/")}>Journey</Button>
         </li>
         <li>
-          <Button className={styles.button} type="text" onClick={() => history.push("/values")}>
+          <Button className={styles.button} type="text" onClick={() => navigate("/values")}>
             Values
           </Button>
         </li>
