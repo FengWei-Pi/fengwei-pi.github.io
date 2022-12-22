@@ -118,7 +118,7 @@ See https://material.io/design/typography/the-type-system.html
 
 ## Color
 
-See `scss/_colors.scss` file.
+See [scss/_colors.scss](./src/scss/_colors.scss) file.
 
 See also https://m3.material.io/styles/color/the-color-system/key-colors-tones for MD3 color system documentation.  
 See https://m2.material.io/design/material-theming/implementing-your-theme.html#color Material deisgn color system documentation.  
