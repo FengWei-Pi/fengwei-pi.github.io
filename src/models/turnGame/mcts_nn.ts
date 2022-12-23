@@ -3,7 +3,7 @@ import PD from "probability-distributions";
 import { TurnGameNeuralNet } from "./neuralNet";
 import { TerminalValue } from "./model";
 import type { TurnGameModel } from "./model";
-import type { MCTS } from "./mcts";
+import type { MCTS_Node } from "./mcts";
 
 type Action<MoveType, GameType extends TurnGameModel<MoveType>> = {
   node: MCTS_Node_NN<MoveType, GameType>,
@@ -26,7 +26,7 @@ type Action<MoveType, GameType extends TurnGameModel<MoveType>> = {
  * )
  * 
  */
-export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> implements MCTS<MoveType, GameType> {
+export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> implements MCTS_Node<MoveType, GameType> {
   // Controls how much value to place on exploration. Higher value means more
   // nodes are expanded that don't have the highest action value.
   /**

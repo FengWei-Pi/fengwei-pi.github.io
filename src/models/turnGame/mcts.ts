@@ -5,7 +5,7 @@ import type { TurnGameModel } from "./model";
  * @see https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Principle_of_operation for general principles.
  */
 // For possible extension to three players, see https://deepai.org/publication/multiplayer-alphazero.
-export interface MCTS<MoveType, GameType extends TurnGameModel<MoveType>> {
+export interface MCTS_Node<MoveType, GameType extends TurnGameModel<MoveType>> {
   /**
    * Completes a full monte carlo simulation, from selection, to expansion, evaluation,
    * and backpropagation. Returns the value of the current state for the previous player.
