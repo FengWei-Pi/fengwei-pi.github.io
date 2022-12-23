@@ -13,10 +13,6 @@
   }
 }
 
-.containerExpanded {
-  max-width: 100%;
-}
-
 .contentContainer {
   align-items: flex-start;
   display: flex;
@@ -72,11 +68,6 @@
 .actionButtonContainer {
   display: inline-block;
   margin-right: 12px;
-  margin-top: 12px;
-}
-
-.expandButtonContainer {
-  display: inline-block;
   margin-top: 12px;
 }
 
