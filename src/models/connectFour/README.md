@@ -8,6 +8,11 @@ See https://medium.com/applied-data-science/how-to-build-your-own-alphazero-ai-u
 1. [Implementation](#implementation)
 2. [Connect Four Board](#connect-four-board)
 3. [Neural Network Architecture](#neural-network-architecture)
+4. [Connect Four Neural Net](#connect-four-neural-net)
+5. [Monte Carlo Tree Search](#monte-carlo-tree-search)
+6. [Connect Four Strategy](#connect-four-strategy)
+7. [Connect Four Controller](#connect-four-controller)
+8. [Improvements](#improvements)
 
 # Implementation
 
