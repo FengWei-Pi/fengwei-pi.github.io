@@ -2,6 +2,8 @@
 actions:
   - label: "Play Against ConnectFour AI"
     url: "/connectFour"
+  - label: "Github"
+    url: "https://github.com/FengWei-Pi/fengwei-pi.github.io/tree/main/src/models/connectFour"
 ---
 # Connect Four AI
 
