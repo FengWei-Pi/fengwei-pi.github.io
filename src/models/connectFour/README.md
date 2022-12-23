@@ -35,72 +35,76 @@ A `TurnGameModel` includes basic operations such as making a move, undoing a mov
 The architecture of the neural network was reached through trial and error over multiple iterations, with a goal of making it small enough so it reached a good playing level within 1-2 days.
 
 The architecture looks like
-```
-   input                         input
-   7x6x3                           7
-     |                             ---------------------------
-     v                                                       |
-2d convolution                                               |
-1 padding, 4 kernel size,                                    |
-256 filters, 1 stride                                        |
-     |                                                       |
-     v                                                       |
-batch normalization                                          |
-     |                                                       |
-     v                                                       |
-    relu -------------------                                 |
-     |                     |                                 |
-     v                     |                                 |
-2d convolution             |                                 |
-1 padding, 3 kernel size,  |                                 |
-256 filters, 1 stride      |                                 |
-     |                     |                                 |
-     v                     |                                 |
-batch normalization        |                                 |
-     |                     |                                 |
-     v                     |                                 |
-    relu                   |                                 |
-     |                     |                                 |
-     v                     |                                 |
-2d convolution             |                                 |
-1 padding, 3 kernel size,  |                                 |
-256 filters, 1 stride      |                                 |
-     |                     |                                 |
-     v                     |                                 |
-batch normalization        |                                 |
-     |                     |                                 |
-     v                     |                                 |
-    add <-------------------                                 |
-     |                                                       |
-     v                                                       |
-    relu                                                     |
-     |---------------------------------                      |
-     |                                |                      |
-     v                                v                      |
-2d convolution                   2d convolution              |  
-1 kernel size, 16 filters,       1 kernel size, 16 filters,  |
-1 stride                         1 stride                    |
-     |                                |                      |
-     v                                v                      |
-batch normalization               batch normalization        |  
-     |                                |                      |
-     v                                v                      |
-    relu                             relu                    |
-     |                                |                      |
-     v                                v                      |
-   flatten                          flatten                  |
-     |                                |                      |
-     v                                v                      |
-  dense relu                        dense                    |
-    256                               7                      |
-     |                                |                      |
-     v                                v                      |
-  dense tanh                       minimum <-----------------|
-     1                                |
- (value head)                         v
-                                   softmax
-                                 (policy head)
-```
+<details>
+  <summary>Neural Network Architecture</summary>
+
+  ```
+    input                         input
+    7x6x3                           7
+      |                             ----------------------------
+      v                                                        |
+  2d convolution                                               |
+  1 padding, 4 kernel size,                                    |
+  256 filters, 1 stride                                        |
+      |                                                        |
+      v                                                        |
+  batch normalization                                          |
+      |                                                        |
+      v                                                        |
+      relu -------------------                                 |
+      |                      |                                 |
+      v                      |                                 |
+  2d convolution             |                                 |
+  1 padding, 3 kernel size,  |                                 |
+  256 filters, 1 stride      |                                 |
+      |                      |                                 |
+      v                      |                                 |
+  batch normalization        |                                 |
+      |                      |                                 |
+      v                      |                                 |
+      relu                   |                                 |
+      |                      |                                 |
+      v                      |                                 |
+  2d convolution             |                                 |
+  1 padding, 3 kernel size,  |                                 |
+  256 filters, 1 stride      |                                 |
+      |                      |                                 |
+      v                      |                                 |
+  batch normalization        |                                 |
+      |                      |                                 |
+      v                      |                                 |
+      add <-------------------                                 |
+      |                                                        |
+      v                                                        |
+      relu                                                     |
+      |---------------------------------                       |
+      |                                |                       |
+      v                                v                       |
+  2d convolution                   2d convolution              |  
+  1 kernel size, 16 filters,       1 kernel size, 16 filters,  |
+  1 stride                         1 stride                    |
+      |                                |                       |
+      v                                v                       |
+  batch normalization               batch normalization        |  
+      |                                |                       |
+      v                                v                       |
+      relu                             relu                    |
+      |                                |                       |
+      v                                v                       |
+    flatten                          flatten                   |
+      |                                |                       |
+      v                                v                       |
+    dense relu                        dense                    |
+      256                               7                      |
+      |                                |                       |
+      v                                v                       |
+    dense tanh                       minimum <------------------
+      1                                |
+  (value head)                         v
+                                    softmax
+                                  (policy head)
+  ```
+</details>
 
 L2 regularization with coefficient of `0.0001` is used everywhere it applies.
 
