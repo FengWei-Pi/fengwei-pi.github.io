@@ -1,4 +1,4 @@
-import { TurnGameController } from "models/turnGame/controller";
+import { TurnGameController } from "../turnGame/controller";
 import { ConnectFourBoard, ConnectFourMove } from "./connectFourBoard";
 import type { TurnGameComputerStrategy } from "../turnGame/computerStrategy";
 

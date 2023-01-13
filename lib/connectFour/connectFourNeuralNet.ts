@@ -1,7 +1,7 @@
 import * as tf from "@tensorflow/tfjs";
 import type BitSet from "bitset";
 
-import { TurnGameNeuralNet } from "models/turnGame/neuralNet";
+import { TurnGameNeuralNet } from "../turnGame/neuralNet";
 import type { ConnectFourBoard, ConnectFourMove } from "./connectFourBoard";
 
 /**

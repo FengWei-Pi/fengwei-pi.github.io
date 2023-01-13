@@ -8,7 +8,7 @@
 import { ConnectFourBoard } from "./connectFourBoard";
 import { ConnectFourNeuralNet } from "./connectFourNeuralNet";
 import { MCTS_Node_NN } from "../turnGame/mcts_nn";
-import { TurnGameNeuralNet } from "models/turnGame/neuralNet";
+import { TurnGameNeuralNet } from "lib/turnGame/neuralNet";
 import modelJSON from "./model.json";
 import { Action, ActionReturn } from "./connectFourNNStrategyWorkerTypes";
 import type { ConnectFourMove } from "./connectFourBoard";
