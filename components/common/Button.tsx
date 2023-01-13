@@ -50,3 +50,5 @@ export const Button = forwardRef<HTMLElement, {
     </Root>
   );
 });
+
+Button.displayName = "Button";

@@ -68,7 +68,7 @@ const HomePage = (props: Props) => {
           <Image className={styles.headerProfileImage} src={headshot} alt="profile" />
         </div>
         <h1 className={styles.headerText}>
-          Hi, I'm FengWei Pi, and this is my
+          Hi, I&apos;m FengWei Pi, and this is my
           <div className={styles.headerTextEmphasis} ref={setHeaderJourneyRef}>
             Journey
           </div>

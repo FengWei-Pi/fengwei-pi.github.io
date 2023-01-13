@@ -43,3 +43,5 @@ export const ArticleCard = forwardRef<HTMLDivElement, {
     </div>
   );
 });
+
+ArticleCard.displayName = "ArticleCard";
