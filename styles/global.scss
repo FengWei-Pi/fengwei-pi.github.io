@@ -1,15 +1,7 @@
-// Import all required scss files. Base is imported at the top level of the app,
-// making the defined classes available app wide.
-@use "./alignment";
+// Global styles is imported app wide.
 @use "./breakpoints";
 @use "./colors";
-@use "./dimension";
-@use "./flex";
 @use "./font";
-@use "./images";
-@use "./theme";
-@use "./utilities";
-
 
 // Apply border box sizing to everything
 // See https://stackoverflow.com/questions/51447962/to-apply-border-box-in-all-css-rules
@@ -18,8 +10,9 @@
 }
 
 body {
-  font-family: "Roboto Regular", sans-serif;
+  // Font family is handled by nextjs in pages/_app.tsx
   font-size: font.$body-font-size;
+  font-weight: 400;
   color: colors.$on-surface;
 
   background-color: colors.$surface;
@@ -37,4 +30,34 @@ body {
   --surface-variant-color: #{colors.$theme-surface-variant-color};
   --on-surface-variant-color: #{colors.$theme-on-surface-variant-color};
   --outline-color: #{colors.$theme-outline-color};
+}
+
+// Assumes only h1-h4 will be used
+h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: font.$headline-lg-font-size;
+  font-weight: 450;
+}
+
+h2 {
+  font-size: font.$headline-md-font-size;
+  font-weight: 450;
+}
+
+h3 {
+  font-size: font.$headline-sm-font-size;
+  font-weight: 450;
+}
+
+h4 {
+  font-size: font.$title-md-font-size;
+  font-weight: 450;
+}
+
+button {
+  font: inherit;
 }
