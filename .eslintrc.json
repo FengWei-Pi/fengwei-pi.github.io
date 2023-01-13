@@ -1,0 +1,45 @@
+{
+  "extends": [
+    "plugin:jsx-a11y/recommended",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    "indent": [
+      "warn",
+      2
+    ],
+    "jsx-quotes": [
+      "warn",
+      "prefer-double"
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ],
+    "no-unreachable": "warn",
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "prefer-const": "warn",
+    "react/jsx-curly-brace-presence": [
+      "warn",
+      {
+        "propElementValues": "always"
+      }
+    ],
+    "quotes": [
+      "warn",
+      "double",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ]
+  }
+}
