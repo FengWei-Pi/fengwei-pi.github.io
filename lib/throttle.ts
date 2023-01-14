@@ -30,6 +30,7 @@ export const throttle = (
     const now = Date.now();
     if (!previous && options?.leading === false) previous = now;
     const remaining = wait - (now - previous);
+    // @ts-expect-error
     context = this;
     args = arguments;
     if (remaining <= 0 || remaining > wait) {
