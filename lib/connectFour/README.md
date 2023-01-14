@@ -1,3 +1,5 @@
+# Connect Four AI
+
 This folder contains the Connect Four AI agent for playing the game, based on AlphaGo Zero. It does not include the code for training the neural network; an already trained model is stored in `model.json`.
 
 See https://www.deepmind.com/blog/alphago-zero-starting-from-scratch for more information about training the neural network and AlphaGo Zero, the research that this project is based on.  

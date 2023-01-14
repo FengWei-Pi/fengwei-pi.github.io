@@ -32,8 +32,8 @@ export const DropdownButton = (props: {
 
   // Used to track focus
   const [tabIndex, setTabIndex] = useState(-1);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const optionsRef = useRef<Array<HTMLButtonElement | null>>([]);
+  const buttonRef = useRef<HTMLElement>(null);
+  const optionsRef = useRef<Array<HTMLElement | null>>([]);
 
   const children = React.Children.toArray(props.children);
   const trueSelectedIndex = props.selectedIndex ?? selectedIndex;
