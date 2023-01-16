@@ -20,6 +20,10 @@ body {
   padding: 0;
 }
 
+html, body {
+  overflow-x: scroll;
+} 
+
 :root {
   --primary-color: #{colors.$theme-primary-color};
   --on-primary-color: #{colors.$theme-on-primary-color};

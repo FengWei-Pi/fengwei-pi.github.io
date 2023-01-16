@@ -30,7 +30,6 @@
 }
 
 .articleContainer {
-  word-wrap: anywhere;
   width: 100%;
 }
 
@@ -56,17 +55,22 @@
   margin: 0;
 }
 
+.articleContainer ol li p a {
+  word-wrap: break-word;
+}
+
 .buttonsContainer {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
   width: 100%;
   margin-top: 8px;
 }
 
-.actionButtonContainer {
-  display: inline-block;
+.actionButton {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: content;
   margin-right: 12px;
   margin-top: 12px;
 }
