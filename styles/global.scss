@@ -16,10 +16,13 @@ body {
   color: colors.$on-surface;
 
   background-color: colors.$surface;
-  min-width: 300px;
   margin: 0;
   padding: 0;
 }
+
+html, body {
+  overflow-x: scroll;
+} 
 
 :root {
   --primary-color: #{colors.$theme-primary-color};

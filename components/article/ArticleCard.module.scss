@@ -31,8 +31,6 @@
 
 .articleContainer {
   width: 100%;
-  word-wrap: break-word;
-  word-break: break-all;
 }
 
 .articleContainer p {
@@ -55,6 +53,10 @@
 // Targets references section
 .articleContainer ol li p {
   margin: 0;
+}
+
+.articleContainer ol li p a {
+  word-wrap: break-word;
 }
 
 .buttonsContainer {

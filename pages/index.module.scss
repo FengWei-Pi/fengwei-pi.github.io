@@ -7,7 +7,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  overflow: visible;
   padding: 75px 0;
   position: relative;
   min-height: 400px;
@@ -115,7 +114,9 @@
 }
 
 .articleRight {
-  justify-content: flex-end;
+  @include breakpoints.breakpoint-up(sm) {
+    justify-content: flex-end;
+  }
 }
 
 .articleCard {

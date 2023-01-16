@@ -12,9 +12,9 @@ import { ConnectFourNNStrategyMultiThread } from "lib/connectFour/connectFourNNS
 import { TerminalValue } from "lib/turnGame/model";
 import { ConnectFourBoard } from "lib/connectFour/connectFourBoard";
 
-// TODO create controlled component connect 4 board whose only purpose is to display the .
+// TODO create controlled component connect 4 board whose only purpose is to display the board.
 // Use the new component in this component.
-// TODO change css styling to match other components
+// TODO change loader styling to something better. Check that it works on small screens.
 export default function ConnectFour() {
   const [controller, setController] = useState<ConnectFourController>();
   const [game, setGame] = useState<ConnectFourBoard>();
