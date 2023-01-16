@@ -41,9 +41,7 @@ export const StartPath = (props: {
         const article1Rect = article1.getBoundingClientRect();
         const article2Rect = article2.getBoundingClientRect();
 
-        // 50px added to prevent being cut off by header layout.
-        // TODO header layout should be changed to no longer need this extra 50px
-        const newWidth = Math.floor(article2Rect.right - article1Rect.left + 50);
+        const newWidth = Math.floor(article2Rect.right - article1Rect.left);
         const newHeight = Math.floor((article1Rect.bottom + article1Rect.top) / 2 - titleRect.top);
 
         let didDimensionChange = false;

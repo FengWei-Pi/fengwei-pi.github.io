@@ -6,6 +6,7 @@
   background-color: colors.$surface;
   color: colors.$on-surface;
   display: flex;
+  flex-wrap: wrap;
   list-style-type: none;
   margin: 0;
   padding: 10px;

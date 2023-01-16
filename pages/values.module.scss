@@ -62,6 +62,8 @@
 .articleContainer {
   flex-basis: breakpoints.$md;
   margin: 0 20px;
+  word-wrap: break-word;
+  word-break: break-all;
 
   @include breakpoints.breakpoint-up(sm) {
     margin: 0 40px;
