@@ -7,7 +7,6 @@ export default function ConnectFourPage() {
     <>
       <Head>
         <title>Connect Four</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="flex-1 justify-content-center">

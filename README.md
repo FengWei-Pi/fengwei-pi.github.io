@@ -18,8 +18,6 @@ When deploy is successful, run `npm version [major|minor|patch]`, for example `n
 
 If something went wrong, the local branch can be reverted to a previous commit and tags can be deleted. To revert to a commit, run `git reset --hard <commit_hash>`. To delete a tag, run `git delete -d <tag_name>`.
 
-See https://create-react-app.dev/docs/deployment/#github-pages for deploying with github pages.
-
 # Development Environment
 
 Includes more details than necessary in case they are needed.

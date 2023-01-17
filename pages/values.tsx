@@ -54,7 +54,6 @@ const ValuesPage = (props: Props) => {
     <>
       <Head>
         <title>Values</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <NavHeader />

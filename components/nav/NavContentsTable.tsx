@@ -20,7 +20,7 @@ export const NavContentsTable = (props: {
   const { activeIndex, title, links, className, ...rest } = props;
   
   return (
-    <div className={`${styles.container} ${props.className}`} {...rest}>
+    <div className={props.className} {...rest}>
       <div id="title" className={styles.title}>{title}</div>
       <nav aria-labelledby="title">
         <ul className={styles.list}>
