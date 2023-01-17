@@ -56,7 +56,6 @@ const HomePage = (props: Props) => {
     <>
       <Head>
         <title>Home Page</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <NavHeader />
