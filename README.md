@@ -14,7 +14,7 @@ See also the [docs](./docs.md) for some of the current development practices and
 
 TODO: deployment with nextjs and vercel.
 
-When deploy is successful, run `npm version [major|minor|patch]`, for example `npm version 1.2.2`. This will create a local commit with the package.json version incremented, and create a tag called `v1.2.2` at the commit. Push the commit to main and the tag. To push the tag, run `git push origin <tag_name>`.
+When deploy is successful, run `npm version [major|minor|patch]`, for example `npm version 1.2.2`. This will create a local commit with the package.json version incremented, and create a tag called `v1.2.2` at the commit. Push the commit and the tag to remote. To push the tag, run `git push origin <tag_name>`.
 
 If something went wrong, the local branch can be reverted to a previous commit and tags can be deleted. To revert to a commit, run `git reset --hard <commit_hash>`. To delete a tag, run `git delete -d <tag_name>`.
 
