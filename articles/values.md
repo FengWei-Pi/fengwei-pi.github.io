@@ -2,9 +2,9 @@ Why values? People may benefit from fortunate circumstances or suffer from unfor
 
 ## Respect
 
-Respect for others is the baseline for fruitful endeavours and the bare minimum required for cooperation. Skill is appreciated, but respect is distinguished first[^1] by others.
+Respect for others is the baseline for fruitful endeavours and the bare minimum required for cooperation. Skill is appreciated, but respect is distinguished first[^1].
 
-It's a necessity easy to overlook and especially easy to lose when treated with anything else. People have a wealth more information to judge themselves that they instinctually miss the situational factors affecting the behaviour and attitude of other people[^2]. I want to give proper consideration to mistakes and celebration for successes for the aim of, by default, treating people as reasonable human beings.
+Showing respect, even when not reciprocated, is a necessity easy to overlook. People have a wealth more information to judge their own behaviour that they instinctually miss how other people's behaviour are affected by situational factors[^2]. I want to give proper consideration to mistakes and celebration for successes for the goal of treating everyone as reasonable human beings by default.
 
 ## Cooperation 
 
@@ -14,9 +14,9 @@ For these reasons, I loved talking to workmates about the intricacies of technic
 
 ## Effort And Improvement
 
-Success is a universal goal. Individually, a person's skill is highlighted as the determining factor, but emphasizing ability over improvement downplays long term success for short term results.
+Success is a universal goal, one where a person's skill is often highlighted as the determining factor. However, emphasizing ability over improvement downplays the importance of long-term success for short-term results.
 
-I emphasize effort because people perform better when they perceive ability as a malleable, improvable trait[^5], when they embrace challenges, criticism, and mistakes as a way to learn. When viewed otherwise, people become discouraged after a string of failures[^6]. Because of this, I strive somewhat paradoxically less for an exceptional result and more for a substantial effort.
+I emphasize effort because people perform better when they perceive ability as a malleable, improvable trait[^5] and when they embrace challenges, criticism, and mistakes as a way to learn. When viewed otherwise, people become discouraged after a string of failures[^6]. Because of this, I strive somewhat paradoxically less for an exceptional result and more for a substantial effort.
 
 [^1]: Connect, Then Lead. (2014, November 2). Harvard Business Review. https://hbr.org/2013/07/connect-then-lead
 [^2]: Gilovich, T., Keltner, D., Chen, S., & Nisbett, R. E. (2018). Social Psychology (Fifth). W. W. Norton & Company.  
