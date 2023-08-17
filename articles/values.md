@@ -4,7 +4,7 @@ Why values? People may benefit from fortunate circumstances or suffer from unfor
 
 Respect for others is the baseline for fruitful endeavours and the bare minimum required for cooperation. Skill is appreciated, but respect is distinguished first[^1].
 
-Showing respect, even when not recriporcated, is a necessity easy to overlook. People have a wealth more information to judge their own behaviour that they instinctually miss how other people's behaviour are affected by situational factors[^2]. I want to give proper consideration to mistakes and celebration for successes for the goal of treating everyone as reasonable human beings by default.
+Showing respect, even when not reciprocated, is a necessity easy to overlook. People have a wealth more information to judge their own behaviour that they instinctually miss how other people's behaviour are affected by situational factors[^2]. I want to give proper consideration to mistakes and celebration for successes for the goal of treating everyone as reasonable human beings by default.
 
 ## Cooperation 
 
