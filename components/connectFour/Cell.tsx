@@ -1,12 +1,12 @@
 import styles from "./Cell.module.scss";
 
-export default function Cell(props: {
+export const Cell = (props: {
   /** 0 or 1 */
   piece?: number;
   /** 0 or 1 */
   hoverPiece?: number;
   className?: string;
-}) {
+}) => {
   const { piece, hoverPiece, className } = props; 
   
   return (
@@ -20,4 +20,4 @@ export default function Cell(props: {
     `}>
     </div>
   );
-}
+};

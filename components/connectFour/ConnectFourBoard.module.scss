@@ -23,13 +23,20 @@
   display: flex;
   flex-direction: column-reverse;
   flex: 1;
+  border: 0;
+  margin: 0;
+  background-color: transparent;
+}
+.column:active {
+  background-color: rgba(colors.$on-primary-rgb, colors.$hover-opacity);
+
+  @include breakpoints.breakpoint-up(lg) {
+    background-color: transparent;
+  }
 }
 
 .cell {
-  margin: 2px;
-  @include breakpoints.breakpoint-up(md) {
-    margin: 4px;
-  }
+  margin: 2.5%;
 }
 
 .overlayContainer {

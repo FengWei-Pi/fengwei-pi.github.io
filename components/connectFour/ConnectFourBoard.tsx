@@ -1,6 +1,6 @@
 import { useState, useCallback, useLayoutEffect } from "react";
 
-import Cell from "./Cell";
+import { Cell } from "./Cell";
 import styles from "./ConnectFourBoard.module.scss";
 
 const NUM_ROWS = 6;
@@ -76,7 +76,7 @@ export const ConnectFourBoard = (props: {
         if (column.length !== NUM_ROWS) throw new Error(`Invalid Connect Four column length ${column.length}`);
 
         return (
-          <div
+          <button
             className={styles.column} key={colIndex.toString()}
             onMouseEnter={() => handleHoverEnter(colIndex)}
             onClick={() => props.onColumnPress(colIndex)}
@@ -100,7 +100,7 @@ export const ConnectFourBoard = (props: {
                 className={styles.cell}
               />
             ))}
-          </div>
+          </button>
         );
       })}
       {props.isEnd !== undefined &&
