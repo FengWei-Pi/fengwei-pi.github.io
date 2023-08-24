@@ -109,6 +109,7 @@ const HomePage = (props: Props) => {
 export default HomePage;
 
 export const getStaticProps: GetStaticProps<Props> = () => {
+  // TODO put into a config in articles folder. Research best way to do that.
   const timelineFilenames = [
     "background",
     "university",
