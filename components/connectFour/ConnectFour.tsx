@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 
 import styles from "./ConnectFour.module.scss";
-import Cell from "./Cell";
 import { Button } from "components/common/Button";
 import { DropdownButton } from "components/common/DropdownButton";
 
+import { ConnectFourBoard as Board } from "./ConnectFourBoard";
 import { ConnectFourController } from "lib/connectFour/connectFourController";
 import { ConnectFourNNStrategyMultiThread } from "lib/connectFour/connectFourNNStrategyMultiThread";
 import { TerminalValue } from "lib/turnGame/model";
@@ -109,51 +109,32 @@ export default function ConnectFour() {
     }
 
     return {
-      board,
+      grid: board,
       heights
     };
   }, [game]);
 
   return (
     <div className={styles.container}>
-      <div
-        className={styles.boardContainer}
-        onMouseLeave={handleHoverLeave}
-      >
-        {board.board.map((column, colIndex) => (
-          <div
-            className={styles.column} key={colIndex.toString()}
-            onMouseEnter={() => handleHoverEnter(colIndex)}
-            onClick={() => handleColumnClick(colIndex)}
-          >
-            {column.map((piece, rowIndex) => (
-              <Cell
-                key={rowIndex}
-                piece={piece}
-                hoverPiece={
-                  colIndex === hoveringCol &&
-                  rowIndex === board.heights[colIndex] &&
-                  game?.getCurrentPlayer() === playerIndexRef.current &&
-                  playerIndexRef.current
-                }
-                className={styles.cell}
-              />
-            ))}
-          </div>
-        ))}
-        {terminalValue != null &&
-          <div className={styles.overlayContainer}>
-            <div className={styles.gameOverText}>
-              {terminalValue === TerminalValue.Loss ?
-                "You Lose" :
-                terminalValue === TerminalValue.Draw ?
-                  "Draw" :
-                  terminalValue === TerminalValue.Win &&
-                  "You Win!"
-              }
-            </div>
-          </div>
-        }
+      <div className={styles.boardContainer}>
+        <Board
+          grid={board.grid}
+          onColumnPress={handleColumnClick}
+          className={styles.board}
+          showHoverPlayer={game?.getCurrentPlayer() === playerIndexRef.current ?
+            playerIndexRef.current : undefined
+          }
+          isLoading={isMoveLoading}
+          isEnd={
+            terminalValue === TerminalValue.Loss ?
+              "loss" :
+              terminalValue === TerminalValue.Draw ?
+                "draw" :
+                terminalValue === TerminalValue.Win ?
+                  "win" :
+                  undefined
+          }
+        />
       </div>
       <div className={styles.buttonContainer} style={{ position: "relative" }}>
         <DropdownButton

@@ -144,7 +144,7 @@ to define breakpoints for when layout switches. Use mobile first default.
 - Yale uses responsive multi column layout and app bar. Fonts are responsive by default at
   tablet breakpoint. Some margins/paddings are responsive.
 
-For now, breakpoint is used from phone landscape to tablet for responsive layout and sizing. Other breakpoints are used to optionally further adjust text, margin, and padding sizing, but not layout. Avoid excessive responsive margins by using other properties like max-width instead.
+For now, breakpoint is used from phone portrait to landscape for responsive layout and sizing. Other breakpoints are used to optionally further adjust text, margin, and padding sizing, but not layout. Avoid excessive responsive margins by using other properties like max-width instead.
 
 ## Accessibility
 
