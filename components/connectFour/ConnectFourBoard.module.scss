@@ -28,10 +28,8 @@
   background-color: transparent;
 }
 .column:active {
-  background-color: rgba(colors.$on-primary-rgb, colors.$hover-opacity);
-
-  @include breakpoints.breakpoint-up(lg) {
-    background-color: transparent;
+  @media (hover: none) {
+    background-color: rgba(colors.$on-primary-rgb, colors.$hover-opacity);
   }
 }
 
