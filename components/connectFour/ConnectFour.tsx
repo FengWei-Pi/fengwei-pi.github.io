@@ -12,8 +12,6 @@ import { ConnectFourNNStrategyMultiThread } from "lib/connectFour/connectFourNNS
 import { TerminalValue } from "lib/turnGame/model";
 import { ConnectFourBoard } from "lib/connectFour/connectFourBoard";
 
-// TODO create controlled component connect 4 board whose only purpose is to display the board.
-// Use the new component in this component.
 // TODO change loader styling to something better. Check that it works on small screens.
 export default function ConnectFour() {
   const [controller, setController] = useState<ConnectFourController>();
@@ -137,19 +135,17 @@ export default function ConnectFour() {
         />
       </div>
       <div className={styles.buttonContainer} style={{ position: "relative" }}>
-        <DropdownButton
-          className={styles.button}
-          onChange={index => playerIndexRef.current = index}
-        >
-          <div>Player 1</div>
-          <div>Player 2</div>
-        </DropdownButton>
-        <Button
-          onClick={handleNewGamePress}
-          className={styles.button}
-        >
+        <div className={styles.button}>
+          <DropdownButton onChange={index => playerIndexRef.current = index}>
+            <div>Player 1</div>
+            <div>Player 2</div>
+          </DropdownButton>
+        </div>
+        <div className={styles.button}>
+          <Button onClick={handleNewGamePress}>
           New Game
-        </Button>
+          </Button>
+        </div>
         {isMoveLoading && <div className={styles.loader}></div>}
       </div>
     </div>

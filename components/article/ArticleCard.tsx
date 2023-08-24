@@ -32,9 +32,11 @@ export const ArticleCard = forwardRef<HTMLDivElement, {
       {hasButtons && (
         <div className={styles.buttonsContainer}>
           {actions.map(action => (
-            <Button key={action.label} href={action.url} className={styles.actionButton}>
-              {action.label}
-            </Button>
+            <div key={action.label} className={styles.actionButton}>
+              <Button href={action.url}>
+                {action.label}
+              </Button>
+            </div>
           ))}
         </div>
       )}
