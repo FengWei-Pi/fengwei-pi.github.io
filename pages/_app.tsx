@@ -3,7 +3,6 @@ import { Inter } from "@next/font/google";
 
 import "styles/global.scss";
 
-
 // Use Inter as font family.
 // See https://nextjs.org/docs/basic-features/font-optimization.
 const inter = Inter({ subsets: ["latin"] });

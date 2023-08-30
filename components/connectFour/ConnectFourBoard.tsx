@@ -3,8 +3,8 @@ import { useState, useCallback, useLayoutEffect } from "react";
 import { Cell } from "./Cell";
 import styles from "./ConnectFourBoard.module.scss";
 
-const NUM_ROWS = 6;
-const NUM_COLS = 7;
+export const NUM_ROWS = 6;
+export const NUM_COLS = 7;
 
 /**
  * Controlled component that renders a 7 by 6 Connect Four Board.
