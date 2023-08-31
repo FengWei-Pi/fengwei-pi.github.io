@@ -21,10 +21,19 @@
 
 .column {
   display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.columnButton {
+  display: flex;
   flex-direction: column-reverse;
   flex: 1;
+  align-self: stretch;
   border: 0;
   margin: 0;
+  padding: 0;
   background-color: transparent;
   border-radius: 15px;
 }
@@ -34,7 +43,15 @@
   }
 }
 
+.columnSubtext {
+  font-size: font.$label-font-size;
+  margin-top: 5px;
+  color: colors.$on-surface-variant;
+}
+
 .cell {
+  // Margin only depends on board width which is larger than height, so cells
+  // will appear 'flatter' than normal
   margin: 2.5%;
 }
 
