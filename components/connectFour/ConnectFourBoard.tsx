@@ -44,7 +44,7 @@ export const ConnectFourBoard = (props: {
         if (entry.borderBoxSize && entry.borderBoxSize[0]) {
           const el = entry.target as HTMLDivElement;
 
-          // 20px counteracts the effect of cells appearing 'flatter' due to cell margin
+          // 20px counteracts the effect of cells appearing 'flatter' due to board padding
           // 30px accommodates column subtext height
           el.style.height = entry.contentRect.width * NUM_ROWS/NUM_COLS + 20 + 30 + "px";
         }

@@ -5,7 +5,7 @@
 .boardContainer {
   display: flex;
   flex-direction: row;
-  padding: 10px;
+  padding: 10px; // Equal padding on all sides makes cells flatter
 	position: relative;
 	border-radius: 15px;
 	background-color: gainsboro;
@@ -46,13 +46,11 @@
 
 .columnSubtext {
   font-size: font.$label-font-size;
-  margin-top: 5px;
   color: colors.$on-surface-variant;
+  margin-top: 5px;
 }
 
 .cell {
-  // Margin only depends on board width which is larger than height, so cells
-  // will appear 'flatter' than normal
   margin: 2.5%;
 }
 
