@@ -2,38 +2,47 @@
 @use 'styles/colors';
 @use 'styles/font';
 
-.container {
+.gameContainer {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+
+  @include breakpoints.breakpoint-up(sm) {
+    flex-direction: row;
+  }
+
+  border: 5px solid green;
 }
 
 .boardContainer {
   display: flex;
-  justify-content: center;
-  padding: 10px;
+  flex: 2;
+  max-width: 90vh;
 
-  @include breakpoints.breakpoint-up(md) {
-    padding: 20px;
-  }
-}
-
-.board {
-  width: 100vh;
+  border: 5px solid yellow;
 }
 
 .buttonContainer {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-self: center;
-  justify-content: center;
-  margin: 10px 0;
+  margin: 0 -5px;
+
+  border: 5px solid red;
 }
 
 .button {
-  margin: 5px 10px;
+  margin: 5px 5px;
   white-space: nowrap;
+}
+
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid blue;
+
+  @include breakpoints.breakpoint-up(sm) {
+    flex: 1;
+  }
 }
 
 @keyframes loader {

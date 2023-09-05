@@ -6,7 +6,7 @@ export enum Action {
   UpdatePastMoves
 }
 
-export enum ActionReturn {
+export enum Response {
   GetMove
 }
 
@@ -25,10 +25,10 @@ export type GetMove = {
   payload: Array<ConnectFourMove> // past moves
 }
 
-export type GetMoveReturn = {
-  action: ActionReturn.GetMove,
+export type GetMoveResponse = {
+  action: Response.GetMove,
   payload: ConnectFourMove
 }
 
 export type Message = SetNumSimulations | UpdatePastMoves | GetMove;
-export type MessageReturn = GetMoveReturn;
+export type MessageResponse = GetMoveResponse;

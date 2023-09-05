@@ -55,4 +55,38 @@ export class ConnectFourController extends TurnGameController<ConnectFourMove, C
       nextPlayer: this.game.getCurrentPlayer()
     };
   }
+
+  getPastMoves() {
+    return this.game.getPastMoves();
+  }
+
+  getCurrentPlayer() {
+    return this.game.getCurrentPlayer();
+  }
+
+  // Returns a 2d array of the connect four board. Array elements are 0 if piece
+  // belongs to first player, 1 if piece belongs to second player, -1 if empty.
+  getGrid() {
+    // Init grid
+    const _grid: Array<Array<number>> = [];
+    for (let i = 0; i < ConnectFourBoard.NUM_COLS; ++i) _grid.push([]);
+  
+    // Push past moves into grid
+    const pastMoves = this.game.getPastMoves();
+    let player = 0;
+  
+    for (const move of pastMoves) {
+      _grid[move].push(player);
+      player = player ^ 1;
+    }
+  
+    // Fill out rest of grid with -1
+    for (const col of _grid) {
+      for (let i = col.length; i < ConnectFourBoard.NUM_ROWS; ++i) {
+        col.push(-1);
+      }
+    }
+  
+    return _grid;
+  }
 }

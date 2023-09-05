@@ -5,6 +5,7 @@
 .boardContainer {
   display: flex;
   flex-direction: row;
+  flex: 1;
   padding: 10px; // Equal padding on all sides makes cells flatter
 	position: relative;
 	border-radius: 15px;

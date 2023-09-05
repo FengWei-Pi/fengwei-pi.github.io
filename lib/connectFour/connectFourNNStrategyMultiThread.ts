@@ -1,7 +1,7 @@
 import { ConnectFourBoard } from "./connectFourBoard";
 import { ConnectFourController } from "./connectFourController";
 import { TurnGameComputerStrategy } from "../turnGame/computerStrategy";
-import { Action, MessageReturn  } from "./connectFourNNStrategyWorkerTypes";
+import { Action, MessageResponse  } from "./connectFourNNStrategyWorkerTypes";
 import type { ConnectFourMove } from "./connectFourBoard";
 import type {
   GetMove,
@@ -9,6 +9,9 @@ import type {
   UpdatePastMoves,
 } from "./connectFourNNStrategyWorkerTypes";
 
+/**
+ * Non-UI blocking class for making Connect Four computer moves.
+ */
 export class ConnectFourNNStrategyMultiThread extends TurnGameComputerStrategy<
   ConnectFourMove,
   ConnectFourBoard
@@ -52,7 +55,7 @@ export class ConnectFourNNStrategyMultiThread extends TurnGameComputerStrategy<
       this.worker.postMessage(message);
 
       this.worker.onmessage = (e => {
-        const message = e.data as MessageReturn;
+        const message = e.data as MessageResponse;
         resolve(message.payload);
 
         this.worker.onmessage = null;

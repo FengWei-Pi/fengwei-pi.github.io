@@ -10,9 +10,9 @@ import { ConnectFourNeuralNet } from "./connectFourNeuralNet";
 import { MCTS_Node_NN } from "../turnGame/mcts_nn";
 import { TurnGameNeuralNet } from "lib/turnGame/neuralNet";
 import modelJSON from "./model.json";
-import { Action, ActionReturn } from "./connectFourNNStrategyWorkerTypes";
+import { Action, Response } from "./connectFourNNStrategyWorkerTypes";
 import type { ConnectFourMove } from "./connectFourBoard";
-import type { GetMoveReturn, Message } from "./connectFourNNStrategyWorkerTypes";
+import type { GetMoveResponse, Message } from "./connectFourNNStrategyWorkerTypes";
 
 let node: MCTS_Node_NN<ConnectFourMove, ConnectFourBoard> | null = null;
 let numSimulations = 50;
@@ -78,8 +78,8 @@ onmessage = async (e) => {
   if (action === Action.GetMove) {
     const move = await getMove(message.payload);
 
-    const messageReturn: GetMoveReturn = {
-      action: ActionReturn.GetMove,
+    const messageReturn: GetMoveResponse = {
+      action: Response.GetMove,
       payload: move
     };
 

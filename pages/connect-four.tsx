@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import styles from "./connect-four.module.scss";
 import { Button } from "components/common/Button";
 import { DropdownButton } from "components/common/DropdownButton";
-import { ConnectFourBoard as Board, NUM_ROWS, NUM_COLS } from "components/connectFour/ConnectFourBoard";
+import { ConnectFourBoard } from "components/connectFour/ConnectFourBoard";
 import { ConnectFourController } from "lib/connectFour/connectFourController";
 import { ConnectFourNNStrategyMultiThread } from "lib/connectFour/connectFourNNStrategyMultiThread";
-import { TerminalValue } from "lib/turnGame/model";
-import { ConnectFourBoard } from "lib/connectFour/connectFourBoard";
+import { ConnectFourStats } from "components/connectFour/ConnectFourStats";
 
 export default function ConnectFourPage() {
   const [controller, setController] = useState<ConnectFourController>();
@@ -36,7 +35,7 @@ export default function ConnectFourPage() {
     const newController = new ConnectFourController(player1, player2);
 
     setController(newController);
-    setGrid(getGridFromGame(newController.getGame()));
+    setGrid(newController.getGrid());
 
     // If computer has first move
     if (player1 !== null) {
@@ -44,7 +43,7 @@ export default function ConnectFourPage() {
 
       // Make computer move
       await newController.makeMove();
-      setGrid(getGridFromGame(newController.getGame()));
+      setGrid(newController.getGrid());
 
       setIsMoveLoading(false);
     }
@@ -56,42 +55,18 @@ export default function ConnectFourPage() {
     setIsMoveLoading(true);
 
     await controller.makeMove(colIndex); // Make player move
-    setGrid(getGridFromGame(controller.getGame()));
+    setGrid(controller.getGrid());
 
     // If game is not over
-    if (controller.getGame().getTerminalValue(0) === null) {
+    if (controller.getEnd(0) === "ongoing") {
       await controller.makeMove(); // Make computer move
-      setGrid(getGridFromGame(controller.getGame()));
+      setGrid(controller.getGrid());
     }
 
     setIsMoveLoading(false);
   };
 
-  const terminalValue = controller?.getGame().getTerminalValue(playerIndex);
-
-  const getGridFromGame = (game: ConnectFourBoard) => {
-    // Init grid
-    const _grid: Array<Array<number>> = [];
-    for (let i=0; i<NUM_COLS; ++i) _grid.push([]);
-
-    // Push past moves into grid
-    const pastMoves = game ? game.getPastMoves() : [];
-    let player = 0;
-
-    for (const move of pastMoves) {
-      _grid[move].push(player);
-      player = player ^ 1;
-    }
-
-    // Fill out rest of grid with -1
-    for (const col of _grid) {
-      for (let i=col.length; i<NUM_ROWS; ++i) {
-        col.push(-1);
-      }
-    }
-
-    return _grid;
-  };
+  const terminalValue = controller?.getEnd(playerIndex);
 
   return (
     <>
@@ -99,46 +74,48 @@ export default function ConnectFourPage() {
         <title>Connect Four</title>
       </Head>
 
-      <div className={styles.container}>
+      <div className={styles.gameContainer}>
         <div className={styles.boardContainer}>
           {grid !== undefined && 
-            <Board
+            <ConnectFourBoard
               grid={grid}
               onColumnPress={handleColumnClick}
-              className={styles.board}
-              showHoverPlayer={controller?.getGame().getCurrentPlayer() === playerIndex ?
+              showHoverPlayer={controller?.getCurrentPlayer() === playerIndex ?
                 playerIndex : undefined
               }
               isLoading={isMoveLoading}
-              isEnd={
-                terminalValue === TerminalValue.Loss ?
-                  "loss" :
-                  terminalValue === TerminalValue.Draw ?
-                    "draw" :
-                    terminalValue === TerminalValue.Win ?
-                      "win" :
-                      undefined
+              isEnd={terminalValue !== undefined && terminalValue !== "ongoing"?
+                terminalValue : undefined
               }
             />
           }
         </div>
 
-        <div className={styles.buttonContainer}>
-          <div className={styles.button}>
-            <DropdownButton
-              selectedIndex={playerIndex}
-              onChange={index => setPlayerIndex(index)}
-            >
-              <div>Player 1</div>
-              <div>Player 2</div>
-            </DropdownButton>
-          </div>
-          <div className={styles.button}>
-            <Button onClick={handleNewGamePress}>
+        <div className={styles.statsContainer}>
+          <ConnectFourStats
+            pastMoves={controller?.getPastMoves().map(move => move+1) ?? []}
+            prediction={[1, 3, 4, 5]}
+            evaluation={0.3}
+          />
+
+          <div className={styles.buttonContainer}>
+            <div className={styles.button}>
+              <DropdownButton
+                selectedIndex={playerIndex}
+                onChange={index => setPlayerIndex(index)}
+              >
+                <div>Player 1</div>
+                <div>Player 2</div>
+              </DropdownButton>
+            </div>
+
+            <div className={styles.button}>
+              <Button onClick={handleNewGamePress}>
               New Game
-            </Button>
+              </Button>
+            </div>
+            {isMoveLoading && <div className={styles.loader}></div>}
           </div>
-          {isMoveLoading && <div className={styles.loader}></div>}
         </div>
       </div>
     </>

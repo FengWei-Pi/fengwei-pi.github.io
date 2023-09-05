@@ -1,0 +1,41 @@
+@use 'styles/colors';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: colors.$surface-variant;
+  min-height: 30px;
+  min-width: 30px;
+
+  border: 5px solid orange;
+}
+
+.predictionContainer {
+  border: 5px solid red;
+}
+
+.evaluationContainer {
+  border: 5px solid red;
+}
+
+.movesContainer {
+  display: flex;
+  align-items: stretch;
+
+  border: 5px solid skyblue;
+}
+
+.playerOneMovesContainer {
+  flex: 1;
+  border: 5px solid pink;
+}
+
+.playerTwoMovesContainer {
+  flex: 1;
+  border: 5px solid green;
+}
+
+.moveText {
+
+}

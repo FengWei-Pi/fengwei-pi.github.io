@@ -1,4 +1,4 @@
-import type { TurnGameModel } from "./model";
+import { TerminalValue, TurnGameModel } from "./model";
 
 type MoveMade<MoveType> = {
   move: MoveType,
@@ -23,8 +23,16 @@ export abstract class TurnGameController<MoveType, GameType extends TurnGameMode
     this.subscribers = this.subscribers.filter(subscriber => cb !== subscriber);
   }
 
-  getGame() {
-    return this.game;
+  /**
+   * Returns if the game ended. Returns 'win', 'loss', 'draw', or 'ongoing' for
+   * the given player.
+   */
+  getEnd(player: number) {
+    const terminalVal = this.game.getTerminalValue(player);
+    if (terminalVal === null) return "ongoing";
+    if (terminalVal === TerminalValue.Win) return "win";
+    if (terminalVal === TerminalValue.Loss) return "loss";
+    return "draw";
   }
 
   protected notifySubscribers() {
