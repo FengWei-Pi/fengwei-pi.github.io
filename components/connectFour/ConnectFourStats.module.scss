@@ -1,39 +1,70 @@
+@use 'styles/breakpoints';
 @use 'styles/colors';
+@use 'styles/font';
 
 .container {
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: colors.$surface-variant;
-  min-height: 30px;
-  min-width: 30px;
+  // Allows overflow scroll in flexbox
+  // See https://stackoverflow.com/questions/21515042/scrolling-a-flexbox-with-overflowing-content#comment125588592_35609992
+  min-height: 200px;
+  font-size: font.$label-font-size;
 
-  border: 5px solid orange;
+  @include breakpoints.breakpoint-up(sm) {
+    font-size: font.$body-font-size;
+  }
 }
 
 .predictionContainer {
-  border: 5px solid red;
+  background-color: colors.$surface-variant;
+  color: colors.$on-surface-variant;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  padding: 8px 10px;
 }
 
 .evaluationContainer {
-  border: 5px solid red;
+  background-color: colors.$surface-variant;
+  color: colors.$on-surface-variant;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  padding: 8px 10px;
+}
+
+.playersLabelContainer {
+  display: flex;
+  background-color: colors.$surface-variant;
+  color: colors.$on-surface-variant;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid colors.$outline;
+  padding: 8px 10px;
+}
+
+.playerOneLabel {
+  flex: 1;
+}
+
+.playerTwoLabel {
+  flex: 1;
 }
 
 .movesContainer {
   display: flex;
-  align-items: stretch;
-
-  border: 5px solid skyblue;
+  flex: 1;
+  overflow-y: scroll;
+  background-color: colors.$surface-variant;
+  color: colors.$on-surface-variant;
+  border-radius: 0 0 5px 5px;
+  padding: 8px 12px;
 }
 
 .playerOneMovesContainer {
   flex: 1;
-  border: 5px solid pink;
 }
 
 .playerTwoMovesContainer {
   flex: 1;
-  border: 5px solid green;
 }
 
 .moveText {

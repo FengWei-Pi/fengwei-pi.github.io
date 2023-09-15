@@ -94,10 +94,15 @@ export const ConnectFourBoard = (props: {
                       colIndex === hoveringCol &&
                       column[rowIndex] !== 0 &&
                       column[rowIndex] !== 1 &&
-                      rowIndex + 1 < NUM_ROWS &&
-                      column[rowIndex + 1] !== 0 &&
-                      column[rowIndex + 1] !== 1 &&
-                      (rowIndex === 0 || column[rowIndex - 1] === 0 || column[rowIndex - 1] === 1)
+                      (rowIndex + 1 === NUM_ROWS || (
+                        rowIndex + 1 < NUM_ROWS &&
+                        column[rowIndex + 1] !== 0 &&
+                        column[rowIndex + 1] !== 1
+                      )) && (
+                        rowIndex === 0 ||
+                        column[rowIndex - 1] === 0 || 
+                        column[rowIndex - 1] === 1
+                      )
                     ) !== false ? props.showHoverPlayer : undefined
                   }
                   className={styles.cell}
@@ -110,6 +115,7 @@ export const ConnectFourBoard = (props: {
           </div>
         );
       })}
+      
       {props.isEnd !== undefined &&
           <div className={styles.overlayContainer}>
             <div className={styles.gameOverText}>

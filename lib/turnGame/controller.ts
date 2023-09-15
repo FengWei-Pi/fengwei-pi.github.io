@@ -1,6 +1,8 @@
 import { TerminalValue, TurnGameModel } from "./model";
 
-type MoveMade<MoveType> = {
+type GameEndState = "loss" | "win" | "draw" | "ongoing";
+
+export type MoveMade<MoveType> = {
   move: MoveType,
   nextPlayer: number
 }
@@ -27,12 +29,20 @@ export abstract class TurnGameController<MoveType, GameType extends TurnGameMode
    * Returns if the game ended. Returns 'win', 'loss', 'draw', or 'ongoing' for
    * the given player.
    */
-  getEnd(player: number) {
+  getEnd(player: number): GameEndState {
     const terminalVal = this.game.getTerminalValue(player);
     if (terminalVal === null) return "ongoing";
     if (terminalVal === TerminalValue.Win) return "win";
     if (terminalVal === TerminalValue.Loss) return "loss";
     return "draw";
+  }
+
+  getPastMoves() {
+    return this.game.getPastMoves();
+  }
+
+  getCurrentPlayer() {
+    return this.game.getCurrentPlayer();
   }
 
   protected notifySubscribers() {
@@ -45,10 +55,13 @@ export abstract class TurnGameController<MoveType, GameType extends TurnGameMode
    * Make a move for the current player. Returns the move that was made and the
    * player who has the next turn. If the current player is human, requires an input.
    */
-  abstract makeMove(move: MoveType): Promise<MoveMade<MoveType>>;
+  abstract makeMove(move?: MoveType): Promise<MoveMade<MoveType>>;
 
   /**
    * Returns the move that was undone and the player who has the next turn.
+   * TODO: to be implemented proper if undo move is needed
    */
+  /*
   abstract undoMove(move: MoveType): MoveMade<MoveType>;
+  */
 }

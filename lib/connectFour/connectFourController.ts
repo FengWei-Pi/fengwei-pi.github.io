@@ -45,6 +45,7 @@ export class ConnectFourController extends TurnGameController<ConnectFourMove, C
   }
 
   /** Returns the move that was undone and the player who has the next turn. */
+  /*
   undoMove() {
     const move = this.game.undoMove();
 
@@ -55,14 +56,7 @@ export class ConnectFourController extends TurnGameController<ConnectFourMove, C
       nextPlayer: this.game.getCurrentPlayer()
     };
   }
-
-  getPastMoves() {
-    return this.game.getPastMoves();
-  }
-
-  getCurrentPlayer() {
-    return this.game.getCurrentPlayer();
-  }
+  */
 
   // Returns a 2d array of the connect four board. Array elements are 0 if piece
   // belongs to first player, 1 if piece belongs to second player, -1 if empty.

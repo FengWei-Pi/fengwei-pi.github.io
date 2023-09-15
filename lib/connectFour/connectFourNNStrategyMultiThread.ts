@@ -1,7 +1,7 @@
 import { ConnectFourBoard } from "./connectFourBoard";
 import { ConnectFourController } from "./connectFourController";
-import { TurnGameComputerStrategy } from "../turnGame/computerStrategy";
-import { Action, MessageResponse  } from "./connectFourNNStrategyWorkerTypes";
+import { Analysis, TurnGameComputerStrategy } from "../turnGame/computerStrategy";
+import { Action, MessageResponse, Response  } from "./connectFourNNStrategyWorkerTypes";
 import type { ConnectFourMove } from "./connectFourBoard";
 import type {
   GetMove,
@@ -17,6 +17,7 @@ export class ConnectFourNNStrategyMultiThread extends TurnGameComputerStrategy<
   ConnectFourBoard
 > {
   private worker = new Worker(new URL("./connectFourNNStrategyWorker.ts", import.meta.url));
+  private analysis : Analysis<ConnectFourMove> | undefined;
 
   private notify(game: ConnectFourBoard) {
     const message : UpdatePastMoves = {
@@ -51,15 +52,25 @@ export class ConnectFourNNStrategyMultiThread extends TurnGameComputerStrategy<
         action: Action.GetMove,
         payload: game.getPastMoves()
       };
-      
       this.worker.postMessage(message);
 
       this.worker.onmessage = (e => {
         const message = e.data as MessageResponse;
-        resolve(message.payload);
 
-        this.worker.onmessage = null;
+        if (message.action === Response.Analysis) {
+          this.analysis = message.payload;
+        } else if (message.action === Response.Move) {
+          resolve(message.payload);
+          this.worker.onmessage = null;
+        }
       });
     });
+  }
+
+  getAnalysis() {
+    if (this.analysis === undefined) return {
+      prediction: []
+    };
+    return this.analysis;
   }
 }
