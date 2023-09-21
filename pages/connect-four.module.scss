@@ -1,0 +1,75 @@
+@use 'styles/breakpoints';
+@use 'styles/colors';
+@use 'styles/font';
+
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include breakpoints.breakpoint-up(sm) {
+    flex-direction: row;
+    padding: 20px;
+  }
+}
+
+.boardContainer {
+  flex: 2;
+  max-width: 100vh;
+
+  @include breakpoints.breakpoint-up(sm) {
+    align-self: flex-start;
+  }
+}
+
+.buttonContainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+}
+
+.button {
+  margin: 10px 5px 0 5px;
+  white-space: nowrap;
+}
+
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+
+  @include breakpoints.breakpoint-up(sm) {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 0 0 10px;
+  }
+}
+
+.loaderContainer {
+  margin: 10px 5px 0 5px;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation: loader 1250ms infinite linear;
+  border: 1px solid colors.$on-surface;
+  border-right-color: transparent;
+  border-radius: 34px;
+  width: 34px;
+  height: 34px;
+}
+
+.hidden {
+  visibility: hidden;
+}

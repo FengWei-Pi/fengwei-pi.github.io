@@ -3,8 +3,8 @@ import { useState, useCallback, useLayoutEffect } from "react";
 import { Cell } from "./Cell";
 import styles from "./ConnectFourBoard.module.scss";
 
-const NUM_ROWS = 6;
-const NUM_COLS = 7;
+export const NUM_ROWS = 6;
+export const NUM_COLS = 7;
 
 /**
  * Controlled component that renders a 7 by 6 Connect Four Board.
@@ -44,7 +44,9 @@ export const ConnectFourBoard = (props: {
         if (entry.borderBoxSize && entry.borderBoxSize[0]) {
           const el = entry.target as HTMLDivElement;
 
-          el.style.height = entry.contentRect.width * NUM_ROWS/NUM_COLS + "px";
+          // 20px counteracts the effect of cells appearing 'flatter' due to board padding
+          // 30px accommodates column subtext height
+          el.style.height = entry.contentRect.width * NUM_ROWS/NUM_COLS + 20 + 30 + "px";
         }
       }
     });
@@ -76,33 +78,44 @@ export const ConnectFourBoard = (props: {
         if (column.length !== NUM_ROWS) throw new Error(`Invalid Connect Four column length ${column.length}`);
 
         return (
-          <button
-            className={styles.column} key={colIndex.toString()}
-            onMouseEnter={() => handleHoverEnter(colIndex)}
-            onClick={() => props.onColumnPress(colIndex)}
-          >
-            {column.map((piece, rowIndex) => (
-              <Cell
-                key={rowIndex}
-                piece={piece}
-                hoverPiece={
-                  (
-                    (props.showHoverPlayer === 0 || props.showHoverPlayer === 1) &&
-                    colIndex === hoveringCol &&
-                    column[rowIndex] !== 0 &&
-                    column[rowIndex] !== 1 &&
-                    rowIndex + 1 < NUM_ROWS &&
-                    column[rowIndex + 1] !== 0 &&
-                    column[rowIndex + 1] !== 1 &&
-                    (rowIndex === 0 || column[rowIndex - 1] === 0 || column[rowIndex - 1] === 1)
-                  ) !== false ? props.showHoverPlayer : undefined
-                }
-                className={styles.cell}
-              />
-            ))}
-          </button>
+          <div key={colIndex.toString()} className={styles.column}>
+            <button
+              className={styles.columnButton}
+              onMouseEnter={() => handleHoverEnter(colIndex)}
+              onClick={() => props.onColumnPress(colIndex)}
+            >
+              {column.map((piece, rowIndex) => (
+                <Cell
+                  key={rowIndex}
+                  piece={piece}
+                  hoverPiece={
+                    (
+                      (props.showHoverPlayer === 0 || props.showHoverPlayer === 1) &&
+                      colIndex === hoveringCol &&
+                      column[rowIndex] !== 0 &&
+                      column[rowIndex] !== 1 &&
+                      (rowIndex + 1 === NUM_ROWS || (
+                        rowIndex + 1 < NUM_ROWS &&
+                        column[rowIndex + 1] !== 0 &&
+                        column[rowIndex + 1] !== 1
+                      )) && (
+                        rowIndex === 0 ||
+                        column[rowIndex - 1] === 0 || 
+                        column[rowIndex - 1] === 1
+                      )
+                    ) !== false ? props.showHoverPlayer : undefined
+                  }
+                  className={styles.cell}
+                />
+              ))}
+            </button>
+            <div className={styles.columnSubtext}>
+              {(colIndex + 1).toString()}
+            </div>
+          </div>
         );
       })}
+      
       {props.isEnd !== undefined &&
           <div className={styles.overlayContainer}>
             <div className={styles.gameOverText}>

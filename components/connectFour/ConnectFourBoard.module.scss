@@ -4,8 +4,8 @@
 
 .boardContainer {
   display: flex;
-  flex-direction: row;
-  padding: 10px;
+  flex: 1;
+  padding: 10px; // Equal padding on all sides makes cells flatter
 	position: relative;
 	border-radius: 15px;
 	background-color: gainsboro;
@@ -21,11 +21,20 @@
 
 .column {
   display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.columnButton {
+  display: flex;
   flex-direction: column-reverse;
   flex: 1;
+  align-self: stretch;
   align-items: stretch;
   border: 0;
   margin: 0;
+  padding: 0;
   background-color: transparent;
   border-radius: 15px;
 }
@@ -33,6 +42,12 @@
   @media (hover: none) {
     background-color: rgba(colors.$on-primary-rgb, colors.$hover-opacity);
   }
+}
+
+.columnSubtext {
+  font-size: font.$label-font-size;
+  color: colors.$on-surface-variant;
+  margin-top: 5px;
 }
 
 .cell {

@@ -8,14 +8,15 @@
 import { ConnectFourBoard } from "./connectFourBoard";
 import { ConnectFourNeuralNet } from "./connectFourNeuralNet";
 import { MCTS_Node_NN } from "../turnGame/mcts_nn";
-import { TurnGameNeuralNet } from "lib/turnGame/neuralNet";
+import { TurnGameNeuralNet } from "../turnGame/neuralNet";
 import modelJSON from "./model.json";
-import { Action, ActionReturn } from "./connectFourNNStrategyWorkerTypes";
+import { Action, GetAnalysisResponse, Response } from "./connectFourNNStrategyWorkerTypes";
 import type { ConnectFourMove } from "./connectFourBoard";
-import type { GetMoveReturn, Message } from "./connectFourNNStrategyWorkerTypes";
+import type { GetMoveResponse, Message } from "./connectFourNNStrategyWorkerTypes";
 
 let node: MCTS_Node_NN<ConnectFourMove, ConnectFourBoard> | null = null;
 let numSimulations = 50;
+const analysisStep = 10; // Number of simulations between analysis
 
 /** Updates the internal mcts node to match the provided game state.*/
 const updatePastMoves = (pastMoves: Array<ConnectFourMove>) => {
@@ -66,7 +67,22 @@ const getMove = async (pastMoves: Array<ConnectFourMove>) => {
 
   for (let i=0; i<numSimulations; ++i) {
     node.simulate();
+
+    // Update analysis
+    if ((i + 1) % analysisStep === 0) {
+      const response : GetAnalysisResponse = {
+        action: Response.Analysis,
+        payload: node.getAnalysis(),
+      };
+      postMessage(response);
+    }
   }
+
+  const response : GetAnalysisResponse = {
+    action: Response.Analysis,
+    payload: node.getAnalysis(),
+  };
+  postMessage(response);
 
   return node.getMostVisitedMove();
 };
@@ -78,12 +94,11 @@ onmessage = async (e) => {
   if (action === Action.GetMove) {
     const move = await getMove(message.payload);
 
-    const messageReturn: GetMoveReturn = {
-      action: ActionReturn.GetMove,
+    const response : GetMoveResponse = {
+      action: Response.Move,
       payload: move
     };
-
-    postMessage(messageReturn);
+    postMessage(response);
   } else if (action === Action.SetNumSimulations) {
     numSimulations = message.payload;
   } else if (action === Action.UpdatePastMoves) {

@@ -12,6 +12,15 @@ type Action<MoveType, GameType extends TurnGameModel<MoveType>> = {
   priorProb: number
 };
 
+export type Analysis<MoveType> = {
+  /** Best next moves */
+  prediction: Array<MoveType>,
+  /** Defined if game ends after last prediction, null if game is ongoing */
+  terminalValue?: TerminalValue | null,
+  /** 0 to 1 */
+  winPercent?: number,
+};
+
 /**
  * Node for Monte Carlo Tree Search adapted to use neural network evaluation,
  * taken from AlphaGo Zero paper
@@ -26,7 +35,9 @@ type Action<MoveType, GameType extends TurnGameModel<MoveType>> = {
  * )
  * 
  */
-export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> implements MCTS_Node<MoveType, GameType> {
+export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> implements
+  MCTS_Node<MoveType, GameType>
+{
   // Controls how much value to place on exploration. Higher value means more
   // nodes are expanded that don't have the highest action value.
   /**
@@ -94,9 +105,9 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
     return bestAction;
   }
 
-  /** Initialize actions from evaluation of current state and valid moves. */
+  /** Initialize actions from evaluation of current state and valid moves. Returns the evaluation. */
   private expand() {
-    const { priors, value } =this.network.predict(this.state);
+    const { priors, value } = this.network.predict(this.state);
 
     const validMoves = this.state.getValidMoves();
 
@@ -153,6 +164,34 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
     return bestMove!;
   }
 
+  /** Traverse the mcst and returns the analysis. */
+  getAnalysis(num = 10) : Analysis<MoveType> {
+    const analysis : Analysis<MoveType> = {
+      prediction: [],
+      terminalValue: undefined,
+      winPercent: undefined,
+    };
+
+    let cur : MCTS_Node_NN<MoveType, GameType> = this;
+    
+    while (cur.actions.size !== 0 && num > 0) {
+      const bestMove = cur.getMostVisitedMove();
+      const bestAction = cur.actions.get(bestMove)!;
+
+      analysis.prediction.push(bestMove);
+      if (analysis.winPercent === undefined) {
+        analysis.winPercent = (bestAction.avgValue + 1) / 2;
+      }
+
+      cur = bestAction.node;
+      --num;
+    }
+
+    analysis.terminalValue = cur.state.getTerminalValue(this.getState().getCurrentPlayer());
+
+    return analysis;
+  }
+
   makeMove(move: MoveType) {
     const action = this.actions.get(move);
 
@@ -172,7 +211,7 @@ export class MCTS_Node_NN<MoveType, GameType extends TurnGameModel<MoveType>> im
 
       if (terminalValue === TerminalValue.Loss) {
         this.terminalValue = -1;
-      } else if (terminalValue === TerminalValue.Win) {
+      } else if (terminalValue === TerminalValue.Draw) {
         this.terminalValue = 0;
       } else {
         this.terminalValue = null;
