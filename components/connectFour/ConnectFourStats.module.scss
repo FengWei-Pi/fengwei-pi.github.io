@@ -8,7 +8,7 @@
   flex: 1;
   // Allows overflow scroll in flexbox
   // See https://stackoverflow.com/questions/21515042/scrolling-a-flexbox-with-overflowing-content#comment125588592_35609992
-  min-height: 200px;
+  min-height: 300px;
   font-size: font.$label-font-size;
 
   @include breakpoints.breakpoint-up(sm) {
@@ -52,21 +52,27 @@
 .movesContainer {
   display: flex;
   flex: 1;
-  overflow-y: scroll;
   background-color: colors.$surface-variant;
   color: colors.$on-surface-variant;
   border-radius: 0 0 5px 5px;
   padding: 8px 12px;
+  overflow-y: auto;
 }
 
 .playerOneMovesContainer {
   flex: 1;
+  margin-bottom: 50px;
+}
+
+// Adds 'padding' to bottom of scroll content
+.playerOneMovesContainer > :last-child {
+  margin-bottom: 8px;
 }
 
 .playerTwoMovesContainer {
   flex: 1;
+  padding-bottom: 50px;
 }
 
 .moveText {
-
 }

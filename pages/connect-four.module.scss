@@ -15,7 +15,9 @@
 
 .boardContainer {
   flex: 2;
+  width: 100%;
   max-width: 100vh;
+  align-self: center;
 
   @include breakpoints.breakpoint-up(sm) {
     align-self: flex-start;
