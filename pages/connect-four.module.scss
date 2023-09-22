@@ -2,11 +2,16 @@
 @use 'styles/colors';
 @use 'styles/font';
 
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
 .gameContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 30px;
 
   @include breakpoints.breakpoint-up(sm) {
     flex-direction: row;
@@ -32,8 +37,9 @@
 
 .buttonContainer {
   display: flex;
+  align-self: center;
   flex-wrap: wrap;
-  margin: 0 -5px;
+  margin: 0 5px;
 }
 
 .button {
@@ -41,7 +47,7 @@
   white-space: nowrap;
 }
 
-.sideContainer {
+.statsContainer {
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -51,11 +57,6 @@
     max-width: 500px;
     margin: 0 0 0 10px;
   }
-}
-
-.statsContainer {
-  flex: 1;
-  display: flex;
 }
 
 .stats {

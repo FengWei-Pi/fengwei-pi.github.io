@@ -125,9 +125,10 @@ export default function ConnectFourPage() {
         <title>Connect Four</title>
       </Head>
 
-      <div className={styles.gameContainer}>
-        <div className={styles.boardContainer} ref={setBoardContainerRef}>
-          {grid !== undefined && 
+      <div className={styles.container}>
+        <div className={styles.gameContainer}>
+          <div className={styles.boardContainer} ref={setBoardContainerRef}>
+            {grid !== undefined && 
             <ConnectFourBoard
               grid={grid}
               onColumnPress={handleColumnClick}
@@ -139,10 +140,9 @@ export default function ConnectFourPage() {
                 terminalValue : undefined
               }
             />
-          }
-        </div>
+            }
+          </div>
 
-        <div className={styles.sideContainer}>
           <div className={styles.statsContainer} ref={statsContainerRef}>
             <ConnectFourStats
               className={styles.stats}
@@ -163,27 +163,27 @@ export default function ConnectFourPage() {
               } : undefined}
             />
           </div>
+        </div>
 
-          <div className={styles.buttonContainer}>
-            <div className={styles.button}>
-              <DropdownButton
-                selectedIndex={playerDropdown}
-                onChange={index => setPlayerDrodown(index)}
-              >
-                <div>Player One</div>
-                <div>Player Two</div>
-              </DropdownButton>
-            </div>
+        <div className={styles.buttonContainer}>
+          <div className={styles.button}>
+            <DropdownButton
+              selectedIndex={playerDropdown}
+              onChange={index => setPlayerDrodown(index)}
+            >
+              <div>Player One</div>
+              <div>Player Two</div>
+            </DropdownButton>
+          </div>
 
-            <div className={styles.button}>
-              <Button onClick={handleNewGamePress}>
+          <div className={styles.button}>
+            <Button onClick={handleNewGamePress}>
               New Game
-              </Button>
-            </div>
+            </Button>
+          </div>
 
-            <div className={styles.loaderContainer}>
-              <div className={`${styles.loader} ${!isMoveLoading && styles.hidden}`}></div>
-            </div>
+          <div className={styles.loaderContainer}>
+            <div className={`${styles.loader} ${!isMoveLoading && styles.hidden}`}></div>
           </div>
         </div>
       </div>

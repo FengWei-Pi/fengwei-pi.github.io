@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   font-size: font.$label-font-size;
+  min-height: 0;
 
   @include breakpoints.breakpoint-up(sm) {
     font-size: font.$body-font-size;
@@ -49,8 +50,8 @@
 
 .movesContainer {
   flex: 1;
-  min-height: 0;
-  overflow-y: auto;
+  min-height: 100px;
+  overflow-y: scroll;
   display: flex;
   background-color: colors.$surface-variant;
   border-radius: 0 0 5px 5px;
