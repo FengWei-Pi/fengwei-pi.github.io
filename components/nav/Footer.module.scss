@@ -1,0 +1,14 @@
+@use "styles/font";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: font.$label-font-size;
+  padding: 16px 0;
+}
+
+.copyrightIcon {
+  width: 1em;
+  height: 1em;
+}

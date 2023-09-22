@@ -8,6 +8,7 @@ import { ConnectFourBoard } from "components/connectFour/ConnectFourBoard";
 import { ConnectFourController } from "lib/connectFour/connectFourController";
 import { ConnectFourNNStrategyMultiThread } from "lib/connectFour/connectFourNNStrategyMultiThread";
 import { ConnectFourStats } from "components/connectFour/ConnectFourStats";
+import { Footer } from "components/nav/Footer";
 // TODO: think of a way to not depend on internal representation
 // idea: move `getAnalysis` code that depends on internal representation from here to controller
 import type { Analysis } from "lib/turnGame/mcts_nn";
@@ -187,6 +188,8 @@ export default function ConnectFourPage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
