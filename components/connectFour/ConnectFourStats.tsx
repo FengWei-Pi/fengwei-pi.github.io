@@ -17,7 +17,8 @@ export const ConnectFourStats = (props: {
   predictionEnd?: {
     end: "loss" | "win" | "draw" | "ongoing";
     player: 1 | 2;
-  }
+  };
+  className?: string;
 }) => {
   const player1 = props.player1 ?? "Player One";
   const player2 = props.player2 ?? "Player Two";
@@ -42,7 +43,7 @@ export const ConnectFourStats = (props: {
     ` (${predictionPlayer} ${props.predictionEnd?.end})`;
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${props.className}`}>
       {props.prediction !== undefined && props.prediction.length > 0 && (
         <div className={styles.predictionContainer}>
           Computer Search: {" "}

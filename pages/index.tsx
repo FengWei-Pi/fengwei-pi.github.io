@@ -9,8 +9,7 @@ import { ArticleCard } from "components/article/ArticleCard";
 import { ArticlePath } from "components/article/ArticlePath";
 import { StartPath } from "components/article/StartPath";
 import { NavHeader } from "components/nav/NavHeader";
-
-// TODO
+import { Footer } from "components/nav/Footer";
 import headshot from "public/images/headshot.jpg";
 import { getDataFromArticleFile } from "lib/article/article";
 import type { ArticleData } from "lib/article/article";
@@ -59,13 +58,16 @@ const HomePage = (props: Props) => {
       </Head>
 
       <NavHeader />
+
       <div className={styles.headerContainer} ref={setHeaderContainerRef}>
         <div className={styles.headerBackgroundContainer}>
           <div className={styles.headerBackground} />
         </div>
+
         <div className={styles.headerProfileContainer}>
           <Image className={styles.headerProfileImage} src={headshot} alt="profile" />
         </div>
+
         <h1 className={styles.headerText}>
           Hi, I&apos;m FengWei Pi, and this is my
           <div className={styles.headerTextEmphasis} ref={setHeaderJourneyRef}>
@@ -73,6 +75,7 @@ const HomePage = (props: Props) => {
           </div>
           from CS graduate to frontend developer and AI enthusiast
         </h1>
+        
         {articleElements.length >= 1 && articleElements[0] !== null  && articleElements[1] !== null &&
           headerTitleElement !== null && headerElement !== null && (
           <StartPath
@@ -102,6 +105,8 @@ const HomePage = (props: Props) => {
           );
         })}
       </div>
+
+      <Footer />
     </>
   );
 };

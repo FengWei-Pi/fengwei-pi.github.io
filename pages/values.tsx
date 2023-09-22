@@ -3,6 +3,7 @@ import Head from "next/head";
 import type { GetStaticProps } from "next";
 
 import { NavHeader } from "components/nav/NavHeader";
+import { Footer } from "components/nav/Footer";
 import { NavContentsTable } from "components/nav/NavContentsTable";
 import { getDataFromArticleFile } from "lib/article/article";
 import type { ArticleData } from "lib/article/article";
@@ -57,12 +58,14 @@ const ValuesPage = (props: Props) => {
       </Head>
 
       <NavHeader />
+
       <div className={styles.headerContainer}>
         <div className={styles.headerBackgroundContainer}>
           <div className={styles.headerBackground} />
         </div>
         <h1 className={styles.header}>Values</h1>
       </div>
+
       <div className={styles.contentContainer}>
         <div className={styles.articleSideContainer}>
           <NavContentsTable
@@ -72,13 +75,17 @@ const ValuesPage = (props: Props) => {
             links={h2HeadingLinks ?? []}
           />
         </div>
+
         <div
           className={styles.articleContainer}
           dangerouslySetInnerHTML={{ __html: props.articleData?.html ?? "" }}
         />
+
         <div className={styles.articleSideContainer}>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };

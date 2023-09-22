@@ -8,6 +8,7 @@ import { ConnectFourBoard } from "components/connectFour/ConnectFourBoard";
 import { ConnectFourController } from "lib/connectFour/connectFourController";
 import { ConnectFourNNStrategyMultiThread } from "lib/connectFour/connectFourNNStrategyMultiThread";
 import { ConnectFourStats } from "components/connectFour/ConnectFourStats";
+import { Footer } from "components/nav/Footer";
 // TODO: think of a way to not depend on internal representation
 // idea: move `getAnalysis` code that depends on internal representation from here to controller
 import type { Analysis } from "lib/turnGame/mcts_nn";
@@ -38,14 +39,14 @@ export default function ConnectFourPage() {
     setBoardContainer(el);
   }, []);
 
-  // Set the board's height to the correct ratio of the width
+  // Update stats container max height to same as board's height
   useLayoutEffect(() => {
     if (boardContainer === undefined) return;
 
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.borderBoxSize && entry.borderBoxSize[0] && statsContainerRef.current) {
-          statsContainerRef.current.style.height = entry.contentRect.height + "px";
+          statsContainerRef.current.style.maxHeight = entry.contentRect.height + "px";
         }
       }
     });
@@ -125,9 +126,10 @@ export default function ConnectFourPage() {
         <title>Connect Four</title>
       </Head>
 
-      <div className={styles.gameContainer}>
-        <div className={styles.boardContainer} ref={setBoardContainerRef}>
-          {grid !== undefined && 
+      <div className={styles.container}>
+        <div className={styles.gameContainer}>
+          <div className={styles.boardContainer} ref={setBoardContainerRef}>
+            {grid !== undefined && 
             <ConnectFourBoard
               grid={grid}
               onColumnPress={handleColumnClick}
@@ -139,50 +141,55 @@ export default function ConnectFourPage() {
                 terminalValue : undefined
               }
             />
-          }
+            }
+          </div>
+
+          <div className={styles.statsContainer} ref={statsContainerRef}>
+            <ConnectFourStats
+              className={styles.stats}
+              player1={playerCur === 0 ? "You" : "Computer"}
+              player2={playerCur === 0 ? "Computer" : "You"}
+              pastMoves={controller?.getPastMoves().map(move => move+1)}
+              prediction={analysis.prediction.map(move => move+1)}
+              predictionEnd={{
+                end: analysis.terminalValue === TerminalValue.Win ?
+                  "win" : analysis.terminalValue === TerminalValue.Draw ?
+                    "draw" : analysis.terminalValue === TerminalValue.Loss ?
+                      "loss" : "ongoing",
+                player: playerCur === 0 ? 2 : 1
+              }}
+              evaluation={analysis.winPercent !== undefined ? {
+                winPercent: analysis.winPercent,
+                player: playerCur === 0 ? 2 : 1
+              } : undefined}
+            />
+          </div>
         </div>
 
-        <div className={styles.statsContainer} ref={statsContainerRef}>
-          <ConnectFourStats
-            player1={playerCur === 0 ? "You" : "Computer"}
-            player2={playerCur === 0 ? "Computer" : "You"}
-            pastMoves={controller?.getPastMoves().map(move => move+1)}
-            prediction={analysis.prediction.map(move => move+1)}
-            predictionEnd={{
-              end: analysis.terminalValue === TerminalValue.Win ?
-                "win" : analysis.terminalValue === TerminalValue.Draw ?
-                  "draw" : analysis.terminalValue === TerminalValue.Loss ?
-                    "loss" : "ongoing",
-              player: playerCur === 0 ? 2 : 1
-            }}
-            evaluation={analysis.winPercent !== undefined ? {
-              winPercent: analysis.winPercent,
-              player: playerCur === 0 ? 2 : 1
-            } : undefined}
-          />
+        <div className={styles.buttonContainer}>
+          <div className={styles.button}>
+            <DropdownButton
+              selectedIndex={playerDropdown}
+              onChange={index => setPlayerDrodown(index)}
+            >
+              <div>Player One</div>
+              <div>Player Two</div>
+            </DropdownButton>
+          </div>
 
-          <div className={styles.buttonContainer}>
-            <div className={styles.button}>
-              <DropdownButton
-                selectedIndex={playerDropdown}
-                onChange={index => setPlayerDrodown(index)}
-              >
-                <div>Player One</div>
-                <div>Player Two</div>
-              </DropdownButton>
-            </div>
-
-            <div className={styles.button}>
-              <Button onClick={handleNewGamePress}>
+          <div className={styles.button}>
+            <Button onClick={handleNewGamePress}>
               New Game
-              </Button>
-            </div>
-            <div className={styles.loaderContainer}>
-              <div className={`${styles.loader} ${!isMoveLoading && styles.hidden}`}></div>
-            </div>
+            </Button>
+          </div>
+
+          <div className={styles.loaderContainer}>
+            <div className={`${styles.loader} ${!isMoveLoading && styles.hidden}`}></div>
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
