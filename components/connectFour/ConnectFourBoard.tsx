@@ -68,6 +68,14 @@ export const ConnectFourBoard = (props: {
     setHoveringCol(null);
   };
 
+  const onColumnPress = (colIndex: number) => {
+    if (props.grid[colIndex][NUM_ROWS-1] === 0 || props.grid[colIndex][NUM_ROWS-1] === 1) {
+      return;
+    }
+
+    props.onColumnPress(colIndex);
+  };
+
   return (
     <div
       className={`${styles.boardContainer} ${props.className}`}
@@ -82,7 +90,7 @@ export const ConnectFourBoard = (props: {
             <button
               className={styles.columnButton}
               onMouseEnter={() => handleHoverEnter(colIndex)}
-              onClick={() => props.onColumnPress(colIndex)}
+              onClick={() => onColumnPress(colIndex)}
             >
               {column.map((piece, rowIndex) => (
                 <Cell

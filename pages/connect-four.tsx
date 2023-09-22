@@ -38,14 +38,14 @@ export default function ConnectFourPage() {
     setBoardContainer(el);
   }, []);
 
-  // Set the board's height to the correct ratio of the width
+  // Update stats container max height to same as board's height
   useLayoutEffect(() => {
     if (boardContainer === undefined) return;
 
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.borderBoxSize && entry.borderBoxSize[0] && statsContainerRef.current) {
-          statsContainerRef.current.style.height = entry.contentRect.height + "px";
+          statsContainerRef.current.style.maxHeight = entry.contentRect.height + "px";
         }
       }
     });
@@ -142,24 +142,27 @@ export default function ConnectFourPage() {
           }
         </div>
 
-        <div className={styles.statsContainer} ref={statsContainerRef}>
-          <ConnectFourStats
-            player1={playerCur === 0 ? "You" : "Computer"}
-            player2={playerCur === 0 ? "Computer" : "You"}
-            pastMoves={controller?.getPastMoves().map(move => move+1)}
-            prediction={analysis.prediction.map(move => move+1)}
-            predictionEnd={{
-              end: analysis.terminalValue === TerminalValue.Win ?
-                "win" : analysis.terminalValue === TerminalValue.Draw ?
-                  "draw" : analysis.terminalValue === TerminalValue.Loss ?
-                    "loss" : "ongoing",
-              player: playerCur === 0 ? 2 : 1
-            }}
-            evaluation={analysis.winPercent !== undefined ? {
-              winPercent: analysis.winPercent,
-              player: playerCur === 0 ? 2 : 1
-            } : undefined}
-          />
+        <div className={styles.sideContainer}>
+          <div className={styles.statsContainer} ref={statsContainerRef}>
+            <ConnectFourStats
+              className={styles.stats}
+              player1={playerCur === 0 ? "You" : "Computer"}
+              player2={playerCur === 0 ? "Computer" : "You"}
+              pastMoves={controller?.getPastMoves().map(move => move+1)}
+              prediction={analysis.prediction.map(move => move+1)}
+              predictionEnd={{
+                end: analysis.terminalValue === TerminalValue.Win ?
+                  "win" : analysis.terminalValue === TerminalValue.Draw ?
+                    "draw" : analysis.terminalValue === TerminalValue.Loss ?
+                      "loss" : "ongoing",
+                player: playerCur === 0 ? 2 : 1
+              }}
+              evaluation={analysis.winPercent !== undefined ? {
+                winPercent: analysis.winPercent,
+                player: playerCur === 0 ? 2 : 1
+              } : undefined}
+            />
+          </div>
 
           <div className={styles.buttonContainer}>
             <div className={styles.button}>
@@ -177,6 +180,7 @@ export default function ConnectFourPage() {
               New Game
               </Button>
             </div>
+
             <div className={styles.loaderContainer}>
               <div className={`${styles.loader} ${!isMoveLoading && styles.hidden}`}></div>
             </div>
