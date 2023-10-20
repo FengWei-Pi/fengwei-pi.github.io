@@ -51,7 +51,7 @@
 .movesContainer {
   flex: 1;
   min-height: 100px;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   background-color: colors.$surface-variant;
   border-radius: 0 0 5px 5px;
