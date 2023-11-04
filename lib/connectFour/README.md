@@ -118,7 +118,7 @@ The 7 input encodes valid moves. An input number is 1 if the corresponding colum
 
 ## Convolution
 
-The game state input if fed through a series of convolutional layers, batch nomalization, and relu activation. The first convolutional layer output size is 6x5(x number of filters), while the rest are 5x4.
+The game state input is fed through a series of convolutional layers, batch nomalization, and relu activation. The first convolutional layer output size is 6x5(x number of filters), while the rest are 5x4.
 
 Most noteworthy is the skip connection that feeds the output of the first relu into the relu layer before the output heads, done by the `add` layer.
 
@@ -238,7 +238,7 @@ For the exact code that was used to create a new network using Tensorflow.js, se
 
 ## Training
 
-Training was similarly done using trial and error using different hyperparameters. I don't recall the exact details, but it was roughly done over 16 hours. Several thousand games were played over around 16 iterations. Here, an iteration describes one game generation step plus one training step, sequentially done.
+Training was similarly done with trial and error using different hyperparameters. The following was written after the fact and contains a outline of the process to the best of my memory. Training was done on my personal computer over 16 hours. Several thousand games were played over 16 iterations. Here, an iteration describes one game generation step plus one training step, sequentially done.
 
 Many more games were generated at earlier iterations with a lower number of monte carlo tree search simulations, while fewer games were played as training progressed but with a higher number of simulations, ranging from 15-100 simulations per move and 800-200 games per game generation step in an iteration.
 
@@ -281,6 +281,7 @@ It follows the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern
 # Improvements
 
 - Longer memory: Store more training data from past iterations. [MuZero](https://www.deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules) stores millions of past data, more than AlphaZero. My network also performed better when it trained from more data in the past. Even though earlier data should be lower quality, training on it could help the network not forget its learnings.
-- Server: Adding a server is the next intuitive choice, moving the network, search, and game model logic from the client to the server. This offloads the computation to the server and removes need for web workers, which is used currently. Additionally, training the network could also be done on a server.
+- Server: Adding a server is the next intuitive choice, moving the network, search, and game model logic from the client to the server. This offloads the computation to the server and removes need for web workers, which is used currently. Training the network could also be done on the cloud, improving the available computational load and speed.
 - Python: Python is the standard choice for AI with an established ecosystem. Having the server run python would be the obvious choice over other languages.
 - Database for training data: Storing a large amount of training data on a database is a perfect use case.
+- Better documentation: How the network was trained is just as important as the final result. Training would benefit from keeping track of the exact hyperparameters and how each network's strength was evaluated after each attempt.
