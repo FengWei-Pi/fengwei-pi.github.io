@@ -1,22 +1,18 @@
-Why values? People may benefit from fortunate circumstances or suffer from unfortunate ones, but how we treat others and approach our work, that's always within our control.
+Trying to make the world a more empathetic place.
 
 ## Respect
 
-Respect for others is the baseline for fruitful endeavours and the bare minimum required for cooperation. Skill is appreciated, but respect is distinguished first[^1].
-
-Showing respect, even when not reciprocated, is a necessity easy to overlook. People have a wealth more information to judge their own behaviour that they instinctually miss how other people's behaviour are affected by situational factors[^2]. I want to give proper consideration to mistakes and celebration for successes for the goal of treating everyone as reasonable human beings by default.
+Being respectful of others is the baseline for any interaction. When working with other people, is the first thing they look for even before competence[^1], and is a necessity even when not reciprocated. It's much easier to excuse our own behaviour when we have access the entire context, and much harder to do the same for someone else when we instinctively miss the situational factors affecting theirs[^2]. With this in mind, I want to give proper consideration to mistakes and celebration for successes with the goal of, by default, treating everyone as reasonable human beings.
 
 ## Cooperation 
 
-Cooperation is the backbone of human progress. Humans became the most advanced species because, among other reasons, we effortlessly form social connections[^3] and copy actions from each other[^4]. We progress by studying and improving upon the most successful.
+Cooperation is the backbone of human society: humans thrive as a species because we effortlessly form social connections[^3], copying actions from each other[^4] and studying and improving upon the most successful.
 
-For these reasons, I loved talking to workmates about the intricacies of technical problems, the pros and cons of possible solutions, and the resolution of a shared decision. They were a way to explore more arguments than I would have by myself, with disagreements especially a way to share points we believed were meaningful. At a minimum, we can copy other people's work with a mind for improvement later. At more, we can use one of the best abilities at our disposal and work alongside each other to produce results better than our sum.
+Through cooperation we can discuss the intricacies of a problem, the pros and cons of possible solutions, and come to a satisfying resolution of a shared decision. It is a way to explore new perspectives and disagreements an especially important way to communicate ideas. At the very least, we can copy other people's practices with a mind for improvement later. At more, we can use one of the best abilities at our disposal and work alongside each other to produce results better than our sum.
 
 ## Effort And Improvement
 
-Success is a universal goal, one where a person's skill is often highlighted as the determining factor. However, emphasizing ability over improvement downplays the importance of long-term success for short-term results.
-
-I emphasize effort because people perform better when they perceive ability as a malleable, improvable trait[^5] and when they embrace challenges, criticism, and mistakes as a way to learn. When viewed otherwise, people become discouraged after a string of failures[^6]. Because of this, I strive somewhat paradoxically less for an exceptional result and more for a substantial effort.
+Emphasizing improvement over skill is the key to long term success over short term results. People perform better when they perceive ability as a malleable, improvable trait[^5] and when they embrace challenges, criticism, and mistakes as a way to learn. People become easily discouraged after failures when viewed otherwise[^6]. Because of this, I strive somewhat paradoxically less for an exceptional result and more for a substantial effort.
 
 [^1]: Connect, Then Lead. (2014, November 2). Harvard Business Review. https://hbr.org/2013/07/connect-then-lead
 [^2]: Gilovich, T., Keltner, D., Chen, S., & Nisbett, R. E. (2018). Social Psychology (Fifth). W. W. Norton & Company.  

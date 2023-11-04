@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback, useLayoutEffect } from "react
 import styles from "./connect-four.module.scss";
 import { Button } from "components/common/Button";
 import { DropdownButton } from "components/common/DropdownButton";
+import { NavHeader } from "components/nav/NavHeader";
 import { ConnectFourBoard } from "components/connectFour/ConnectFourBoard";
 import { ConnectFourController } from "lib/connectFour/connectFourController";
 import { ConnectFourNNStrategyMultiThread } from "lib/connectFour/connectFourNNStrategyMultiThread";
@@ -125,6 +126,8 @@ export default function ConnectFourPage() {
       <Head>
         <title>Connect Four</title>
       </Head>
+
+      <NavHeader />
 
       <div className={styles.container}>
         <div className={styles.gameContainer}>

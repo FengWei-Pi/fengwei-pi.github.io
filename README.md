@@ -18,13 +18,11 @@ To develop a feature, create a short-lived branch with the name corresponding to
 
 # Development Environment
 
-Includes more details than necessary in case they are needed.
-
-**Windows** - Edition	Windows 10 Home, Version 21H2, OS build 19044.1826 (July 12 2022)  
-**Git for Windows** - Version 2.37.1 (July 12 2022)  
-**VSCode** - Windows 64 bit Version 1.69.2 User Installer (June 2022)  
-**Node.js** - Version 16.16.0 (Jan 10 2022) | **npm** - Version 8.1.2  
-**nvm-windows** - Version 1.1.7 (Aug 01 2018)
+**Windows** - Windows 10  
+**Git for Windows** - Version 2.37.1  
+**VSCode** - Windows 64 bit  
+**Node.js** - Version 16.16.0 | **npm** - Version 8.1.2  
+**nvm-windows** - Version 1.1.7
 
 # Environment Setup
 
