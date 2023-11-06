@@ -2,13 +2,13 @@ Trying to make the world a more empathetic place.
 
 ## Respect
 
-Being respectful of others is the baseline for any interaction. When working with other people, it is the first thing we look for even before competence[^1], and is a necessity even when not reciprocated. It's much easier to excuse our own behaviour when we have access to the entire context, and much harder to do the same for someone else when we instinctively miss the situational factors affecting theirs[^2]. We should give proper consideration to mistakes and celebration for successes with the goal of treating everyone as reasonable human beings by default.
+Being respectful of others is the baseline for any interaction. When working with other people, it is the first thing we look for even before competence[^1], and is a necessity even when not reciprocated. It's much easier to excuse our own behaviour when we have access to the entire context, and much harder to do the same for someone else when we instinctively miss the situational factors affecting their behaviour[^2]. We should give proper consideration to mistakes and celebration for successes with the goal of treating everyone as reasonable human beings by default.
 
 ## Cooperation 
 
 Cooperation is the backbone of human society: humans thrive as a species because we effortlessly form social connections[^3], copying actions from each other[^4] and studying and improving upon the most successful.
 
-Through cooperation we can discuss the intricacies of a problem, the pros and cons of possible solutions, and come to a satisfying resolution of a shared decision. It is a way to explore new perspectives, with disagreements an especially important way to communicate ideas. At the very least, we can copy practices from the most successful with a mind for improvement later. At more, we can use one of the best abilities at our disposal and work alongside each other to produce results better than our sum.
+Through cooperation we can discuss the intricacies of a problem, the pros and cons of possible solutions, and come to a satisfying resolution of a shared decision. It is a way to explore new perspectives, with disagreements an especially important way to communicate ideas. At the very least, we can copy practices from the most successful with a mind for improvement later. At more, we can use one of the best tools at our disposal and work alongside each other to produce results better than our sum.
 
 ## Effort And Improvement
 
