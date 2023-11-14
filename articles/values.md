@@ -12,7 +12,7 @@ Through cooperation we can discuss the intricacies of a problem, the pros and co
 
 ## Effort And Improvement
 
-Emphasizing improvement over skill is the key to long-term success over short-term results. People perform better when they perceive ability as a malleable, improvable trait[^5] and when they embrace challenges, criticism, and mistakes as a way to learn. When ability is viewed instead as an innate, unchanging quality, people become easily discouraged after failures[^6]. Because of this, we should strive somewhat paradoxically less for an exceptional result and more for a substantial effort.
+Emphasizing improvement over skill is the key to long-term success over short-term results. People perform better when they perceive ability as a malleable, improvable trait[^5] and when they embrace challenges, criticism, and mistakes not as a test of their competence, but as a way to learn. When ability is viewed instead as an innate, unchanging quality, people become easily discouraged after failures[^6]. Because of this, we should strive somewhat paradoxically less for an exceptional result and more for a substantial effort.
 
 [^1]: Connect, Then Lead. (2014, November 2). Harvard Business Review. https://hbr.org/2013/07/connect-then-lead
 [^2]: Gilovich, T., Keltner, D., Chen, S., & Nisbett, R. E. (2018). Social Psychology (Fifth). W. W. Norton & Company.  
