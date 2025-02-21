@@ -7,6 +7,7 @@ import "styles/global.scss";
 // See https://nextjs.org/docs/basic-features/font-optimization.
 const inter = Inter({ subsets: ["latin"] });
 
+/*
 export default function App({ Component, pageProps }) {
   return (
     <main className={inter.className}>
@@ -17,4 +18,11 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
     </main>
   );
+}
+*/
+
+export default function RootLayout({ children }) {
+  return (
+    <div>Offline</div>
+  )
 }
